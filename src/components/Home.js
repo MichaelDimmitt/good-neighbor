@@ -20,7 +20,7 @@ class Home extends Component {
       user: {},
       searchResult: {},
       users: [],
-      projects: []
+      addresses: []
     }
   }
 
@@ -35,10 +35,10 @@ class Home extends Component {
       user: user || {}
     });
     if (user) {
-      base.syncState(`users/${user.uid}/projects`, {
+      base.syncState(`users/${user.uid}/addresses`, {
         context: this,
         asArray: true,
-        state: 'projects'
+        state: 'addresses'
       });
       // base.syncState(`users/${user.uid}/users`, {
       //   context: this,
@@ -96,13 +96,13 @@ class Home extends Component {
   displaySearchResults () {
     if (this.state.searchResult.geometry) {
       const result = this.state.searchResult;
-      // const projectIds = this.state.projects.map(p => p.place_id);
       return (
         <div>
           <h5>{result.formatted_address}</h5>
           <div className="map">
              <Map
                addressResult={this.state.searchResult}
+               addAddress={this.addAddress.bind(this)}
 
                containerElement={<div style={{ height: `100%` }} />}
                mapElement={<div style={{ height: `100%` }} />}
@@ -112,6 +112,29 @@ class Home extends Component {
       )
     }
   }
+
+
+  addAddress(address){
+    console.log(address);
+    let list = document.querySelector('.Favorites');
+
+    const addressData = {name: address.formatted_address, location: address.geometry.location}
+      this.setState({
+        addresses: this.state.addresses.concat(addressData)
+      })
+}
+
+
+
+  // removeAddress(address){
+  //   const projectId = project.id
+  //   let projectData = this.state.projects
+  //
+  //   this.setState ({
+  //     projects: projectData.filter(object => object.id !== projectId)
+  //   })
+  // }
+
 
   // displaySearchResults () {
   //   if (this.state.searchResults.items) {
@@ -182,26 +205,6 @@ class Home extends Component {
   }
 
 
-  addAddress(project){
-    let list = document.querySelector('.Favorites');
-    let projectList = this.state.projects
-
-    const projectData = {name: project.name, id: project.id}
-      this.setState({
-        projects: this.state.projects.concat(projectData)
-      })
-}
-
-
-
-  removeAddress(project){
-    const projectId = project.id
-    let projectData = this.state.projects
-
-    this.setState ({
-      projects: projectData.filter(object => object.id !== projectId)
-    })
-  }
 
 
   render() {
@@ -211,7 +214,7 @@ class Home extends Component {
             {this.loginOrLogoutButton()}
           </div>
           <div className="row">
-            <div className="col s2 favorites">
+            <div className="col s2 Favorites">
               {this.displayNeighborhoods()}
             </div>
             <div className="col s10">
