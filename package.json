@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.1",
     "firebase": "^3.9.0",
     "nodemon": "^1.11.0",
+    "re-base": "^2.7.1",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-google-maps": "^6.3.0",
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
