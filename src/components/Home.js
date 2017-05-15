@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Map from './Map'
 import ProjectSearchResult from './projectSearchResult';
 import Favorites from './Favorites';
 import base from '../rebase';
@@ -17,7 +18,7 @@ class Home extends Component {
     super();
     this.state = {
       user: {},
-      searchResults: {},
+      searchResult: {},
       users: [],
       projects: []
     }
@@ -76,7 +77,7 @@ class Home extends Component {
           <input
             placeholder='Address'
             ref={element => this.addressName = element} />
-          <button className="waves-effect waves-light btn">Searh for your Neighbors</button>
+          <button className="waves-effect waves-light btn">Search for your Neighbors</button>
         </form>
       )
     }
@@ -87,33 +88,51 @@ class Home extends Component {
     event.preventDefault();
     const address = this.addressName.value;
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
-    // .then(response => console.log(response.data.results[0].geometry.location))
-    .then(response => this.setState({ searchResults: response.data.results[0].geometry.location }));
+    .then(response => this.setState({ searchResult: response.data.results[0]/*.geometry.location*/ }));
     this.addressName.value = '';
   }
 
 
   displaySearchResults () {
-    if (this.state.searchResults.items) {
-      const results = this.state.searchResults;
-      const projectIds = this.state.projects.map(p => p.id);
+    if (this.state.searchResult.geometry) {
+      const result = this.state.searchResult;
+      // const projectIds = this.state.projects.map(p => p.place_id);
       return (
         <div>
-          <h6>{results.total_count} Results</h6>
-          <ul>
-            {results.items.map((project, index) => {
-              return <ProjectSearchResult key={index} project={project}
-              alreadyInFirebase={projectIds.includes(project.id)}
-              addProject={this.addProject.bind(this)}
-              removeProject={this.removeProject.bind(this)} />
-            }
-            )}
-          </ul>
+          <h5>{result.formatted_address}</h5>
+          <div className="map">
+             <Map
+               addressResult={this.state.searchResult}
+
+               containerElement={<div style={{ height: `100%` }} />}
+               mapElement={<div style={{ height: `100%` }} />}
+              />
+          </div>
         </div>
       )
     }
   }
 
+  // displaySearchResults () {
+  //   if (this.state.searchResults.items) {
+  //     const results = this.state.searchResults;
+  //     const projectIds = this.state.projects.map(p => p.id);
+  //     return (
+  //       <div>
+  //         <h6>{results.total_count} Results</h6>
+  //         <ul>
+  //           {results.items.map((project, index) => {
+  //             return <ProjectSearchResult key={index} project={project}
+  //             alreadyInFirebase={projectIds.includes(project.id)}
+  //             addProject={this.addProject.bind(this)}
+  //             removeProject={this.removeProject.bind(this)} />
+  //           }
+  //           )}
+  //         </ul>
+  //       </div>
+  //     )
+  //   }
+  // }
 
 
 
@@ -141,26 +160,6 @@ class Home extends Component {
   //   }
   // }
 
-  // displaySearchResults () {
-  //   if (this.state.searchResults.items) {
-  //     const results = this.state.searchResults;
-  //     const projectIds = this.state.projects.map(p => p.id);
-  //     return (
-  //       <div>
-  //         <h6>{results.total_count} Results</h6>
-  //         <ul>
-  //           {results.items.map((project, index) => {
-  //             return <ProjectSearchResult key={index} project={project}
-  //             alreadyInFirebase={projectIds.includes(project.id)}
-  //             addProject={this.addProject.bind(this)}
-  //             removeProject={this.removeProject.bind(this)} />
-  //           }
-  //           )}
-  //         </ul>
-  //       </div>
-  //     )
-  //   }
-  // }
 
 
   displayNeighborhoods() {
