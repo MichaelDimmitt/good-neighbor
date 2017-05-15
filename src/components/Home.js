@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
-import ProjectSearchResult from './projectSearchResult';
 import Favorites from './Favorites';
 import base from '../rebase';
 import {
@@ -125,63 +124,6 @@ class Home extends Component {
 }
 
 
-
-  // removeAddress(address){
-  //   const projectId = project.id
-  //   let projectData = this.state.projects
-  //
-  //   this.setState ({
-  //     projects: projectData.filter(object => object.id !== projectId)
-  //   })
-  // }
-
-
-  // displaySearchResults () {
-  //   if (this.state.searchResults.items) {
-  //     const results = this.state.searchResults;
-  //     const projectIds = this.state.projects.map(p => p.id);
-  //     return (
-  //       <div>
-  //         <h6>{results.total_count} Results</h6>
-  //         <ul>
-  //           {results.items.map((project, index) => {
-  //             return <ProjectSearchResult key={index} project={project}
-  //             alreadyInFirebase={projectIds.includes(project.id)}
-  //             addProject={this.addProject.bind(this)}
-  //             removeProject={this.removeProject.bind(this)} />
-  //           }
-  //           )}
-  //         </ul>
-  //       </div>
-  //     )
-  //   }
-  // }
-
-
-
-
-
-  // searchGithubProjects (event) {
-  //   event.preventDefault();
-  //   const project = this.projectName.value;
-  //   axios.get(`https://api.github.com/search/repositories?q=${project}`)
-  //    .then(response => this.setState({ searchResults: response.data }));
-  //   this.projectName.value = '';
-  // }
-  //
-  //
-  // formIfLoggedIn () {
-  //   if (this.state.user.uid) {
-  //     return (
-  //       <form onSubmit={this.searchGithubProjects.bind(this)}>
-  //         <input
-  //           placeholder='Favorite GitHub Projects'
-  //           ref={element => this.projectName = element} />
-  //         <button className="waves-effect waves-light btn">Search GitHub Repos</button>
-  //       </form>
-  //     )
-  //   }
-  // }
 
 
 
