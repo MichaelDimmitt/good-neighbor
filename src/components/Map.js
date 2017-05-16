@@ -25,15 +25,19 @@ class Map extends Component {
 
   render () {
     const address = this.props.addressResult
-    const markers = this.props.markers || []
+    const markers = this.props.markers
 
-    console.log('test')
+    console.log(markers)
     return (
       <GoogleMap
         zoom={this.props.zoom}
         center={this.props.center} >
+
         {markers.map((marker, index) => (
-          <Marker {...marker} />
+          //  console.log(marker)
+          <Marker {...marker}
+          // onRightClick={() => markers.onMarkerRightClick(index)}
+          />
           )
         )}
         <div className="row">

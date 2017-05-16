@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Details from './Details';
-import Home from './Home'
+import Details from './components/Details';
+import Home from './components/Home'
 import {
   BrowserRouter as Router,
   Route,

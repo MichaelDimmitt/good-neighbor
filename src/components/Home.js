@@ -98,6 +98,9 @@ class Home extends Component {
   displaySearchResults () {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
+      const test = {
+        position: result.geometry.location
+      }
       return (
         <div>
           <h5>{result.formatted_address}</h5>
@@ -106,7 +109,10 @@ class Home extends Component {
                addressResult={result}
                center={result.geometry.location}
                zoom={16}
-               
+               markers={[test]}
+
+              //  onMarkerRightClick={result.noop}
+
                addAddress={this.addAddress.bind(this)}
                containerElement={<div style={{ height: `100%` }} />}
                mapElement={<div style={{ height: `100%` }} />}
