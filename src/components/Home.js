@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
 import Favorites from './Favorites';
+import Header from './Header';
 import base from '../rebase';
 import {
   BrowserRouter as Router,
@@ -34,12 +35,12 @@ class Home extends Component {
       user: user || {}
     });
     if (user) {
-      base.syncState(`users/${user.uid}/addresses`, {
+      this.addressSwitch = base.syncState(`users/${user.uid}/addresses`, {
         context: this,
         asArray: true,
         state: 'addresses'
       });
-      // base.syncState(`users/${user.uid}/users`, {
+      // this.offSwitchForUsers = base.syncState(`users/${user.uid}/users`, {
       //   context: this,
       //   asArray: true,
       //   state: 'users'
@@ -48,8 +49,8 @@ class Home extends Component {
   }
 
   // componentWillUnmount () {
-  //   base.removeBinding(this.offSwitchForUsers);
-  //   base.removeBinding(this.offSwitchForProjects);
+  //   // base.removeBinding(this.offSwitchForUsers);
+  //   base.removeBinding(this.offSwitchForAddresses);
   // }
 
   login () {
@@ -58,6 +59,8 @@ class Home extends Component {
 
   logout () {
     base.unauth()
+    base.removeBinding(this.addressSwitch);
+
   }
 
   loginOrLogoutButton () {
@@ -87,22 +90,29 @@ class Home extends Component {
     event.preventDefault();
     const address = this.addressName.value;
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
-    .then(response => this.setState({ searchResult: response.data.results[0]/*.geometry.location*/ }));
+    .then(response => this.setState({ searchResult: response.data.results[0] }));
     this.addressName.value = '';
   }
 
 
   displaySearchResults () {
-    if (this.state.searchResult.geometry) {
+    if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
+      const test = {
+        position: result.geometry.location
+      }
       return (
         <div>
           <h5>{result.formatted_address}</h5>
           <div className="map">
              <Map
-               addressResult={this.state.searchResult}
-               center={this.state.searchResult.geometry.location}
+               addressResult={result}
+               center={result.geometry.location}
                zoom={16}
+               markers={[test]}
+
+              //  onMarkerRightClick={result.noop}
+
                addAddress={this.addAddress.bind(this)}
                containerElement={<div style={{ height: `100%` }} />}
                mapElement={<div style={{ height: `100%` }} />}
@@ -126,14 +136,11 @@ class Home extends Component {
 
 
   displayNeighborhoods() {
-    if(this.state.addresses) {
-      console.log(this.state.addresses);
+    if(this.state.addresses && this.state.user.uid) {
       const results = this.state.addresses
-      // const addressName = this.state.addresses.map(p => p.name);
-      // console.log(projectId);
       return (
         <div>
-          <h5><strong>Neighborhoods</strong></h5>
+          <h5><strong>Locations</strong></h5>
           <ul>
             {results.map((address, index) => {
               return <Favorites key={index} address={address} />
@@ -151,6 +158,9 @@ class Home extends Component {
   render() {
     return (
         <div>
+          <Header
+            user={this.state.user}
+          />
           <div className="log">
             {this.loginOrLogoutButton()}
           </div>

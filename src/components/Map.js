@@ -25,19 +25,24 @@ class Map extends Component {
 
   render () {
     const address = this.props.addressResult
-    const markers = this.props.markers || []
+    const markers = this.props.markers
 
+    console.log(markers)
     return (
       <GoogleMap
-        defaultZoom={this.props.zoom}
-        defaultCenter={this.props.center} >
+        zoom={this.props.zoom}
+        center={this.props.center} >
+
         {markers.map((marker, index) => (
-          <Marker {...marker} />
+          //  console.log(marker)
+          <Marker {...marker}
+          // onRightClick={() => markers.onMarkerRightClick(index)}
+          />
           )
         )}
-        <div>
-          <p>{this.addButton(address)}</p>
-          <Link to={address.place_id}><button className="waves-effect waves-light btn">Go to Location</button></Link>
+        <div className="row">
+          <p className="col s6">{this.addButton(address)}</p>
+          <p><Link to={address.place_id}><button className="waves-effect waves-light btn col s6">Go to Location</button></Link></p>
         </div>
       </GoogleMap>
 
