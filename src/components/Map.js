@@ -35,9 +35,9 @@ class Map extends Component {
           <Marker {...marker} />
           )
         )}
-        <div>
-          <p>{this.addButton(address)}</p>
-          <Link to={address.place_id}><button className="waves-effect waves-light btn">Go to Location</button></Link>
+        <div className="row">
+          <p className="col s6">{this.addButton(address)}</p>
+          <p><Link to={address.place_id}><button className="waves-effect waves-light btn col s6">Go to Location</button></Link></p>
         </div>
       </GoogleMap>
 
