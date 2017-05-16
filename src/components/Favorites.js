@@ -11,10 +11,10 @@ class Favorites extends Component {
 
 
   render () {
-      const project = this.props.project;
+      const address = this.props.address;
       return (
         <li className="">
-          <Link to={`${project.id}`}>{project.name}</Link>
+          <Link to={`${address.id}`}>{address.name}</Link>
         </li>
       )
     }

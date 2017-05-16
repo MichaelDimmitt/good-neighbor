@@ -101,8 +101,9 @@ class Home extends Component {
           <div className="map">
              <Map
                addressResult={this.state.searchResult}
+               center={this.state.searchResult.geometry.location}
+               zoom={16}
                addAddress={this.addAddress.bind(this)}
-
                containerElement={<div style={{ height: `100%` }} />}
                mapElement={<div style={{ height: `100%` }} />}
               />
@@ -114,10 +115,7 @@ class Home extends Component {
 
 
   addAddress(address){
-    console.log(address);
-    let list = document.querySelector('.Favorites');
-
-    const addressData = {name: address.formatted_address, location: address.geometry.location}
+    const addressData = {name: address.formatted_address, location: address.geometry.location, id: address.place_id}
       this.setState({
         addresses: this.state.addresses.concat(addressData)
       })
@@ -128,16 +126,17 @@ class Home extends Component {
 
 
   displayNeighborhoods() {
-    if(this.state.projects) {
-      const results = this.state.projects
-      const projectId = this.state.projects.map(p => p.id);
+    if(this.state.addresses) {
+      console.log(this.state.addresses);
+      const results = this.state.addresses
+      // const addressName = this.state.addresses.map(p => p.name);
       // console.log(projectId);
       return (
         <div>
           <h5><strong>Neighborhoods</strong></h5>
           <ul>
-            {results.map((project, index) => {
-              return <Favorites key={index} project={project} />
+            {results.map((address, index) => {
+              return <Favorites key={index} address={address} />
             }
             )}
           </ul>
