@@ -27,10 +27,11 @@ class Map extends Component {
     const address = this.props.addressResult
     const markers = this.props.markers || []
 
+    console.log('test')
     return (
       <GoogleMap
-        defaultZoom={this.props.zoom}
-        defaultCenter={this.props.center} >
+        zoom={this.props.zoom}
+        center={this.props.center} >
         {markers.map((marker, index) => (
           <Marker {...marker} />
           )

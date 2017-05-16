@@ -103,9 +103,10 @@ class Home extends Component {
           <h5>{result.formatted_address}</h5>
           <div className="map">
              <Map
-               addressResult={this.state.searchResult}
-               center={this.state.searchResult.geometry.location}
+               addressResult={result}
+               center={result.geometry.location}
                zoom={16}
+               
                addAddress={this.addAddress.bind(this)}
                containerElement={<div style={{ height: `100%` }} />}
                mapElement={<div style={{ height: `100%` }} />}
