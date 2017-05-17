@@ -17,8 +17,7 @@ class Neighborhood extends Component {
   constructor () {
     super();
     this.state = {
-      users: {},
-      addresses: [],
+      users: [],
       currentLocation: {},
       // text: []
     }
@@ -26,11 +25,35 @@ class Neighborhood extends Component {
 
 
   componentDidMount(){
+
     const addressId = this.props.match.params.id;
       axios.get(` https://maps.googleapis.com/maps/api/geocode/json?place_id=${addressId}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
       // .then(response => console.log(response.data.results[0].geometry.location))
       .then(response => this.setState({ currentLocation: response.data.results[0].geometry.location }))
+
+      base.fetch('users', {
+          context: this,
+          asArray: true
+        }).then(response => this.setState({ users: response }))
   }
+
+
+
+  compareLocations() {
+    if(this.state.currentLocation && this.state.users[0]) {
+      const otherUsers = this.state.users
+      const lat = this.state.currentLocation.lat
+      const lng = this.state.currentLocation.lng
+      console.log(lat, lng);
+      console.log(otherUsers[0].addresses)
+      // console.log(lat, lng);
+      // if(otherUsers[0]) {
+      //   console.log(otherUsers[0].addresses)
+      // }
+
+    }
+}
+
 
 // componentDidMount() {
 //   base.fetch('users', {
@@ -48,13 +71,6 @@ class Neighborhood extends Component {
 //     console.log(this.state)
 // }
 
-  compareLocations() {
-    if(this.state.currentLocation) {
-      console.log(this.state.currentLocation)
-    }
-}
-
-
 
 //   componentDidMount() {
 //     const projectId = this.props.match.params.id;
@@ -69,11 +85,8 @@ class Neighborhood extends Component {
 
 
   render() {
-    // const user = this.state.users;
-    // console.log(user)
     return (
       <div>
-        {/* {this.compareLocations()} */}
         {this.compareLocations()}
         test page
       </div>
