@@ -19,25 +19,41 @@ class Neighborhood extends Component {
     this.state = {
       users: {},
       addresses: [],
-      // owner: [],
+      currentLocation: {},
       // text: []
     }
   }
 
-componentDidMount() {
-  base.fetch('users', {
-    context: this,
-    asArray: true
-  }).then(response => this.setState({ users: response }))
+
+  componentDidMount(){
+    const addressId = this.props.match.params.id;
+      axios.get(` https://maps.googleapis.com/maps/api/geocode/json?place_id=${addressId}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
+      // .then(response => console.log(response.data.results[0].geometry.location))
+      .then(response => this.setState({ currentLocation: response.data.results[0].geometry.location }))
+  }
+
+// componentDidMount() {
+//   base.fetch('users', {
+//     context: this,
+//     asArray: true
+//   }).then(response => this.setState({ users: response }))
+// }
+
+// compareLocations(event) {
+//   event.preventDefault();
+//   const addressId = this.props.match.params.id;
+//     axios.get(` https://maps.googleapis.com/maps/api/geocode/json?place_id=${addressId}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
+//     // .then(response => console.log(response.data.results[0].geometry.location))
+//     .then(response => this.setState({ currentLocation: response.data.results[0].geometry.location }))
+//     console.log(this.state)
+// }
+
+  compareLocations() {
+    if(this.state.currentLocation) {
+      console.log(this.state.currentLocation)
+    }
 }
 
-compareLocations() {
-  let address = this.state.users
-  console.log(address);
-  // address.map(user => console.log(user.addresses))
-    // console.log(this.state.users);
-
-}
 
 
 //   componentDidMount() {
@@ -57,6 +73,7 @@ compareLocations() {
     // console.log(user)
     return (
       <div>
+        {/* {this.compareLocations()} */}
         {this.compareLocations()}
         test page
       </div>
