@@ -11,37 +11,53 @@ import base from '../rebase';
 window.base = base;
 
 
-class Favorites extends Component {
+class Neighborhood extends Component {
 
 
   constructor () {
     super();
     this.state = {
       users: {},
-      project: [],
-      owner: [],
-      text: []
+      addresses: [],
+      // owner: [],
+      // text: []
     }
   }
 
-  componentDidMount() {
-    const projectId = this.props.match.params.id;
-      axios.get(`https://api.github.com/repositories/${projectId}`).then(response => this.setState({ project: response.data, owner: response.data.owner }));
+componentDidMount() {
+  base.fetch('users', {
+    context: this,
+    asArray: true
+  }).then(response => this.setState({ users: response }))
+}
+
+compareLocations() {
+  let address = this.state.users
+  console.log(address);
+  // address.map(user => console.log(user.addresses))
+    // console.log(this.state.users);
+
 }
 
 
-  addText(){
-    let message = document.getElementById('message').value;
-    base.push(`users/comments`, {data: { text: {message}}})
-  }
+//   componentDidMount() {
+//     const projectId = this.props.match.params.id;
+//       axios.get(`https://api.github.com/repositories/${projectId}`).then(response => this.setState({ project: response.data, owner: response.data.owner }));
+// }
+
+
+  // addText(){
+  //   let message = document.getElementById('message').value;
+  //   base.push(`users/comments`, {data: { text: {message}}})
+  // }
 
 
   render() {
-    const project = this.state.project;
-    const owner = this.state.owner;
-    console.log(project);
+    // const user = this.state.users;
+    // console.log(user)
     return (
       <div>
+        {this.compareLocations()}
         test page
       </div>
 
@@ -92,4 +108,4 @@ class Favorites extends Component {
     )}
 }
 
-export default Favorites;
+export default Neighborhood;

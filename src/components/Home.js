@@ -40,18 +40,14 @@ class Home extends Component {
         asArray: true,
         state: 'addresses'
       });
-      // this.offSwitchForUsers = base.syncState(`users/${user.uid}/users`, {
-      //   context: this,
-      //   asArray: true,
-      //   state: 'users'
-      // });
+      this.userSwitch = base.syncState(`users/${user.uid}/users`, {
+        context: this,
+        asArray: true,
+        state: 'users'
+      });
     }
   }
 
-  // componentWillUnmount () {
-  //   // base.removeBinding(this.offSwitchForUsers);
-  //   base.removeBinding(this.offSwitchForAddresses);
-  // }
 
   login () {
     base.authWithOAuthPopup('google', function (){});
@@ -60,7 +56,6 @@ class Home extends Component {
   logout () {
     base.unauth()
     base.removeBinding(this.addressSwitch);
-
   }
 
   loginOrLogoutButton () {
@@ -98,9 +93,8 @@ class Home extends Component {
   displaySearchResults () {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
-      const test = {
-        position: result.geometry.location
-      }
+      const marker = { position: result.geometry.location }
+
       return (
         <div>
           <h5>{result.formatted_address}</h5>
@@ -109,10 +103,7 @@ class Home extends Component {
                addressResult={result}
                center={result.geometry.location}
                zoom={16}
-               markers={[test]}
-
-              //  onMarkerRightClick={result.noop}
-
+               markers={[marker]}
                addAddress={this.addAddress.bind(this)}
                containerElement={<div style={{ height: `100%` }} />}
                mapElement={<div style={{ height: `100%` }} />}

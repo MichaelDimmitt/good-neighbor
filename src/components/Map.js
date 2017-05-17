@@ -34,15 +34,14 @@ class Map extends Component {
         center={this.props.center} >
 
         {markers.map((marker, index) => (
-          //  console.log(marker)
           <Marker {...marker}
-          // onRightClick={() => markers.onMarkerRightClick(index)}
           />
           )
         )}
         <div className="row">
-          <p className="col s6">{this.addButton(address)}</p>
-          <p><Link to={address.place_id}><button className="waves-effect waves-light btn col s6">Go to Location</button></Link></p>
+          <br />
+          <div className="col s6">{this.addButton(address)}</div>
+          <div><Link to={address.place_id}><button className="waves-effect waves-light btn col s6">Go to Location</button></Link></div>
         </div>
       </GoogleMap>
 

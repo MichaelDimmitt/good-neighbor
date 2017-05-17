@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Details from './components/Details';
+import Neighborhood from './components/Neighborhood';
 import Home from './components/Home'
 import {
   BrowserRouter as Router,
@@ -15,8 +15,9 @@ class App extends Component {
     return (
       <Router>
         <div>
+          {/* <Route exact path="/" component={Home}/> */}
           <Route exact path="/" component={Home}/>
-          <Route exact path="/:id" component={Details}/>
+          <Route exact path="/:id" component={Neighborhood}/>
         </div>
       </Router>
     );
