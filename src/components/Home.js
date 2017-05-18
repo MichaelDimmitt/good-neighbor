@@ -20,7 +20,7 @@ class Home extends Component {
       user: {},
       searchResult: {},
       users: [],
-      addresses: []
+      address: {}
     }
   }
 
@@ -35,23 +35,19 @@ class Home extends Component {
       user: user || {}
     });
     if (user) {
-      this.addressSwitch = base.syncState(`users/${user.uid}/addresses`, {
+      this.addressSwitch = base.syncState(`users/${user.uid}/address`, {
         context: this,
         asArray: true,
-        state: 'addresses'
+        state: 'address'
       });
-      // this.offSwitchForUsers = base.syncState(`users/${user.uid}/users`, {
-      //   context: this,
-      //   asArray: true,
-      //   state: 'users'
-      // });
+      this.userSwitch = base.syncState(`users/${user.uid}/users`, {
+        context: this,
+        asArray: true,
+        state: 'users'
+      });
     }
   }
 
-  // componentWillUnmount () {
-  //   // base.removeBinding(this.offSwitchForUsers);
-  //   base.removeBinding(this.offSwitchForAddresses);
-  // }
 
   login () {
     base.authWithOAuthPopup('google', function (){});
@@ -60,7 +56,6 @@ class Home extends Component {
   logout () {
     base.unauth()
     base.removeBinding(this.addressSwitch);
-
   }
 
   loginOrLogoutButton () {
@@ -98,9 +93,8 @@ class Home extends Component {
   displaySearchResults () {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
-      const test = {
-        position: result.geometry.location
-      }
+      const marker = { position: result.geometry.location }
+
       return (
         <div>
           <h5>{result.formatted_address}</h5>
@@ -109,10 +103,7 @@ class Home extends Component {
                addressResult={result}
                center={result.geometry.location}
                zoom={16}
-               markers={[test]}
-
-              //  onMarkerRightClick={result.noop}
-
+               markers={[marker]}
                addAddress={this.addAddress.bind(this)}
                containerElement={<div style={{ height: `100%` }} />}
                mapElement={<div style={{ height: `100%` }} />}
@@ -127,7 +118,7 @@ class Home extends Component {
   addAddress(address){
     const addressData = {name: address.formatted_address, location: address.geometry.location, id: address.place_id}
       this.setState({
-        addresses: this.state.addresses.concat(addressData)
+        address: addressData
       })
 }
 
@@ -136,16 +127,13 @@ class Home extends Component {
 
 
   displayNeighborhoods() {
-    if(this.state.addresses && this.state.user.uid) {
-      const results = this.state.addresses
+    if(this.state.address && this.state.user.uid) {
+      const result = this.state.address
       return (
         <div>
-          <h5><strong>Locations</strong></h5>
+          <h5><strong>Address</strong></h5>
           <ul>
-            {results.map((address, index) => {
-              return <Favorites key={index} address={address} />
-            }
-            )}
+            <Favorites address={result} />
           </ul>
         </div>
       )

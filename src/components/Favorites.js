@@ -13,9 +13,12 @@ class Favorites extends Component {
   render () {
       const address = this.props.address;
       return (
-        <li className="">
-          <Link to={`${address.id}`}>{address.name}</Link>
+        <div>
+        <li className="section">
+          <Link to={`${address[0]}`}>{address[2]}</Link>
         </li>
+        <div className="divider"></div>
+      </div>
       )
     }
 }
