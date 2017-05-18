@@ -10,7 +10,7 @@ import base from '../rebase';
 
 window.base = base;
 
-class NeighborhoodTest extends Component {
+class Neighborhood extends Component {
 
 
   constructor () {
@@ -66,4 +66,4 @@ class NeighborhoodTest extends Component {
     )}
 }
 
-export default NeighborhoodTest;
+export default Neighborhood;

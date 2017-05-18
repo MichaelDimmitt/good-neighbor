@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Neighborhood from './components/Neighborhood';
-import NeighborhoodTest from './components/NeighborhoodTest';
 import Home from './components/Home'
 import {
   BrowserRouter as Router,
@@ -18,7 +17,7 @@ class App extends Component {
         <div>
           {/* <Route exact path="/" component={Home}/> */}
           <Route exact path="/" component={Home}/>
-          <Route exact path="/:id" component={NeighborhoodTest}/>
+          <Route exact path="/:id" component={Neighborhood}/>
         </div>
       </Router>
     );
