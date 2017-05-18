@@ -17,7 +17,7 @@ class Neighborhood extends Component {
   constructor () {
     super();
     this.state = {
-      users: [],
+      users: {},
       currentLocation: {},
       // text: []
     }
@@ -41,11 +41,19 @@ class Neighborhood extends Component {
 
   compareLocations() {
     if(this.state.currentLocation && this.state.users[0]) {
-      const otherUsers = this.state.users
-      const lat = this.state.currentLocation.lat
-      const lng = this.state.currentLocation.lng
-      console.log(lat, lng);
-      console.log(otherUsers[0].addresses)
+      let otherUsers = this.state.users //array of users
+      let currentLatLng = this.state.currentLocation.lat + this.state.currentLocation.lng
+      let roundSum = Math.round(currentLatLng * 100)/100
+      console.log(roundSum);
+      let otherUsersAddresses = otherUsers.map(add => add.addresses) //array of addresses
+      let otherLatLng = otherUsersAddresses[0][0].location.lat + otherUsersAddresses[0][0].location.lng
+      let roundSum1 = Math.round(otherLatLng * 100)/100
+      console.log(roundSum1);
+
+      if(roundSum + 0.01 == roundSum1 || roundSum - 0.01 == roundSum1 || roundSum == roundSum1) {
+        console.log('test')
+      }
+
       // console.log(lat, lng);
       // if(otherUsers[0]) {
       //   console.log(otherUsers[0].addresses)
