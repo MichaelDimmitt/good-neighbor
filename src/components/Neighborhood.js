@@ -43,60 +43,36 @@ class Neighborhood extends Component {
     if(this.state.currentLocation && this.state.users[0]) {
       let otherUsers = this.state.users //array of users
       let currentLatLng = this.state.currentLocation.lat + this.state.currentLocation.lng
-      let roundSum = Math.round(currentLatLng * 100)/100
-      console.log(roundSum);
+      let currentRound = Math.round(currentLatLng * 100)/100
+      console.log(currentRound);
       let otherUsersAddresses = otherUsers.map(add => add.addresses) //array of addresses
       let otherLatLng = otherUsersAddresses[0][0].location.lat + otherUsersAddresses[0][0].location.lng
-      let roundSum1 = Math.round(otherLatLng * 100)/100
-      console.log(roundSum1);
+      let otherRound = Math.round(otherLatLng * 100)/100
+      console.log(otherRound);
 
-      if(roundSum + 0.01 == roundSum1 || roundSum - 0.01 == roundSum1 || roundSum == roundSum1) {
-        console.log('test')
+      if(currentRound + 0.01 == otherRound || currentRound - 0.01 == otherRound || currentRound == otherRound) {
+        return (
+          <div>
+             <input type="text" placeholder="Message" id="message"/>
+             <button className="waves-effect waves-light btn" id="message-button" type="submit" onClick={this.addText.bind(this)}>Submit</button>
+          </div>
+        )
       }
-
-      // console.log(lat, lng);
-      // if(otherUsers[0]) {
-      //   console.log(otherUsers[0].addresses)
-      // }
-
     }
 }
 
-
-// componentDidMount() {
-//   base.fetch('users', {
-//     context: this,
-//     asArray: true
-//   }).then(response => this.setState({ users: response }))
-// }
-
-// compareLocations(event) {
-//   event.preventDefault();
-//   const addressId = this.props.match.params.id;
-//     axios.get(` https://maps.googleapis.com/maps/api/geocode/json?place_id=${addressId}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
-//     // .then(response => console.log(response.data.results[0].geometry.location))
-//     .then(response => this.setState({ currentLocation: response.data.results[0].geometry.location }))
-//     console.log(this.state)
-// }
+addText(){
+  let message = document.getElementById('message').value;
+  base.push(`users/user`, {data: { text: {message}}})
+}
 
 
-//   componentDidMount() {
-//     const projectId = this.props.match.params.id;
-//       axios.get(`https://api.github.com/repositories/${projectId}`).then(response => this.setState({ project: response.data, owner: response.data.owner }));
-// }
-
-
-  // addText(){
-  //   let message = document.getElementById('message').value;
-  //   base.push(`users/comments`, {data: { text: {message}}})
-  // }
 
 
   render() {
     return (
       <div>
         {this.compareLocations()}
-        test page
       </div>
 
 

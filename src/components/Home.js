@@ -20,7 +20,7 @@ class Home extends Component {
       user: {},
       searchResult: {},
       users: [],
-      addresses: []
+      address: {}
     }
   }
 
@@ -35,10 +35,10 @@ class Home extends Component {
       user: user || {}
     });
     if (user) {
-      this.addressSwitch = base.syncState(`users/${user.uid}/addresses`, {
+      this.addressSwitch = base.syncState(`users/${user.uid}/address`, {
         context: this,
         asArray: true,
-        state: 'addresses'
+        state: 'address'
       });
       this.userSwitch = base.syncState(`users/${user.uid}/users`, {
         context: this,
@@ -118,7 +118,7 @@ class Home extends Component {
   addAddress(address){
     const addressData = {name: address.formatted_address, location: address.geometry.location, id: address.place_id}
       this.setState({
-        addresses: this.state.addresses.concat(addressData)
+        address: addressData
       })
 }
 
@@ -127,16 +127,13 @@ class Home extends Component {
 
 
   displayNeighborhoods() {
-    if(this.state.addresses && this.state.user.uid) {
-      const results = this.state.addresses
+    if(this.state.address && this.state.user.uid) {
+      const result = this.state.address
       return (
         <div>
           <h5><strong>Locations</strong></h5>
           <ul>
-            {results.map((address, index) => {
-              return <Favorites key={index} address={address} />
-            }
-            )}
+            <Favorites address={result} />
           </ul>
         </div>
       )
