@@ -15,7 +15,7 @@ class Favorites extends Component {
       return (
         <div>
         <li className="section">
-          <Link to={`${address.id}`}>{address.name}</Link>
+          <Link to={`${address[0]}`}>{address[2]}</Link>
         </li>
         <div className="divider"></div>
       </div>

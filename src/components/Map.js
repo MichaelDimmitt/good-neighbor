@@ -18,7 +18,7 @@ class Map extends Component {
 
   addButton(address){
     return <button className="waves-effect waves-light btn"
-      onClick={this.handleClick.bind(this, address)}>Add Location to Favorites</button>
+      onClick={this.handleClick.bind(this, address)}>Set Location as Address</button>
   }
 
 

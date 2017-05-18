@@ -131,7 +131,7 @@ class Home extends Component {
       const result = this.state.address
       return (
         <div>
-          <h5><strong>Locations</strong></h5>
+          <h5><strong>Address</strong></h5>
           <ul>
             <Favorites address={result} />
           </ul>
