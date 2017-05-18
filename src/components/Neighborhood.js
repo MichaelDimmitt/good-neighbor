@@ -18,7 +18,8 @@ class Neighborhood extends Component {
     this.state = {
       users: {},
       currentLocation: {},
-      // text: []
+      currentUser: {},
+      filteredUsers: []
     }
   }
 
@@ -33,7 +34,16 @@ class Neighborhood extends Component {
       axios.get(` https://maps.googleapis.com/maps/api/geocode/json?place_id=${addressId}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
       .then(response => this.setState({ currentLocation: response.data.results[0].geometry.location }))
 
+    base.onAuth(this.setUserState.bind(this));
+
   }
+
+  setUserState (currentUser) {
+    this.setState({
+      currentUser: currentUser || {}
+    });
+  }
+
 
   filterStuff() {
     if (this.state.users[0]) {
@@ -49,7 +59,19 @@ class Neighborhood extends Component {
       let lngResult = Math.abs(currentLocation.lng - lng)
       return (latResult <= acceptableDistance && lngResult <= acceptableDistance)
     })
-     console.log(filteredUsers);
+    console.log(filteredUsers)
+
+    return (
+      <div>
+        <h6>User's nearby {this.state.currentUser.displayName}:</h6>
+        <ul>
+          {filteredUsers.map((user) => {
+            // console.log(user)
+            return <li>{user.name}</li>
+          })}
+        </ul>
+      </div>
+    )
 
   }
 }

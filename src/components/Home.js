@@ -40,11 +40,16 @@ class Home extends Component {
         asArray: true,
         state: 'address'
       });
-      this.userSwitch = base.syncState(`users/${user.uid}/users`, {
+      this.userSwitch = base.syncState(`users/${user.uid}`, {
         context: this,
         asArray: true,
         state: 'users'
       });
+      const userData = {name: user.displayName}
+      this.setState({
+        users: userData
+      })
+
     }
   }
 
@@ -56,6 +61,8 @@ class Home extends Component {
   logout () {
     base.unauth()
     base.removeBinding(this.addressSwitch);
+    base.removeBinding(this.userSwitch);
+
   }
 
   loginOrLogoutButton () {
@@ -118,7 +125,7 @@ class Home extends Component {
   addAddress(address){
     const addressData = {name: address.formatted_address, location: address.geometry.location, id: address.place_id}
       this.setState({
-        address: addressData
+        address: addressData,
       })
 }
 
