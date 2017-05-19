@@ -3,6 +3,9 @@ import axios from 'axios';
 import Home from './Home'
 import ChatBox from './ChatBox'
 import base from '../rebase';
+var $ = window.jQuery = require('jquery');
+window.Vel = require('materialize-css/js/velocity.min')
+import materialize from 'materialize-css';
 
 window.base = base;
 
@@ -16,11 +19,17 @@ class Neighborhood extends Component {
       currentLocation: {},
       currentUser: {},
       filteredUsers: [],
-      text: []
+      text: [],
+
+      chatDisplay: {
+        display: true,
+        selectedUser: {}
+      }
 
     }
   }
 
+// display: false 
 
   componentDidMount(){
     base.fetch('users', {
@@ -34,6 +43,7 @@ class Neighborhood extends Component {
 
     base.onAuth(this.setUserState.bind(this));
 
+    $('.modal').modal();
   }
 
   setUserState (currentUser) {
@@ -47,7 +57,6 @@ class Neighborhood extends Component {
     if (this.state.users[0]) {
     let currentLocation = this.state.currentLocation
     let allUsers = this.state.users
-    // console.log(allUsers, currentLocation);
     const acceptableDistance = 0.01
 
     let filteredUsers = allUsers.filter(users => {
@@ -57,7 +66,7 @@ class Neighborhood extends Component {
       let lngResult = Math.abs(currentLocation.lng - lng)
       return (latResult <= acceptableDistance && lngResult <= acceptableDistance)
     })
-    console.log(filteredUsers)
+    // console.log(filteredUsers)
     let currentUserName = this.state.currentUser.displayName
     return (
       <div>
@@ -69,40 +78,55 @@ class Neighborhood extends Component {
             } else {
               return  (
                 <div className='container'>
-                <li className='section'>{user.name}
-                <img
-                width='32'
-                className='avatar circle repsonsive-img'
-                src={user.pic} />
-                <br />
-                <br />
-                <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a> <button className="waves-effect waves-light btn" onClick={this.addChatBox.bind(this, user)}>Chat</button>
-                <br />
-                <br />
-                <div className='divider'></div>
-              </li>
-            </div>
-            )
-              }
+                  <li className='section'>{user.name}
+                    <img
+                    width='32'
+                    className='avatar circle repsonsive-img'
+                    src={user.pic} />
+                    <br />
+                    <br />
+                    <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a>
+                    <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
+                    <br />
+                    <br />
+                    <div className='divider'></div>
+                  </li>
+                </div>
+              )
+            }
           })}
         </ul>
       </div>
     )
   }
 }
-// {this.state.currentUser.displayName}
 
-addChatBox(user){
-  console.log(user);
-   <ChatBox />
+showChatBox(){
+  if (this.state.chatDisplay.display) {
+    return (
+      <ChatBox
+        user={this.state.chatDisplay.selectedUser}
+        currentUser={this.state.currentUser}
+      />
+    )
+  } else {
+  return null
+  }
 }
 
+buttonClick (user){
+  this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
+}
 
+// display: !this.state.chatDisplay.display
 
   render() {
     return (
       <div>
         {this.filterStuff()}
+        <div id="modal1" className="modal">
+          {this.showChatBox()}
+        </div>
       </div>
     )}
 }
