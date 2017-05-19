@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
 import Home from './Home'
+import ChatBox from './ChatBox'
 import base from '../rebase';
 
 window.base = base;
@@ -19,7 +15,9 @@ class Neighborhood extends Component {
       users: {},
       currentLocation: {},
       currentUser: {},
-      filteredUsers: []
+      filteredUsers: [],
+      text: []
+
     }
   }
 
@@ -60,23 +58,44 @@ class Neighborhood extends Component {
       return (latResult <= acceptableDistance && lngResult <= acceptableDistance)
     })
     console.log(filteredUsers)
-
+    let currentUserName = this.state.currentUser.displayName
     return (
       <div>
-        <h6>User's nearby {this.state.currentUser.displayName}:</h6>
+        <h5 className='center-align'><strong>Other users in this Neighborhood:</strong></h5>
         <ul>
           {filteredUsers.map((user) => {
-            // console.log(user)
-            return <li>{user.name}</li>
+            if(currentUserName == user.name) {
+              return null
+            } else {
+              return  (
+                <div className='container'>
+                <li className='section'>{user.name}
+                <img
+                width='32'
+                className='avatar circle repsonsive-img'
+                src={user.pic} />
+                <br />
+                <br />
+                <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a> <button className="waves-effect waves-light btn" onClick={this.addChatBox.bind(this, user)}>Chat</button>
+                <br />
+                <br />
+                <div className='divider'></div>
+              </li>
+            </div>
+            )
+              }
           })}
         </ul>
       </div>
     )
-
   }
 }
+// {this.state.currentUser.displayName}
 
-
+addChatBox(user){
+  console.log(user);
+   <ChatBox />
+}
 
 
 

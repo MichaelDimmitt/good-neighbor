@@ -45,7 +45,7 @@ class Home extends Component {
         asArray: true,
         state: 'users'
       });
-      const userData = {name: user.displayName}
+      const userData = {name: user.displayName, pic: user.photoURL, email: user.email}
       this.setState({
         users: userData
       })
@@ -62,7 +62,6 @@ class Home extends Component {
     base.unauth()
     base.removeBinding(this.addressSwitch);
     base.removeBinding(this.userSwitch);
-
   }
 
   loginOrLogoutButton () {
@@ -118,6 +117,8 @@ class Home extends Component {
           </div>
         </div>
       )
+    } else {
+      return null
     }
   }
 
