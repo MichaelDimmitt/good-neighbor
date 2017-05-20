@@ -46,7 +46,8 @@ submitMessage(event) {
   const nextMessage = {
     id: this.state.messages.length,
     text: this.state.message,
-    username: this.props.currentUser.displayName
+    username: this.props.currentUser.displayName,
+    pic: this.props.currentUser.photoURL
   }
   $('#message').val('');
 
@@ -63,11 +64,16 @@ submitMessage(event) {
 
   render() {
     // console.log(this.props.user),
-    // console.log(this.props.currentUser)
+    console.log(this.props.currentUser)
 
     const currentMessage = this.state.messages.map((message, i) => {
       return(
-        <li key={message.id}><strong>{message.username}:</strong> {message.text}</li>
+        <li key={message.id}>
+          {message.username} <img
+          width='32'
+          className='avatar circle repsonsive-img'
+          src={message.pic}/>: {message.text}
+        </li>
       )
     })
 
