@@ -45,8 +45,13 @@ updateMessage(event) {
 submitMessage(event) {
   const nextMessage = {
     id: this.state.messages.length,
-    text: this.state.message
+    text: this.state.message,
+    username: this.props.currentUser.displayName
   }
+  $('#message').val('');
+
+  event.preventDefault()
+
 
   firebase.database().ref('messages/'+nextMessage.id).set(nextMessage)
   // let list = Object.assign([], this.state.messages)
@@ -62,19 +67,21 @@ submitMessage(event) {
 
     const currentMessage = this.state.messages.map((message, i) => {
       return(
-        <li key={message.id}>{message.text}</li>
+        <li key={message.id}><strong>{message.username}:</strong> {message.text}</li>
       )
     })
 
     return (
       <div className='container'>
         <h5 className='center-align'>{this.props.user.name}</h5>
-          <ol>
+          <ul>
             {currentMessage}
-          </ol>
+          </ul>
+          <form>
         <input onChange={this.updateMessage} type="text" placeholder="Message" id="message"/>
         <br />
         <button onClick={this.submitMessage} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
+      </form>
       </div>
     )
   }
