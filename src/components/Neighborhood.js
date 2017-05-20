@@ -29,7 +29,7 @@ class Neighborhood extends Component {
     }
   }
 
-// display: false 
+// display: false
 
   componentDidMount(){
     base.fetch('users', {
@@ -85,8 +85,7 @@ class Neighborhood extends Component {
                     src={user.pic} />
                     <br />
                     <br />
-                    <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a>
-                    <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
+                    <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
                     <br />
                     <br />
                     <div className='divider'></div>
@@ -113,6 +112,7 @@ showChatBox(){
   return null
   }
 }
+
 
 buttonClick (user){
   this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
