@@ -20,6 +20,7 @@ class ChatBox extends Component {
 
 
 componentDidMount() {
+
   $('.modal').modal();
 
   firebase.database().ref('messages/').on('value', (snapshot) =>{
@@ -46,7 +47,7 @@ submitMessage(event) {
     text: this.state.message,
     username: this.props.currentUser.displayName,
     pic: this.props.currentUser.photoURL,
-    key: this.props.user.key+this.props.currentUser.uid,
+    key: this.props.currentUser.uid+this.props.userKey,
     time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
@@ -58,16 +59,18 @@ submitMessage(event) {
 
 }
 
-  render() {
-    // console.log(this.props.user), //.key unique identifier
-    // console.log(this.props.currentUser) //.uid unique identifier
-    const uniqueKey = this.props.user.key+this.props.currentUser.uid
 
-  //  if (this.props.currenUser.uid )
+  render() {
+    const uniqueKey = this.props.currentUser.uid+this.props.userKey
+    const reverseUniqueKey = this.props.userKey+this.props.currentUser.uid
+
     const currentMessage = this.state.messages.map((message, i) => {
-      let reverseUniqueKey = uniqueKey.split('').reverse().join('');
-      console.log(reverseUniqueKey);
-      if(message.key == uniqueKey) {
+      if(message.key === uniqueKey || reverseUniqueKey) {
+        console.log(uniqueKey);
+        console.log(reverseUniqueKey);
+        // console.log(reverseUniqueKey);
+        // console.log(reverseUniqueKey);
+        // console.log(reverseNewJoin);
       return(
         <li key={message.id}>
           {message.username} <img

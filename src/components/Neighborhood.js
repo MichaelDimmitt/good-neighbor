@@ -101,11 +101,12 @@ class Neighborhood extends Component {
 }
 
 showChatBox(){
-  if (this.state.chatDisplay.display) {
+  if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.key) {
     return (
       <ChatBox
         user={this.state.chatDisplay.selectedUser}
         currentUser={this.state.currentUser}
+        userKey={this.state.chatDisplay.selectedUser.key}
       />
     )
   } else {
