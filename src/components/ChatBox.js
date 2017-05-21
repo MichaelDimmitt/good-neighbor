@@ -10,10 +10,8 @@ window.base = base;
 
 class ChatBox extends Component {
 
-  constructor(props, context) {
-    super(props, context)
-    this.updateMessage = this.updateMessage.bind(this)
-    this.submitMessage = this.submitMessage.bind(this)
+  constructor() {
+    super()
     this.state = {
       message: '',
       messages: []
@@ -47,26 +45,29 @@ submitMessage(event) {
     id: this.state.messages.length,
     text: this.state.message,
     username: this.props.currentUser.displayName,
-    pic: this.props.currentUser.photoURL
+    pic: this.props.currentUser.photoURL,
+    key: this.props.user.key+this.props.currentUser.uid,
+    time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
-
   event.preventDefault()
 
 
-  firebase.database().ref('messages/'+nextMessage.id).set(nextMessage)
-  // let list = Object.assign([], this.state.messages)
-  // list.push(nextMessage)
-  // this.setState({
-  //   messages: list
-  // })
+  firebase.database().ref(`messages/${nextMessage.id}`).set(nextMessage)
+  // base.push(`messages/${nextMessage.uid}`, {test: nextMessage})
+
 }
 
   render() {
-    // console.log(this.props.user),
-    console.log(this.props.currentUser)
+    // console.log(this.props.user), //.key unique identifier
+    // console.log(this.props.currentUser) //.uid unique identifier
+    const uniqueKey = this.props.user.key+this.props.currentUser.uid
 
+  //  if (this.props.currenUser.uid )
     const currentMessage = this.state.messages.map((message, i) => {
+      let reverseUniqueKey = uniqueKey.split('').reverse().join('');
+      console.log(reverseUniqueKey);
+      if(message.key == uniqueKey) {
       return(
         <li key={message.id}>
           {message.username} <img
@@ -75,6 +76,9 @@ submitMessage(event) {
           src={message.pic}/>: {message.text}
         </li>
       )
+    } else {
+      return null
+    }
     })
 
     return (
@@ -83,11 +87,14 @@ submitMessage(event) {
           <ul>
             {currentMessage}
           </ul>
+          <div className="modal-footer">
           <form>
-        <input onChange={this.updateMessage} type="text" placeholder="Message" id="message"/>
+        <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message"/>
         <br />
-        <button onClick={this.submitMessage} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
+        <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
       </form>
+    </div>
+
       </div>
     )
   }
