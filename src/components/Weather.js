@@ -23,12 +23,22 @@ getWeather(location) {
 
 
   render () {
-    console.log(this.state.currentWeather.display_location);
+    // console.log(this.state.currentWeather.display_location);
       return (
         <div className='large-profile'>
           <h5>Forecast</h5>
+
           {this.state.currentWeather.display_location &&
-          <p>{this.state.currentWeather.display_location.full}</p>}
+          <div>{this.state.currentWeather.display_location.full}</div>
+          }
+
+          {this.state.currentWeather &&
+          <div>
+            <div>Current Temp:{this.state.currentWeather.temp_f}</div>
+            <div>Current Weather:{this.state.currentWeather.weather}</div>
+            <img src={this.state.currentWeather.icon_url}/>
+          </div>
+          }
         </div>
       )
     }
