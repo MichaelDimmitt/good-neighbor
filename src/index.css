@@ -9,3 +9,48 @@ body {
   position: absolute;
   /*overflow: visible;*/
 }
+
+.nav-wrapper {
+  background-color: #0288d1;
+}
+
+body {
+  background-color: #f5f8fa;
+}
+
+
+.profile-pic {
+  border-radius: 5px;
+}
+
+
+
+
+.profile  {
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #f5f8fa;
+  padding: 15px;
+}
+
+.favorites {
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #f5f8fa;
+  padding: 15px;
+}
+
+.search {
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #f5f8fa;
+  padding: 15px;
+}
+
+.messages {
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #f5f8fa;
+  padding: 5px;
+
+}

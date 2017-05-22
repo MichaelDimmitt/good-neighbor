@@ -139,3 +139,16 @@ buttonClick (user){
 }
 
 export default Neighborhood;
+
+
+//weather added?
+
+
+
+//key 3b84b26c3406410fa0ed43848278f4dc
+
+
+// api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=3b84b26c3406410fa0ed43848278f4dc
+
+
+// http://api.openweathermap.org/data/2.5/weather?q=Oviedo,FL&appid=3b84b26c3406410fa0ed43848278f4dc&units=imperial

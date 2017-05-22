@@ -6,6 +6,7 @@
     "axios": "^0.16.1",
     "firebase": "^3.9.0",
     "materialize-css": "^0.98.2",
+    "moment": "^2.18.1",
     "nodemon": "^1.11.0",
     "re-base": "^2.7.1",
     "react": "^15.5.4",
