@@ -3,6 +3,8 @@ import axios from 'axios';
 import Home from './Home'
 import ChatBox from './ChatBox'
 import LargeProfile from './LargeProfile';
+import Weather from './Weather';
+import Events from './Events';
 import Header from './Header'
 import base from '../rebase';
 var $ = window.jQuery = require('jquery');
@@ -31,8 +33,6 @@ class Neighborhood extends Component {
     }
   }
 
-// display: false
-
   componentDidMount(){
     base.fetch('users', {
       context: this,
@@ -40,7 +40,7 @@ class Neighborhood extends Component {
       .then(response => this.setState({ users: response }))
 
     const addressId = this.props.match.params.id;
-      axios.get(` https://maps.googleapis.com/maps/api/geocode/json?place_id=${addressId}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
+      axios.get(`https://maps.googleapis.com/maps/api/geocode/json?place_id=${addressId}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
       .then(response => this.setState({ currentLocation: response.data.results[0].geometry.location }))
 
     base.onAuth(this.setUserState.bind(this));
@@ -72,14 +72,14 @@ class Neighborhood extends Component {
     let currentUserName = this.state.currentUser.displayName
     return (
       <div>
-        <h5 className='center-align'><strong>Other users in this Neighborhood:</strong></h5>
+        <h5 className='center-align hood-title'>Your Neighbors:</h5>
         <ul>
           {filteredUsers.map((user) => {
             if(currentUserName == user.name) {
               return null
             } else {
               return  (
-                <div className='container'>
+                <div className='users-in-hood'>
                   <li className='section'>{user.name}
                     <img
                     width='32'
@@ -90,7 +90,6 @@ class Neighborhood extends Component {
                     <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
                     <br />
                     <br />
-                    <div className='divider'></div>
                   </li>
                 </div>
               )
@@ -116,6 +115,16 @@ showChatBox(){
   }
 }
 
+showWeatherBox(){
+  if (this.state.currentLocation) {
+    return (
+    <Weather
+      location={this.state.currentLocation}
+    />
+  )
+  }
+}
+
 
 buttonClick (user){
   this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
@@ -136,8 +145,14 @@ buttonClick (user){
               user={this.state.currentUser}
             />
           </div>
-          <div className='col s10'>
+          <div className='col s8'>
             {this.filterStuff()}
+          </div>
+          <div className='col s2'>
+            {/* {this.showWeatherBox()} */}
+            <Events
+              user={this.state.currentUser}
+            />
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}
@@ -162,3 +177,7 @@ export default Neighborhood;
 
 
 // http://api.openweathermap.org/data/2.5/weather?q=Oviedo,FL&appid=3b84b26c3406410fa0ed43848278f4dc&units=imperial
+
+// wunderground apikey
+//
+// 24532f7c67079974

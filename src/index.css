@@ -59,5 +59,27 @@ body {
   background-color: white;
   border: 2px solid #f5f8fa;
   padding: 15px;
+}
 
+.users-in-hood {
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #f5f8fa;
+  padding: 15px;
+}
+
+.hood-title {
+  border-radius: 5px;
+  background-color: white;
+  border: 2px solid #f5f8fa;
+  padding: 15px;
+  margin: 0;
+}
+
+.row .col {
+  padding: 0;
+}
+
+h5 {
+  margin: 0;
 }
