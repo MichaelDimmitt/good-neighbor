@@ -15,7 +15,7 @@ class Header extends Component {
         </ul>
         <nav>
           <div className="nav-wrapper">
-            <a href="#!" className="brand-logo">Logo</a>
+            <a href="/" className="brand-logo">Good Neighbor</a>
             <ul className="right hide-on-med-and-down">
               <li>
                 <img

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Home from './Home'
 import ChatBox from './ChatBox'
+import Header from './Header'
 import base from '../rebase';
 var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
@@ -124,11 +125,16 @@ buttonClick (user){
   render() {
     return (
       <div>
+      <Header
+        user={this.state.currentUser}
+      />
+      <div>
         {this.filterStuff()}
         <div id="modal1" className="modal">
           {this.showChatBox()}
         </div>
       </div>
+    </div>
     )}
 }
 
