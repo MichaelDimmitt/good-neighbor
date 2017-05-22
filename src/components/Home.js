@@ -153,39 +153,25 @@ class Home extends Component {
 
   render() {
     return (
+      <div>
         <div>
-          <ul id="dropdown1" className="dropdown-content">
-            <li><a href="#!">Log out</a></li>
-            <li><a href="#!">two</a></li>
-            <li className="divider"></li>
-            <li><a href="#!">Log Out</a></li>
-          </ul>
-          <nav>
-            <div className="nav-wrapper">
-              <a href="#!" className="brand-logo">Logo</a>
-              <ul className="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a className="dropdown-button" href="#!" data-activates="dropdown1"><i className="material-icons right">arrow_drop_down</i></a></li>
-              </ul>
-            </div>
-          </nav>
+          {/* <div className="col s2">
+            {this.loginOrLogoutButton()}
+          </div> */}
+          <Header
+            user={this.state.user}
+          />
+        </div>
           <div className="row">
             <div className="col s2 Favorites">
               {this.displayNeighborhoods()}
             </div>
-            <div className="col s8">
+            <div className="container">
               {this.formIfLoggedIn()}
               {this.displaySearchResults()}
             </div>
-            <div className="col s2">
-              {this.loginOrLogoutButton()}
-            </div>
-            <Header
-              user={this.state.user}
-            />
-          </div>
         </div>
+      </div>
     );
   }
 }

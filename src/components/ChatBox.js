@@ -48,6 +48,7 @@ submitMessage(event) {
     username: this.props.currentUser.displayName,
     pic: this.props.currentUser.photoURL,
     key: this.props.currentUser.uid+this.props.userKey,
+    otherKey: this.props.userKey+this.props.currentUser.uid,
     time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
@@ -65,12 +66,7 @@ submitMessage(event) {
     const reverseUniqueKey = this.props.userKey+this.props.currentUser.uid
 
     const currentMessage = this.state.messages.map((message, i) => {
-      if(message.key === uniqueKey || reverseUniqueKey) {
-        console.log(uniqueKey);
-        console.log(reverseUniqueKey);
-        // console.log(reverseUniqueKey);
-        // console.log(reverseUniqueKey);
-        // console.log(reverseNewJoin);
+      if(message.key === uniqueKey || message.otherKey === uniqueKey) {
       return(
         <li key={message.id}>
           {message.username} <img
