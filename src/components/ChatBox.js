@@ -10,10 +10,8 @@ window.base = base;
 
 class ChatBox extends Component {
 
-  constructor(props, context) {
-    super(props, context)
-    this.updateMessage = this.updateMessage.bind(this)
-    this.submitMessage = this.submitMessage.bind(this)
+  constructor() {
+    super()
     this.state = {
       message: '',
       messages: []
@@ -22,6 +20,7 @@ class ChatBox extends Component {
 
 
 componentDidMount() {
+
   $('.modal').modal();
 
   firebase.database().ref('messages/').on('value', (snapshot) =>{
@@ -46,29 +45,39 @@ submitMessage(event) {
   const nextMessage = {
     id: this.state.messages.length,
     text: this.state.message,
-    username: this.props.currentUser.displayName
+    username: this.props.currentUser.displayName,
+    pic: this.props.currentUser.photoURL,
+    key: this.props.currentUser.uid+this.props.userKey,
+    otherKey: this.props.userKey+this.props.currentUser.uid,
+    time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
-
   event.preventDefault()
 
 
-  firebase.database().ref('messages/'+nextMessage.id).set(nextMessage)
-  // let list = Object.assign([], this.state.messages)
-  // list.push(nextMessage)
-  // this.setState({
-  //   messages: list
-  // })
+  firebase.database().ref(`messages/${nextMessage.id}`).set(nextMessage)
+  // base.push(`messages/${nextMessage.uid}`, {test: nextMessage})
+
 }
 
+
   render() {
-    // console.log(this.props.user),
-    // console.log(this.props.currentUser)
+    const uniqueKey = this.props.currentUser.uid+this.props.userKey
+    const reverseUniqueKey = this.props.userKey+this.props.currentUser.uid
 
     const currentMessage = this.state.messages.map((message, i) => {
+      if(message.key === uniqueKey || message.otherKey === uniqueKey) {
       return(
-        <li key={message.id}><strong>{message.username}:</strong> {message.text}</li>
+        <li key={message.id}>
+          {message.username} <img
+          width='32'
+          className='avatar circle repsonsive-img'
+          src={message.pic}/>: {message.text}
+        </li>
       )
+    } else {
+      return null
+    }
     })
 
     return (
@@ -77,11 +86,14 @@ submitMessage(event) {
           <ul>
             {currentMessage}
           </ul>
+          <div className="modal-footer">
           <form>
-        <input onChange={this.updateMessage} type="text" placeholder="Message" id="message"/>
+        <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message"/>
         <br />
-        <button onClick={this.submitMessage} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
+        <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
       </form>
+    </div>
+
       </div>
     )
   }

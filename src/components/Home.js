@@ -153,23 +153,25 @@ class Home extends Component {
 
   render() {
     return (
+      <div>
         <div>
+          {/* <div className="col s2">
+            {this.loginOrLogoutButton()}
+          </div> */}
           <Header
             user={this.state.user}
           />
-          <div className="log">
-            {this.loginOrLogoutButton()}
-          </div>
+        </div>
           <div className="row">
             <div className="col s2 Favorites">
               {this.displayNeighborhoods()}
             </div>
-            <div className="col s10">
+            <div className="container">
               {this.formIfLoggedIn()}
               {this.displaySearchResults()}
             </div>
-          </div>
         </div>
+      </div>
     );
   }
 }

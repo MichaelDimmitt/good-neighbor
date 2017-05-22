@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Home from './Home'
 import ChatBox from './ChatBox'
+import Header from './Header'
 import base from '../rebase';
 var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
@@ -101,11 +102,12 @@ class Neighborhood extends Component {
 }
 
 showChatBox(){
-  if (this.state.chatDisplay.display) {
+  if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.key) {
     return (
       <ChatBox
         user={this.state.chatDisplay.selectedUser}
         currentUser={this.state.currentUser}
+        userKey={this.state.chatDisplay.selectedUser.key}
       />
     )
   } else {
@@ -123,11 +125,16 @@ buttonClick (user){
   render() {
     return (
       <div>
+      <Header
+        user={this.state.currentUser}
+      />
+      <div>
         {this.filterStuff()}
         <div id="modal1" className="modal">
           {this.showChatBox()}
         </div>
       </div>
+    </div>
     )}
 }
 
