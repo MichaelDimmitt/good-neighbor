@@ -48,6 +48,7 @@ class Neighborhood extends Component {
     $('.modal').modal();
   }
 
+
   setUserState (currentUser) {
     this.setState({
       currentUser: currentUser || {}
@@ -115,22 +116,11 @@ showChatBox(){
   }
 }
 
-showWeatherBox(){
-  if (this.state.currentLocation) {
-    return (
-    <Weather
-      location={this.state.currentLocation}
-    />
-  )
-  }
-}
-
 
 buttonClick (user){
   this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
 }
 
-// display: !this.state.chatDisplay.display
 
   render() {
     return (
@@ -140,20 +130,26 @@ buttonClick (user){
         />
         <br />
         <div className='row'>
+          
           <div className='col s2'>
             <LargeProfile
               user={this.state.currentUser}
             />
           </div>
+
           <div className='col s8'>
             {this.filterStuff()}
           </div>
+
           <div className='col s2'>
-            {/* {this.showWeatherBox()} */}
+            <Weather
+              location={this.state.currentLocation}
+            />
             <Events
               user={this.state.currentUser}
             />
           </div>
+
           <div id="modal1" className="modal">
             {this.showChatBox()}
           </div>

@@ -5,11 +5,6 @@ import Favorites from './Favorites';
 import Profile from './Profile';
 import Header from './Header';
 import base from '../rebase';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
 
 window.base = base;
 

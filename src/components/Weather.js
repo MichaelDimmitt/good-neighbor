@@ -5,37 +5,32 @@ import axios from 'axios';
 class Weather extends Component {
 
 
-  constructor () {
-    super();
-    this.state = {
-      currentWeather: {},
-    }
+constructor () {
+  super();
+  this.state = {
+    currentWeather: {},
   }
+}
 
-
-componentDidMount() {
-  this.getWeather(this.props.location)
+componentWillReceiveProps(newProps) {
+  this.getWeather(newProps.location)
 }
 
 getWeather(location) {
     axios.get(`http://api.wunderground.com/api/24532f7c67079974/conditions/q/${location.lat},${location.lng}.json`)
-    .then(response => console.log(response))
-      // this.setState({ currentWeather: response.data.current_observation }))
+    .then(response => this.setState({ currentWeather: response.data.current_observation }))
 }
 
 
   render () {
-      const location = this.props.location
-      if (this.state.currentWeather.city) {
+    console.log(this.state.currentWeather.display_location);
       return (
         <div className='large-profile'>
-          <p>{this.state.currentWeather.city}</p>
+          <h5>Forecast</h5>
+          {this.state.currentWeather.display_location &&
+          <p>{this.state.currentWeather.display_location.full}</p>}
         </div>
-
       )
-    } else {
-      return <div></div>
-    }
     }
   }
 
