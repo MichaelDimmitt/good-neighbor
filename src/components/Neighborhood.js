@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Home from './Home'
 import ChatBox from './ChatBox'
+import LargeProfile from './LargeProfile';
 import Header from './Header'
 import base from '../rebase';
 var $ = window.jQuery = require('jquery');
@@ -125,17 +126,26 @@ buttonClick (user){
   render() {
     return (
       <div>
-      <Header
-        user={this.state.currentUser}
-      />
-      <div>
-        {this.filterStuff()}
-        <div id="modal1" className="modal">
-          {this.showChatBox()}
+        <Header
+          user={this.state.currentUser}
+        />
+        <br />
+        <div className='row'>
+          <div className='col s2'>
+            <LargeProfile
+              user={this.state.currentUser}
+            />
+          </div>
+          <div className='col s10'>
+            {this.filterStuff()}
+          </div>
+          <div id="modal1" className="modal">
+            {this.showChatBox()}
+          </div>
         </div>
       </div>
-    </div>
-    )}
+    )
+  }
 }
 
 export default Neighborhood;
