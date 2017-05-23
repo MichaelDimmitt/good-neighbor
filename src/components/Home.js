@@ -96,6 +96,7 @@ class Home extends Component {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
       const marker = { position: result.geometry.location }
+      console.log(marker);
 
       return (
         <div>

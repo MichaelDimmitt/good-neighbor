@@ -10,7 +10,7 @@ class LargeProfile extends Component {
         <div className='large-profile'>
             <img
               width='70'
-              className='avatar repsonsive-img profile-pic'
+              className='avatar repsonsive-img profile-pic materialboxed'
               src={user.photoURL}/>
               <br />
               {user.displayName}

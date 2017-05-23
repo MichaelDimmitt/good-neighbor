@@ -23,7 +23,6 @@ getWeather(location) {
 
 
   render () {
-    // console.log(this.state.currentWeather.display_location);
       return (
         <div className='large-profile'>
           <h5><u>Forecast</u></h5>

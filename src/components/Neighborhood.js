@@ -123,6 +123,7 @@ buttonClick (user){
 
 
   render() {
+    console.log(this.state.currentUser)
     return (
       <div>
         <Header
@@ -135,6 +136,9 @@ buttonClick (user){
             <LargeProfile
               user={this.state.currentUser}
             />
+            {/* <Weather
+              location={this.state.currentLocation}
+            /> */}
           </div>
 
           <div className='col s8'>
@@ -142,9 +146,7 @@ buttonClick (user){
           </div>
 
           <div className='col s2'>
-            {/* <Weather
-              location={this.state.currentLocation}
-            /> */}
+
             <Events
               location={this.state.currentLocation}
             />
