@@ -14,6 +14,10 @@ body {
   background-color: #0288d1;
 }
 
+.page-footer {
+  background-color: #0288d1;
+
+}
 body {
   background-color: #eceff1;
 }
@@ -23,6 +27,14 @@ body {
   border-radius: 5px;
 }
 
+.home {
+  background: url(../public/images/356516-neighborhood.jpg) no-repeat center center fixed;
+  min-height: 86vh;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
 
 
@@ -83,4 +95,8 @@ body {
 
 h5 {
   margin: 0;
+}
+
+.row {
+  margin-bottom: auto;
 }

@@ -4,6 +4,7 @@ import Map from './Map'
 import Favorites from './Favorites';
 import Profile from './Profile';
 import Header from './Header';
+import Footer from './Footer';
 import base from '../rebase';
 
 window.base = base;
@@ -146,10 +147,10 @@ class Home extends Component {
 
 
 
-
   render() {
     return (
       <div>
+      <div className='home'>
         <div>
           {/* <div className="col s2">
             {this.loginOrLogoutButton()}
@@ -160,22 +161,24 @@ class Home extends Component {
         <br />
         </div>
         <div className='row'>
-        <div className='col s2'>
+          <div className='col s2'>
             <div className='profile'>
-              <Profile
-                user={this.state.user}
-              />
-            </div>
+                <Profile
+                  user={this.state.user}
+                />
+              </div>
             <div className='favorites'>
-            {this.displayNeighborhoods()}
+              {this.displayNeighborhoods()}
+            </div>
           </div>
-        </div>
           <div className="container col s10 search">
             {this.formIfLoggedIn()}
             {this.displaySearchResults()}
           </div>
-          </div>
         </div>
+      </div>
+      <Footer />
+</div>
     )
   }
 }
