@@ -130,7 +130,7 @@ buttonClick (user){
         />
         <br />
         <div className='row'>
-          
+
           <div className='col s2'>
             <LargeProfile
               user={this.state.currentUser}
@@ -142,11 +142,11 @@ buttonClick (user){
           </div>
 
           <div className='col s2'>
-            <Weather
+            {/* <Weather
               location={this.state.currentLocation}
-            />
+            /> */}
             <Events
-              user={this.state.currentUser}
+              location={this.state.currentLocation}
             />
           </div>
 
