@@ -160,7 +160,7 @@ class Home extends Component {
           />
         <br />
         </div>
-        <div className='row'>
+        <div className=''>
           <div className='col s2'>
             <div className='profile'>
                 <Profile
@@ -171,8 +171,10 @@ class Home extends Component {
               {this.displayNeighborhoods()}
             </div>
           </div>
-          <div className="container col s10 search">
+          <div className="container search valign-wrapper">
             {this.formIfLoggedIn()}
+          </div>
+          <div className="container valign-wrapper">
             {this.displaySearchResults()}
           </div>
         </div>

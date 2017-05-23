@@ -4,6 +4,7 @@ import Home from './Home'
 import ChatBox from './ChatBox'
 import LargeProfile from './LargeProfile';
 import Weather from './Weather';
+import Footer from './Footer';
 import Events from './Events';
 import Header from './Header'
 import base from '../rebase';
@@ -136,9 +137,9 @@ buttonClick (user){
             <LargeProfile
               user={this.state.currentUser}
             />
-            <Weather
+            {/* <Weather
               location={this.state.currentLocation}
-            />
+            /> */}
           </div>
 
           <div className='col s8'>
@@ -151,11 +152,11 @@ buttonClick (user){
               location={this.state.currentLocation}
             />
           </div>
-
           <div id="modal1" className="modal">
             {this.showChatBox()}
           </div>
         </div>
+        <Footer />
       </div>
     )
   }
