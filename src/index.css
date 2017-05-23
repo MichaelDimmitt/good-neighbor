@@ -29,7 +29,7 @@ body {
 
 .home {
   background: url(../public/images/356516-neighborhood.jpg) no-repeat center center fixed;
-  min-height: 86vh;
+  min-height: 100vh;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
