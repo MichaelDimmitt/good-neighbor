@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
 import Favorites from './Favorites';
+import Profile from './Profile';
 import Header from './Header';
 import base from '../rebase';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
 
 window.base = base;
 
@@ -78,7 +74,7 @@ class Home extends Component {
       return (
         <form onSubmit={this.searchGoogleMaps.bind(this)}>
           <input
-            placeholder='Address'
+            placeholder='Search address here...'
             ref={element => this.addressName = element} />
           <button className="waves-effect waves-light btn">Search for your Neighbors</button>
         </form>
@@ -100,6 +96,7 @@ class Home extends Component {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
       const marker = { position: result.geometry.location }
+      console.log(marker);
 
       return (
         <div>
@@ -138,12 +135,11 @@ class Home extends Component {
     if(this.state.address && this.state.user.uid) {
       const result = this.state.address
       return (
-        <div>
-          <h5><strong>Address</strong></h5>
-          <ul>
-            <Favorites address={result} />
-          </ul>
-        </div>
+          <div>
+            <Favorites
+              address={result}
+            />
+          </div>
       )
     }
   }
@@ -161,18 +157,26 @@ class Home extends Component {
           <Header
             user={this.state.user}
           />
+        <br />
         </div>
-          <div className="row">
-            <div className="col s2 Favorites">
-              {this.displayNeighborhoods()}
+        <div className='row'>
+        <div className='col s2'>
+            <div className='profile'>
+              <Profile
+                user={this.state.user}
+              />
             </div>
-            <div className="container">
-              {this.formIfLoggedIn()}
-              {this.displaySearchResults()}
-            </div>
+            <div className='favorites'>
+            {this.displayNeighborhoods()}
+          </div>
         </div>
-      </div>
-    );
+          <div className="container col s10 search">
+            {this.formIfLoggedIn()}
+            {this.displaySearchResults()}
+          </div>
+          </div>
+        </div>
+    )
   }
 }
 

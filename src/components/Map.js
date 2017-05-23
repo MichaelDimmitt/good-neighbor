@@ -27,7 +27,6 @@ class Map extends Component {
     const address = this.props.addressResult
     const markers = this.props.markers
 
-    console.log(markers)
     return (
       <GoogleMap
         zoom={this.props.zoom}

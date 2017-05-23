@@ -6,7 +6,7 @@ class Header extends Component {
     const user = this.props.user
 
     return(
-      <div>
+      <div className='grey lighten-4'>
         <ul id="dropdown1" className="dropdown-content">
           <li><a href=""></a></li>
           <li><a href=""></a></li>
@@ -23,14 +23,10 @@ class Header extends Component {
                   className='avatar circle repsonsive-img'
                   src={user.photoURL}/> {user.displayName}
               </li>
-              {/* <li><a href="badges.html">Components</a></li> */}
-              <li><a className="dropdown-button" href="#!" data-activates="dropdown1"><i className="material-icons right">arrow_drop_down</i></a></li>
+              <li><a className="dropdown-button" data-activates="dropdown1"><i className="material-icons right">arrow_drop_down</i></a></li>
             </ul>
           </div>
         </nav>
-
-
-
       </div>
     )
   }
