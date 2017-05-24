@@ -73,7 +73,11 @@ class Home extends Component {
       return <button className="waves-effect waves-light btn" onClick={this.logout.bind(this)}>Logout</button>
     } else {
       return (
-      <div className='log-in valign-wrapper'>
+      <div className='log-in container center-align'>
+        <div className='container pitch'>
+          <h1>Good Neighbor</h1>
+          <p>An app that helps connect you with your neighbors.</p>
+        </div>
         <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
       </div>
       )
@@ -115,7 +119,6 @@ class Home extends Component {
 
       return (
         <div>
-          <p>hi</p>
           <h5>{result.formatted_address}</h5>
           <div className="map">
              <Map
@@ -172,18 +175,37 @@ class Home extends Component {
     }
   }
 
+  displayHeader (){
+    if(this.state.user.uid) {
+      const user = this.state.user
+      return (
+            <Header
+              user={user}
+            />
+      )
+    }
+  }
+
+  displayFooter(){
+    if(this.state.user.uid) {
+      return (
+            <Footer
+            />
+      )
+    }
+  }
+
 
 
   render() {
     return (
       <div className='col s12'>
         <div className='home'>
-            <div className="valign-wrapper">
               {this.loginOrLogoutButton()}
-            </div>
-            <Header
+              {this.displayHeader()}
+            {/* <Header
               user={this.state.user}
-            />
+            /> */}
           <div className='row'>
             <div className='col s12'>
                 {this.displayProfile()}
@@ -195,7 +217,7 @@ class Home extends Component {
                 <div className="container valign-wrapper">
               {this.displaySearchResults()}
             </div>
-            <Footer />
+            {this.displayFooter()}
           </div>
       </div>
     )

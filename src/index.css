@@ -139,7 +139,17 @@ margin: auto;
 }
 
 .log-in {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*.log-out {
+  position: absolute;
+  left: 80%
+}*/
+
+.pitch {
+  color: white;
 }
