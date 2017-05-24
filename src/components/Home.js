@@ -29,6 +29,7 @@ class Home extends Component {
   componentDidMount () {
     base.onAuth(this.setUserState.bind(this));
 
+    window.$ = window.jQuery;
     $('.modal').modal();
   }
 
@@ -71,7 +72,11 @@ class Home extends Component {
     if (this.state.user.uid) {
       return <button className="waves-effect waves-light btn" onClick={this.logout.bind(this)}>Logout</button>
     } else {
-      return <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+      return (
+      <div className='log-in valign-wrapper'>
+        <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+      </div>
+      )
     }
   }
 
@@ -105,10 +110,12 @@ class Home extends Component {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
       const marker = { position: result.geometry.location }
-      console.log(marker);
+      console.log(this.state.searchResult.geometry);
+
 
       return (
         <div>
+          <p>hi</p>
           <h5>{result.formatted_address}</h5>
           <div className="map">
              <Map
@@ -156,13 +163,10 @@ class Home extends Component {
     if(this.state.user.uid) {
       const user = this.state.user
       return (
-          <div classname='profile left z-depth-4'>
-              <img
-                width='67'
-                className='avatar repsonsive-img profile-pic'
-                src={user.photoURL}/>
-                <br />
-                {user.displayName}
+          <div className='profile left z-depth-4'>
+            <Profile
+              user={user}
+            />
           </div>
       )
     }
@@ -172,30 +176,28 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-      <div className='home'>
-        <div>
-          <div className="valign-wrapper">
-            {this.loginOrLogoutButton()}
+      <div className='col s12'>
+        <div className='home'>
+            <div className="valign-wrapper">
+              {this.loginOrLogoutButton()}
+            </div>
+            <Header
+              user={this.state.user}
+            />
+          <div className='row'>
+            <div className='col s12'>
+                {this.displayProfile()}
+                {this.displayNeighborhoods()}
+            </div>
           </div>
-          <Header
-            user={this.state.user}
-          />
-        </div>
-        <div className='row'>
-          <div className='col m12'>
-              {this.displayProfile()}
-              {this.displayNeighborhoods()}
+            {this.formIfLoggedIn()}
+            {/* <div id="modal1" className="modal"> */}
+                <div className="container valign-wrapper">
+              {this.displaySearchResults()}
+            </div>
+            <Footer />
           </div>
-        </div>
-          {this.formIfLoggedIn()}
-          <div id="modal1" className="modal">
-              {/* <div className="container valign-wrapper"> */}
-            {this.displaySearchResults()}
-          </div>
-        </div>
-      <Footer />
-</div>
+      </div>
     )
   }
 }
