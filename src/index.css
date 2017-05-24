@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
 }
+
 .map {
   height: 70%;
   width: 70%;
@@ -16,12 +16,11 @@ body {
 
 .page-footer {
   background-color: #0288d1;
-  width: 100vw;
+  /*width: 100vw;
   position: fixed;
   bottom: 0;
   padding: 5px;
-  height: 50px;
-
+  height: 50px;*/
 }
 body {
   background-color: #eceff1;
@@ -34,8 +33,7 @@ body {
 
 .home {
   background: url(../public/images/356516-neighborhood.jpg) no-repeat center center fixed;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -51,26 +49,27 @@ body {
   margin-right: 5px;
   margin-top: -13px;
   position: relative;
-  margin-left: 10px;
-  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-bottom: 5px;
 }
 
 .favorites {
   border-radius: 5px;
   background-color: white;
   padding: 10px;
-  margin-top: 25px;
-  margin-bottom: 10px;
-  margin-left: 5px;
+  margin-top: 33px;
+  margin-bottom: 50px;
+  margin-left: 10px;
 }
 
 .search {
   border-radius: 5px;
-  background: rgba(255, 255, 255, .5);;
+  background: rgba(255, 255, 255, .3);;
   padding: 15px;
-  color: black;
+  color: white;
 }
-input::placeholder {
+
+input[type="text"]::placeholder {
   color: black;
 }
 
@@ -78,7 +77,17 @@ input {
   width: 100%;
 }
 
+input[type="search"]::placeholder {
+    font-size: 2rem;
+    text-shadow: 2px 2px rgba(0, 0, 0, .3);
+    color: white;
+}
 
+input[type="search"] {
+  font-size: 2rem;
+  text-shadow: 2px 2px rgba(0, 0, 0, .3);
+  border-bottom: 1px solid white;
+}
 
 .messages {
   border-radius: 5px;
@@ -127,11 +136,11 @@ margin: auto;
 }
 
 .fav-text {
-  font-size: 0.9rem;
+  font-size: 1.3rem;
 }
 
 .fav-title {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .neighbors-pic {
@@ -144,8 +153,6 @@ margin: auto;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-
 
 .pitch {
   color: white;
@@ -161,4 +168,8 @@ margin: auto;
   top: 2%;
   background-color: white;
   color: #0288d1;
+}
+
+.modal {
+  background-color: #eceff1;
 }

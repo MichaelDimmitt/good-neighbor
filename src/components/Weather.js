@@ -24,7 +24,7 @@ getWeather(location) {
 
   render () {
       return (
-        <div className='large-profile'>
+        <div className='large-profile center-align'>
           <h5><u>Forecast</u></h5>
 
           {this.state.currentWeather.display_location &&

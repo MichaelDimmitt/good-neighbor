@@ -9,7 +9,7 @@ class Profile extends Component {
       return (
         <div>
             <img
-              width='67'
+              width='90'
               className='avatar repsonsive-img profile-pic'
               src={user.photoURL}/>
               <br />

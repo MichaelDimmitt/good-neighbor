@@ -13,11 +13,6 @@ window.Vel = require('materialize-css/js/velocity.min')
 
 class Map extends Component {
 
-  componentDidMount(){
-    $('.modal').modal();
-  }
-
-
 
   handleClick(address){
     this.props.addAddress(address)
