@@ -139,8 +139,7 @@ buttonClick (user){
         />
         <br />
         <div className='row'>
-
-          <div className='col s2'>
+          <div className='col s12 m2'>
             <LargeProfile
               user={this.state.currentUser}
             />
@@ -149,11 +148,11 @@ buttonClick (user){
             />
           </div>
 
-          <div className='col s7'>
+          <div className='col s12 m7'>
             {this.filterStuff()}
           </div>
 
-          <div className='col s3'>
+          <div className='col s12 m3'>
 
             <Events
               location={this.state.currentLocation}

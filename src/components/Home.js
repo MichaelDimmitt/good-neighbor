@@ -76,8 +76,9 @@ class Home extends Component {
       <div className='log-in container center-align'>
         <div className='container pitch'>
           <h1>Good Neighbor</h1>
-          <p>An app that helps connect you with your neighbors.</p>
+          <h5>An app that helps connect you with your neighbors.</h5>
         </div>
+        <br />
         <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
       </div>
       )
@@ -118,7 +119,7 @@ class Home extends Component {
       return (
         <div>
           <h5>{result.formatted_address}</h5>
-          <div className="map">
+          <div className='map'>
              <Map
                addressResult={result}
                center={result.geometry.location}
@@ -143,8 +144,6 @@ class Home extends Component {
         address: addressData,
       })
 }
-
-
 
 
   displayNeighborhoods() {
@@ -187,8 +186,8 @@ class Home extends Component {
   displayFooter(){
     if(this.state.user.uid) {
       return (
-            <Footer
-            />
+        <Footer
+        />
       )
     }
   }

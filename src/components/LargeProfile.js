@@ -7,10 +7,10 @@ class LargeProfile extends Component {
   render () {
       const user = this.props.user
       return (
-        <div className='large-profile'>
+        <div className='large-profile center-align'>
             <img
               width='80'
-              className='avatar repsonsive-img profile-pic materialboxed z-depth-3'
+              className='avatar repsonsive-img profile-pic z-depth-3 center-align'
               src={user.photoURL}/>
               <br />
               {user.displayName}

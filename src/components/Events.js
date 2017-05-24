@@ -32,26 +32,34 @@ class Events extends Component {
             <h5><u>Upcoming Events Near You</u></h5>
             <br />
             {this.state.localEvents[0] &&
-            <div>1. <a href={this.state.localEvents[0].url} target="_blank">{this.state.localEvents[0].title}: {this.state.localEvents[0].start_time}</a></div>
+            <div>Event: <a href={this.state.localEvents[0].url} target="_blank">{this.state.localEvents[0].title}</a>
+            <br />
+            Date: {this.state.localEvents[0].start_time}</div>
             }
             <br />
             {this.state.localEvents[1] &&
-            <div>2. <a href={this.state.localEvents[1].url} target="_blank">{this.state.localEvents[1].title}: {this.state.localEvents[1].start_time}</a></div>
+            <div>Event: <a href={this.state.localEvents[1].url} target="_blank">{this.state.localEvents[1].title}</a>
+            <br />
+            Date: {this.state.localEvents[1].start_time}</div>
             }
             <br />
             {this.state.localEvents[2] &&
-            <div>3. <a href={this.state.localEvents[2].url} target="_blank">{this.state.localEvents[2].title}: {this.state.localEvents[2].start_time}</a></div>
+            <div>Event: <a href={this.state.localEvents[2].url} target="_blank">{this.state.localEvents[2].title}</a>
+            <br />
+            Date: {this.state.localEvents[2].start_time}</div>
             }
             <br />
             {this.state.localEvents[3] &&
-            <div>4. <a href={this.state.localEvents[3].url} target="_blank">{this.state.localEvents[3].title}: {this.state.localEvents[3].start_time}</a></div>
+            <div>Event: <a href={this.state.localEvents[3].url} target="_blank">{this.state.localEvents[3].title}</a>
+            <br />
+            Date: {this.state.localEvents[3].start_time}</div>
             }
-
-              {/* <div><u>Temperature:</u> {this.state.currentWeather.temp_f}&deg;F</div>
-              <div><u>Weather:</u> {this.state.currentWeather.weather}</div>
-              <img src={this.state.currentWeather.icon_url}/>
-            </div>
-            } */}
+            <br />
+            {this.state.localEvents[4] &&
+            <div>Event: <a href={this.state.localEvents[4].url} target="_blank">{this.state.localEvents[4].title}</a>
+            <br />
+            Date: {this.state.localEvents[4].start_time}</div>
+            }
           </div>
         )
       }
