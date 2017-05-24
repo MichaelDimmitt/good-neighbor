@@ -9,8 +9,8 @@ class LargeProfile extends Component {
       return (
         <div className='large-profile'>
             <img
-              width='70'
-              className='avatar repsonsive-img profile-pic materialboxed'
+              width='80'
+              className='avatar repsonsive-img profile-pic materialboxed z-depth-3'
               src={user.photoURL}/>
               <br />
               {user.displayName}

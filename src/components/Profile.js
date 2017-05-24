@@ -9,9 +9,11 @@ class Profile extends Component {
       return (
         <div>
             <img
-              width='32'
+              width='67'
               className='avatar repsonsive-img profile-pic'
-              src={user.photoURL}/> {user.displayName}
+              src={user.photoURL}/>
+              <br />
+              {user.displayName}
         </div>
       )
     }

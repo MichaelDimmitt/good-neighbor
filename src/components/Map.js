@@ -5,10 +5,18 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+var $ = window.jQuery = require('jquery');
+import materialize from 'materialize-css';
+window.Vel = require('materialize-css/js/velocity.min')
 
 
 
 class Map extends Component {
+
+  componentDidMount(){
+    $('.modal').modal();
+  }
+
 
 
   handleClick(address){

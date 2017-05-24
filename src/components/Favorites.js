@@ -14,8 +14,10 @@ class Favorites extends Component {
       const address = this.props.address;
       return (
         <div>
-          <h5>Address</h5>
+          <div className='fav-title'>Saved Address</div>
+          <div className='fav-text'>
           <Link to={`${address[0]}`}>{address[2]}</Link>
+        </div>
         </div>
       )
     }

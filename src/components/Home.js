@@ -4,7 +4,12 @@ import Map from './Map'
 import Favorites from './Favorites';
 import Profile from './Profile';
 import Header from './Header';
+import Footer from './Footer';
 import base from '../rebase';
+var $ = window.jQuery = require('jquery');
+window.Vel = require('materialize-css/js/velocity.min')
+import materialize from 'materialize-css';
+
 
 window.base = base;
 
@@ -23,6 +28,9 @@ class Home extends Component {
 
   componentDidMount () {
     base.onAuth(this.setUserState.bind(this));
+
+    window.$ = window.jQuery;
+    $('.modal').modal();
   }
 
 
@@ -62,9 +70,17 @@ class Home extends Component {
 
   loginOrLogoutButton () {
     if (this.state.user.uid) {
-      return <button className="waves-effect waves-light btn" onClick={this.logout.bind(this)}>Logout</button>
+      return <button className="waves-effect waves-light btn log-out" onClick={this.logout.bind(this)}>Logout</button>
     } else {
-      return <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+      return (
+      <div className='log-in container center-align'>
+        <div className='container pitch'>
+          <h1>Good Neighbor</h1>
+          <p>An app that helps connect you with your neighbors.</p>
+        </div>
+        <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+      </div>
+      )
     }
   }
 
@@ -72,12 +88,14 @@ class Home extends Component {
   formIfLoggedIn () {
     if (this.state.user.uid) {
       return (
+        <div className="container search valign-wrapper">
         <form onSubmit={this.searchGoogleMaps.bind(this)}>
           <input
             placeholder='Search address here...'
             ref={element => this.addressName = element} />
-          <button className="waves-effect waves-light btn">Search for your Neighbors</button>
+          <button data-target="modal1" className="waves-effect waves-light btn">Search for your Neighbors</button>
         </form>
+      </div>
       )
     }
   }
@@ -96,7 +114,6 @@ class Home extends Component {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
       const marker = { position: result.geometry.location }
-      console.log(marker);
 
       return (
         <div>
@@ -130,12 +147,11 @@ class Home extends Component {
 
 
 
-
   displayNeighborhoods() {
     if(this.state.address && this.state.user.uid) {
       const result = this.state.address
       return (
-          <div>
+          <div className='favorites left z-depth-4'>
             <Favorites
               address={result}
             />
@@ -144,38 +160,64 @@ class Home extends Component {
     }
   }
 
+  displayProfile(){
+    if(this.state.user.uid) {
+      const user = this.state.user
+      return (
+          <div className='profile left z-depth-4'>
+            <Profile
+              user={user}
+            />
+          </div>
+      )
+    }
+  }
+
+  displayHeader (){
+    if(this.state.user.uid) {
+      const user = this.state.user
+      return (
+            <Header
+              user={user}
+            />
+      )
+    }
+  }
+
+  displayFooter(){
+    if(this.state.user.uid) {
+      return (
+            <Footer
+            />
+      )
+    }
+  }
 
 
 
   render() {
     return (
-      <div>
-        <div>
-          {/* <div className="col s2">
-            {this.loginOrLogoutButton()}
-          </div> */}
-          <Header
-            user={this.state.user}
-          />
-        <br />
-        </div>
-        <div className='row'>
-        <div className='col s2'>
-            <div className='profile'>
-              <Profile
-                user={this.state.user}
-              />
+      <div className='col s12'>
+        <div className='home'>
+              {this.loginOrLogoutButton()}
+              {this.displayHeader()}
+            {/* <Header
+              user={this.state.user}
+            /> */}
+          <div className='row'>
+            <div className='col s12'>
+                {this.displayProfile()}
+                {this.displayNeighborhoods()}
             </div>
-            <div className='favorites'>
-            {this.displayNeighborhoods()}
           </div>
-        </div>
-          <div className="container col s10 search">
             {this.formIfLoggedIn()}
-            {this.displaySearchResults()}
+            {/* <div id="modal1" className="modal"> */}
+                <div className="container valign-wrapper">
+              {this.displaySearchResults()}
+            </div>
+            {this.displayFooter()}
           </div>
-          </div>
-        </div>
+      </div>
     )
   }
 }
