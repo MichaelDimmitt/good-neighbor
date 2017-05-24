@@ -29,7 +29,7 @@ body {
 
 .home {
   background: url(../public/images/356516-neighborhood.jpg) no-repeat center center fixed;
-  min-height: 87vh;
+  min-height: 150vh;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -77,29 +77,29 @@ input {
 .messages {
   border-radius: 5px;
   background-color: white;
-  border: 1px solid #f5f8fa;
+  border: 1px solid #eceff1;
   padding: 5px;
 }
 
 .large-profile {
   border-radius: 5px;
   background-color: white;
-  border: 2px solid #f5f8fa;
+  border: 2px solid #eceff1;
   padding: 15px;
 }
 
 .users-in-hood {
   border-radius: 5px;
   background-color: white;
-  border: 2px solid #f5f8fa;
+  border: 2px solid #eceff1;
   padding: 15px;
-  margin-top: -14px;
+  /*margin-top: -14px;*/
 }
 
 .hood-title {
   border-radius: 5px;
   background-color: white;
-  border: 2px solid #f5f8fa;
+  border: 2px solid #eceff1;
   padding: 15px;
   margin: 0;
 }
@@ -126,4 +126,8 @@ margin: auto;
 
 .fav-title {
   font-size: 1.2rem;
+}
+
+.neighbors-pic {
+  border-radius: 5px;
 }

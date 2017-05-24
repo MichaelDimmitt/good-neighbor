@@ -150,11 +150,11 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <div className='home col m12'>
+      <div className='home'>
         <div>
-          {/* <div className="col s2">
+          <div className="valign-wrapper">
             {this.loginOrLogoutButton()}
-          </div> */}
+          </div>
           <Header
             user={this.state.user}
           />

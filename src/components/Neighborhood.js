@@ -82,16 +82,23 @@ class Neighborhood extends Component {
             } else {
               return  (
                 <div className='users-in-hood'>
-                  <li className='section'>{user.name}
+                  <div className='center-align'>
+                  {user.name}
+                  </div>
+                  <br />
+                  <li className='row'>
+                    <div className='col s6 center-align'>
                     <img
-                    width='32'
-                    className='avatar circle repsonsive-img'
+                    width='105'
+                    className='avatar repsonsive-img z-depth-4 neighbors-pic'
                     src={user.pic} />
+                  </div>
+                    <div className='col s6 center-align'>
+                    <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button>
                     <br />
-                    <br />
-                    <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
-                    <br />
-                    <br />
+                  <br />
+                  </a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
+                </div>
                   </li>
                 </div>
               )
@@ -137,16 +144,16 @@ buttonClick (user){
             <LargeProfile
               user={this.state.currentUser}
             />
-            <Weather
+            {/* <Weather
               location={this.state.currentLocation}
-            />
+            /> */}
           </div>
 
-          <div className='col s8'>
+          <div className='col s7'>
             {this.filterStuff()}
           </div>
 
-          <div className='col s2'>
+          <div className='col s3'>
 
             <Events
               location={this.state.currentLocation}
