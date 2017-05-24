@@ -28,9 +28,6 @@ class Home extends Component {
 
   componentDidMount () {
     base.onAuth(this.setUserState.bind(this));
-
-    window.$ = window.jQuery;
-    $('.modal').modal();
   }
 
 
@@ -89,12 +86,14 @@ class Home extends Component {
   formIfLoggedIn () {
     if (this.state.user.uid) {
       return (
-        <div className="container search valign-wrapper">
+        <div className="container search">
         <form onSubmit={this.searchGoogleMaps.bind(this)}>
           <input
+            type='text'
+            className='center-align search-text'
             placeholder='Search address here...'
             ref={element => this.addressName = element} />
-          <button data-target="modal1" className="waves-effect waves-light btn">Search for your Neighbors</button>
+          {/* <button className="waves-effect waves-light btn">Search for your Neighbors</button> */}
         </form>
       </div>
       )
@@ -186,8 +185,8 @@ class Home extends Component {
   displayFooter(){
     if(this.state.user.uid) {
       return (
-        <Footer
-        />
+          <Footer
+          />
       )
     }
   }
@@ -198,24 +197,20 @@ class Home extends Component {
     return (
       <div className='col s12'>
         <div className='home'>
-              {this.loginOrLogoutButton()}
-              {this.displayHeader()}
-            {/* <Header
-              user={this.state.user}
-            /> */}
+            {this.loginOrLogoutButton()}
+            {this.displayHeader()}
           <div className='row'>
             <div className='col s12'>
-                {this.displayProfile()}
-                {this.displayNeighborhoods()}
+              {this.displayProfile()}
+              {this.displayNeighborhoods()}
             </div>
           </div>
-            {this.formIfLoggedIn()}
-            {/* <div id="modal1" className="modal"> */}
-                <div className="container valign-wrapper">
-              {this.displaySearchResults()}
-            </div>
-            {this.displayFooter()}
+          {this.formIfLoggedIn()}
+          <div className="container">
+            {this.displaySearchResults()}
           </div>
+          </div>
+          {this.displayFooter()}
       </div>
     )
   }
