@@ -9,6 +9,7 @@ import {
 
 
 class Map extends Component {
+  
 
 
   handleClick(address){

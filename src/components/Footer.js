@@ -25,7 +25,7 @@ return(
           <div className="footer-copyright">
             <div className="container">
             © 2017 Copyright Tyler Davis
-            <a className="grey-text text-lighten-4 right" href="">More Links</a>
+            <a className="white-text right" href="">More Links</a>
             </div>
           </div>
         </footer>

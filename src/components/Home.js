@@ -150,7 +150,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-      <div className='home'>
+      <div className='home col m12'>
         <div>
           {/* <div className="col s2">
             {this.loginOrLogoutButton()}
@@ -158,19 +158,19 @@ class Home extends Component {
           <Header
             user={this.state.user}
           />
-        <br />
         </div>
-        <div className=''>
-          <div className='col s2'>
-            <div className='profile'>
+        <div className='row'>
+          <div className='col m12'>
+            <div className='profile left z-depth-4'>
                 <Profile
                   user={this.state.user}
                 />
               </div>
-            <div className='favorites'>
+            <div className='favorites left z-depth-4'>
               {this.displayNeighborhoods()}
             </div>
-          </div>
+            </div>
+        </div>
           <div className="container search valign-wrapper">
             {this.formIfLoggedIn()}
           </div>
@@ -178,7 +178,6 @@ class Home extends Component {
             {this.displaySearchResults()}
           </div>
         </div>
-      </div>
       <Footer />
 </div>
     )
