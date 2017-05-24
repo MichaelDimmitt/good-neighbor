@@ -70,7 +70,7 @@ class Home extends Component {
 
   loginOrLogoutButton () {
     if (this.state.user.uid) {
-      return <button className="waves-effect waves-light btn" onClick={this.logout.bind(this)}>Logout</button>
+      return <button className="waves-effect waves-light btn log-out" onClick={this.logout.bind(this)}>Logout</button>
     } else {
       return (
       <div className='log-in container center-align'>
@@ -114,8 +114,6 @@ class Home extends Component {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
       const marker = { position: result.geometry.location }
-      console.log(this.state.searchResult.geometry);
-
 
       return (
         <div>

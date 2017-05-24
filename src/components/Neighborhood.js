@@ -144,9 +144,9 @@ buttonClick (user){
             <LargeProfile
               user={this.state.currentUser}
             />
-            {/* <Weather
+            <Weather
               location={this.state.currentLocation}
-            /> */}
+            />
           </div>
 
           <div className='col s7'>

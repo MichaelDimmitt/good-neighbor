@@ -145,11 +145,20 @@ margin: auto;
   transform: translate(-50%, -50%);
 }
 
-/*.log-out {
-  position: absolute;
-  left: 80%
-}*/
+
 
 .pitch {
   color: white;
+}
+
+.btn {
+  background-color: #0288d1;
+}
+
+.log-out {
+  position: absolute;
+  right: 19%;
+  top: 2%;
+  background-color: white;
+  color: #0288d1;
 }
