@@ -89,7 +89,7 @@ class Home extends Component {
         <div className="container search">
         <form onSubmit={this.searchGoogleMaps.bind(this)}>
           <input
-            type='text'
+            type='search'
             className='center-align search-text'
             placeholder='Search address here...'
             ref={element => this.addressName = element} />
