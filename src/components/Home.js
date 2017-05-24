@@ -6,6 +6,10 @@ import Profile from './Profile';
 import Header from './Header';
 import Footer from './Footer';
 import base from '../rebase';
+var $ = window.jQuery = require('jquery');
+window.Vel = require('materialize-css/js/velocity.min')
+import materialize from 'materialize-css';
+
 
 window.base = base;
 
@@ -24,6 +28,8 @@ class Home extends Component {
 
   componentDidMount () {
     base.onAuth(this.setUserState.bind(this));
+
+    $('.modal').modal();
   }
 
 
@@ -73,12 +79,14 @@ class Home extends Component {
   formIfLoggedIn () {
     if (this.state.user.uid) {
       return (
+        <div className="container search valign-wrapper">
         <form onSubmit={this.searchGoogleMaps.bind(this)}>
           <input
             placeholder='Search address here...'
             ref={element => this.addressName = element} />
-          <button className="waves-effect waves-light btn">Search for your Neighbors</button>
+          <button data-target="modal1" className="waves-effect waves-light btn">Search for your Neighbors</button>
         </form>
+      </div>
       )
     }
   }
@@ -131,15 +139,30 @@ class Home extends Component {
 
 
 
-
   displayNeighborhoods() {
     if(this.state.address && this.state.user.uid) {
       const result = this.state.address
       return (
-          <div>
+          <div className='favorites left z-depth-4'>
             <Favorites
               address={result}
             />
+          </div>
+      )
+    }
+  }
+
+  displayProfile(){
+    if(this.state.user.uid) {
+      const user = this.state.user
+      return (
+          <div classname='profile left z-depth-4'>
+              <img
+                width='67'
+                className='avatar repsonsive-img profile-pic'
+                src={user.photoURL}/>
+                <br />
+                {user.displayName}
           </div>
       )
     }
@@ -161,20 +184,13 @@ class Home extends Component {
         </div>
         <div className='row'>
           <div className='col m12'>
-            <div className='profile left z-depth-4'>
-                <Profile
-                  user={this.state.user}
-                />
-              </div>
-            <div className='favorites left z-depth-4'>
+              {this.displayProfile()}
               {this.displayNeighborhoods()}
-            </div>
-            </div>
-        </div>
-          <div className="container search valign-wrapper">
-            {this.formIfLoggedIn()}
           </div>
-          <div className="container valign-wrapper">
+        </div>
+          {this.formIfLoggedIn()}
+          <div id="modal1" className="modal">
+              {/* <div className="container valign-wrapper"> */}
             {this.displaySearchResults()}
           </div>
         </div>
