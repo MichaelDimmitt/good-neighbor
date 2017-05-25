@@ -150,14 +150,37 @@ margin: auto;
   border-radius: 5px;
 }
 
-.whole-screen {
+/*.whole-screen {
   width: 100vw;
   height: 100vh;
-}
+}*/
 
 .test {
-  width: 40vw;
+  width: 100%;
 }
+
+.logo {
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+@media only screen and (min-width: 0px) {
+
+  .logo {
+    width: 80vw;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+
+  .logo {
+    width: 40vw;
+  }
+}
+
+
 
 
 .login-button {

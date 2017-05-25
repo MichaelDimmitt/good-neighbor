@@ -9,11 +9,9 @@ import base from '../rebase';
 var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
 import materialize from 'materialize-css';
-import logo from '../../public/images/Logo1-01.svg'
-import logo2 from '../../public/images/Logo2-01.svg'
-import logo3 from '../../public/images/Logo3-01.svg'
-import logo4 from '../../public/images/Logo4-01.svg'
 import logo5 from '../../public/images/Logo2-01.png'
+import shp from 'shpjs';
+
 
 window.base = base;
 
@@ -74,15 +72,14 @@ class Home extends Component {
       return <button className="waves-effect waves-light btn log-out" onClick={this.logout.bind(this)}>Logout</button>
     } else {
       return (
-      <div className='row whole-screen center-align valign-wrapper'>
-        <div className='col s12'>
+      <div className='logo center-align'>
+        <div className='col s12 m6'>
           <img
-            className='repsonsive-img test'
+            className='test'
             src={logo5} />
         <br />
           <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
       </div>
-
       </div>
       )
     }
@@ -113,6 +110,13 @@ class Home extends Component {
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
     .then(response => this.setState({ searchResult: response.data.results[0] }));
     this.addressName.value = '';
+  }
+
+
+  runSHP() {
+    //for the shapefiles in the folder called 'files' with the name pandr.shp
+  shp("../files/ZillowNeighborhoods-FL").then(geojson => console.log(geojson));
+
   }
 
 
@@ -223,6 +227,7 @@ class Home extends Component {
             {this.displaySearchResults()}
           </div>
           {this.displayFooter()}
+          {this.runSHP()}
       </div>
     )
   }
