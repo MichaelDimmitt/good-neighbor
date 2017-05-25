@@ -5,18 +5,12 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-var $ = window.jQuery = require('jquery');
-import materialize from 'materialize-css';
-window.Vel = require('materialize-css/js/velocity.min')
 
 
 
 class Map extends Component {
 
 
-// componentDidMount() {
-//   $('.modal').modal();
-// }
   handleClick(address){
     this.props.addAddress(address)
 }
@@ -24,7 +18,7 @@ class Map extends Component {
 
   addButton(address){
     return <button className="waves-effect waves-light btn"
-      onClick={this.handleClick.bind(this, address)}>Set Location as Address</button>
+      onClick={this.handleClick.bind(this, address)}>Save Location</button>
   }
 
 
@@ -43,10 +37,10 @@ class Map extends Component {
           />
           )
         )}
-        <div className="row">
+        <div className="row center-align">
           <br />
-          <div className="col s6">{this.addButton(address)}</div>
-          <div><Link to={address.place_id}><button className="waves-effect waves-light btn col s6">Go to Location</button></Link></div>
+          <div className="col s12 m6">{this.addButton(address)}</div>
+          <div className='col s12 m6'><Link to={address.place_id}><button className="waves-effect waves-light btn">Go to Location</button></Link></div>
         </div>
       </GoogleMap>
     )

@@ -9,7 +9,7 @@ class LargeProfile extends Component {
       return (
         <div className='large-profile center-align'>
             <img
-              width='80'
+              width='120'
               className='avatar repsonsive-img profile-pic z-depth-3 center-align'
               src={user.photoURL}/>
               <br />

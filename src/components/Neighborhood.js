@@ -61,7 +61,7 @@ class Neighborhood extends Component {
     if (this.state.users[0]) {
     let currentLocation = this.state.currentLocation
     let allUsers = this.state.users
-    const acceptableDistance = 0.01
+    const acceptableDistance = 0.02
 
     let filteredUsers = allUsers.filter(users => {
       let lat = users.address.location.lat
@@ -78,7 +78,11 @@ class Neighborhood extends Component {
         <ul>
           {filteredUsers.map((user) => {
             if(currentUserName == user.name) {
-              return null
+              return ( null
+                // <div className='no-users'>
+                //   <p>No other Users in this neighborhood</p>
+                // </div>
+              )
             } else {
               return  (
                 <div className='users-in-hood'>

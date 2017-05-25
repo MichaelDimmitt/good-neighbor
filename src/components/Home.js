@@ -9,7 +9,11 @@ import base from '../rebase';
 var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
 import materialize from 'materialize-css';
-
+import logo from '../../public/images/Logo1-01.svg'
+import logo2 from '../../public/images/Logo2-01.svg'
+import logo3 from '../../public/images/Logo3-01.svg'
+import logo4 from '../../public/images/Logo4-01.svg'
+import logo5 from '../../public/images/Logo2-01.png'
 
 window.base = base;
 
@@ -70,13 +74,15 @@ class Home extends Component {
       return <button className="waves-effect waves-light btn log-out" onClick={this.logout.bind(this)}>Logout</button>
     } else {
       return (
-      <div className='log-in container center-align'>
-        <div className='container pitch'>
-          <h1>Good Neighbor</h1>
-          <h5>An app that helps connect you with your neighbors.</h5>
-        </div>
+      <div className='row whole-screen center-align valign-wrapper'>
+        <div className='col s12'>
+          <img
+            className='repsonsive-img test'
+            src={logo5} />
         <br />
-        <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+          <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+      </div>
+
       </div>
       )
     }
@@ -117,9 +123,9 @@ class Home extends Component {
 
       return (
         <div className='outer-container'>
-          <div className='map-container s12'>
+          <div className='map-container'>
             <span onClick={this.closeMap.bind(this)} className="close btn right">&times;</span>
-            <h5 className='center-align'>{result.formatted_address}</h5>
+            <h6>{result.formatted_address}</h6>
             <br />
                <Map
                  addressResult={result}
@@ -127,8 +133,8 @@ class Home extends Component {
                  zoom={16}
                  markers={[marker]}
                  addAddress={this.addAddress.bind(this)}
-                 containerElement={<div style={{ height: `100%` }} />}
-                 mapElement={<div style={{ height: `100%` }} />}
+                 containerElement={<div id='containerElement' />}
+                 mapElement={<div id='mapElement' />}
                 />
         </div>
       </div>
@@ -203,7 +209,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className='col s12'>
+      <div>
         <div className='home'>
             {this.loginOrLogoutButton()}
             {this.displayHeader()}
