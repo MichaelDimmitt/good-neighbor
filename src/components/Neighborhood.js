@@ -110,6 +110,10 @@ class Neighborhood extends Component {
   }
 }
 
+buttonClick (user){
+  this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
+}
+
 showChatBox(){
   if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.key) {
     return (
@@ -122,11 +126,6 @@ showChatBox(){
   } else {
   return null
   }
-}
-
-
-buttonClick (user){
-  this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
 }
 
 

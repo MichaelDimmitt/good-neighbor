@@ -14,6 +14,9 @@ window.Vel = require('materialize-css/js/velocity.min')
 class Map extends Component {
 
 
+// componentDidMount() {
+//   $('.modal').modal();
+// }
   handleClick(address){
     this.props.addAddress(address)
 }
@@ -31,7 +34,7 @@ class Map extends Component {
     const markers = this.props.markers
 
     return (
-      <GoogleMap
+        <GoogleMap
         zoom={this.props.zoom}
         center={this.props.center} >
 
@@ -46,7 +49,6 @@ class Map extends Component {
           <div><Link to={address.place_id}><button className="waves-effect waves-light btn col s6">Go to Location</button></Link></div>
         </div>
       </GoogleMap>
-
     )
   }
 }

@@ -56,7 +56,6 @@ submitMessage(event) {
 
 
   firebase.database().ref(`messages/${nextMessage.id}`).set(nextMessage)
-  // base.push(`messages/${nextMessage.uid}`, {test: nextMessage})
 
 }
 
