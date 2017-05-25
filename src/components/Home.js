@@ -116,24 +116,32 @@ class Home extends Component {
       const marker = { position: result.geometry.location }
 
       return (
-        <div>
-          <h5>{result.formatted_address}</h5>
-          <div className='map'>
-             <Map
-               addressResult={result}
-               center={result.geometry.location}
-               zoom={16}
-               markers={[marker]}
-               addAddress={this.addAddress.bind(this)}
-               containerElement={<div style={{ height: `100%` }} />}
-               mapElement={<div style={{ height: `100%` }} />}
-              />
-          </div>
+        <div className='outer-container'>
+          <div className='map-container s12'>
+            <span onClick={this.closeMap.bind(this)} className="close btn right">&times;</span>
+            <h5 className='center-align'>{result.formatted_address}</h5>
+            <br />
+               <Map
+                 addressResult={result}
+                 center={result.geometry.location}
+                 zoom={16}
+                 markers={[marker]}
+                 addAddress={this.addAddress.bind(this)}
+                 containerElement={<div style={{ height: `100%` }} />}
+                 mapElement={<div style={{ height: `100%` }} />}
+                />
         </div>
+      </div>
       )
     } else {
       return null
     }
+  }
+
+  closeMap() {
+    this.setState({
+      searchResult: {},
+    })
   }
 
 
@@ -205,10 +213,8 @@ class Home extends Component {
               {this.displayNeighborhoods()}
             </div>
           </div>
-          {this.formIfLoggedIn()}
-          <div className="container">
+            {this.formIfLoggedIn()}
             {this.displaySearchResults()}
-          </div>
           </div>
           {this.displayFooter()}
       </div>
