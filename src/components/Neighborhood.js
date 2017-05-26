@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Home from './Home'
 import ChatBox from './ChatBox'
 import LargeProfile from './LargeProfile';
 import Weather from './Weather';
@@ -61,7 +60,7 @@ class Neighborhood extends Component {
     if (this.state.users[0]) {
     let currentLocation = this.state.currentLocation
     let allUsers = this.state.users
-    const acceptableDistance = 0.01
+    const acceptableDistance = 0.02
 
     let filteredUsers = allUsers.filter(users => {
       let lat = users.address.location.lat
@@ -77,8 +76,9 @@ class Neighborhood extends Component {
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
         <ul>
           {filteredUsers.map((user) => {
-            if(currentUserName == user.name) {
+            if(currentUserName === user.name) {
               return null
+
             } else {
               return  (
                 <div className='users-in-hood'>
@@ -132,7 +132,7 @@ showChatBox(){
   render() {
     console.log(this.state.currentUser)
     return (
-      <div>
+      <div className='col s12'>
         <Header
           user={this.state.currentUser}
         />

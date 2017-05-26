@@ -6,9 +6,11 @@ import Profile from './Profile';
 import Header from './Header';
 import Footer from './Footer';
 import base from '../rebase';
-var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
-import materialize from 'materialize-css';
+import logo5 from '../../public/images/Logo2-01.png'
+import shp from 'shpjs';
+import fs from 'fs';
+
 
 
 window.base = base;
@@ -67,16 +69,17 @@ class Home extends Component {
 
   loginOrLogoutButton () {
     if (this.state.user.uid) {
-      return <button className="waves-effect waves-light btn log-out" onClick={this.logout.bind(this)}>Logout</button>
+      return null
     } else {
       return (
-      <div className='log-in container center-align'>
-        <div className='container pitch'>
-          <h1>Good Neighbor</h1>
-          <h5>An app that helps connect you with your neighbors.</h5>
-        </div>
+      <div className='logo-container center-align'>
+        <div className='col s12 m6'>
+          <img
+            className='logo'
+            src={logo5} />
         <br />
-        <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+          <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+      </div>
       </div>
       )
     }
@@ -110,6 +113,32 @@ class Home extends Component {
   }
 
 
+// runSHP() {
+//
+//      var fnZip = function () {
+//        shp(fs.readFileSync('N:\\TIGER2015\\COUNTY\\ZillowNeighborhoods-FL.zip')).then(function(geo) {
+//         console.log('success');
+//         console.log(geo);
+//       }).catch(function() {
+//         console.log('error')
+//         console.log(arguments);
+//       });
+//     };
+//
+//
+//       var fnParts = function() {
+//         var obj = shp.combine([
+//           shp.parseShp(fs.readFileSync('N:\\FLORIDA2017\\COUNTY\\ZillowNeighborhoods-FL.shp'), fs.readFileSync('N:\\FLORIDA2017\\COUNTY\\ZillowNeighborhoods-FL.prj', 'utf8')),
+//           shp.parseDbf(fs.readFileSync('N:\\FLORIDA2017\\COUNTY\\ZillowNeighborhoods-FL.dbf'))]);
+//         console.log(obj);
+//     };
+//
+//     fnZip();
+//     fnParts();
+// }
+
+
+
   displaySearchResults () {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
@@ -117,18 +146,18 @@ class Home extends Component {
 
       return (
         <div className='outer-container'>
-          <div className='map-container s12'>
+          <div className='map-container'>
             <span onClick={this.closeMap.bind(this)} className="close btn right">&times;</span>
-            <h5 className='center-align'>{result.formatted_address}</h5>
+            <h5>{result.formatted_address}</h5>
             <br />
                <Map
                  addressResult={result}
                  center={result.geometry.location}
-                 zoom={16}
+                 zoom={17}
                  markers={[marker]}
                  addAddress={this.addAddress.bind(this)}
-                 containerElement={<div style={{ height: `100%` }} />}
-                 mapElement={<div style={{ height: `100%` }} />}
+                 containerElement={<div id='containerElement' />}
+                 mapElement={<div id='mapElement' />}
                 />
         </div>
       </div>
@@ -185,6 +214,7 @@ class Home extends Component {
       return (
             <Header
               user={user}
+              logout={this.logout.bind(this)}
             />
       )
     }
@@ -203,7 +233,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div className='col s12'>
+      <div>
         <div className='home'>
             {this.loginOrLogoutButton()}
             {this.displayHeader()}
@@ -217,6 +247,7 @@ class Home extends Component {
             {this.displaySearchResults()}
           </div>
           {this.displayFooter()}
+          {/* {this.runSHP()} */}
       </div>
     )
   }
