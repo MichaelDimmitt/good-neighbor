@@ -150,16 +150,12 @@ margin: auto;
   border-radius: 5px;
 }
 
-/*.whole-screen {
-  width: 100vw;
-  height: 100vh;
-}*/
 
-.test {
+.logo {
   width: 100%;
 }
 
-.logo {
+.logo-container {
   transform: translate(-50%, -50%);
   position: fixed;
   top: 50%;
@@ -241,8 +237,8 @@ margin: auto;
 @media only screen and (min-width: 0px) {
 
   .map-container {
-    height: 65vh;
-    width: 45vh;
+    height: 68vh;
+    width: 49vh;
   }
 }
 
@@ -257,7 +253,7 @@ margin: auto;
 @media only screen and (min-width: 601px) {
 
   .map-container {
-    height: 85vh;
-    width: 90vh;
+    height: 86vh;
+    width: 92vh;
   }
 }

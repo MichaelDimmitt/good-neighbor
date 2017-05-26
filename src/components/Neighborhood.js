@@ -78,11 +78,8 @@ class Neighborhood extends Component {
         <ul>
           {filteredUsers.map((user) => {
             if(currentUserName == user.name) {
-              return ( null
-                // <div className='no-users'>
-                //   <p>No other Users in this neighborhood</p>
-                // </div>
-              )
+              return null
+
             } else {
               return  (
                 <div className='users-in-hood'>

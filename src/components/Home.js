@@ -69,13 +69,13 @@ class Home extends Component {
 
   loginOrLogoutButton () {
     if (this.state.user.uid) {
-      return <button className="waves-effect waves-light btn log-out" onClick={this.logout.bind(this)}>Logout</button>
+      return null
     } else {
       return (
-      <div className='logo center-align'>
+      <div className='logo-container center-align'>
         <div className='col s12 m6'>
           <img
-            className='test'
+            className='logo'
             src={logo5} />
         <br />
           <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
@@ -129,12 +129,12 @@ class Home extends Component {
         <div className='outer-container'>
           <div className='map-container'>
             <span onClick={this.closeMap.bind(this)} className="close btn right">&times;</span>
-            <h6>{result.formatted_address}</h6>
+            <h5>{result.formatted_address}</h5>
             <br />
                <Map
                  addressResult={result}
                  center={result.geometry.location}
-                 zoom={16}
+                 zoom={17}
                  markers={[marker]}
                  addAddress={this.addAddress.bind(this)}
                  containerElement={<div id='containerElement' />}
@@ -195,6 +195,7 @@ class Home extends Component {
       return (
             <Header
               user={user}
+              logout={this.logout.bind(this)}
             />
       )
     }
