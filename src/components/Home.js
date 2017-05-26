@@ -6,11 +6,11 @@ import Profile from './Profile';
 import Header from './Header';
 import Footer from './Footer';
 import base from '../rebase';
-var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
-import materialize from 'materialize-css';
 import logo5 from '../../public/images/Logo2-01.png'
 import shp from 'shpjs';
+import fs from 'fs';
+
 
 
 window.base = base;
@@ -113,11 +113,30 @@ class Home extends Component {
   }
 
 
-  runSHP() {
-    //for the shapefiles in the folder called 'files' with the name pandr.shp
-  shp("../files/ZillowNeighborhoods-FL").then(geojson => console.log(geojson));
+// runSHP() {
+//
+//      var fnZip = function () {
+//        shp(fs.readFileSync('N:\\TIGER2015\\COUNTY\\ZillowNeighborhoods-FL.zip')).then(function(geo) {
+//         console.log('success');
+//         console.log(geo);
+//       }).catch(function() {
+//         console.log('error')
+//         console.log(arguments);
+//       });
+//     };
+//
+//
+//       var fnParts = function() {
+//         var obj = shp.combine([
+//           shp.parseShp(fs.readFileSync('N:\\FLORIDA2017\\COUNTY\\ZillowNeighborhoods-FL.shp'), fs.readFileSync('N:\\FLORIDA2017\\COUNTY\\ZillowNeighborhoods-FL.prj', 'utf8')),
+//           shp.parseDbf(fs.readFileSync('N:\\FLORIDA2017\\COUNTY\\ZillowNeighborhoods-FL.dbf'))]);
+//         console.log(obj);
+//     };
+//
+//     fnZip();
+//     fnParts();
+// }
 
-  }
 
 
   displaySearchResults () {
@@ -228,7 +247,7 @@ class Home extends Component {
             {this.displaySearchResults()}
           </div>
           {this.displayFooter()}
-          {this.runSHP()}
+          {/* {this.runSHP()} */}
       </div>
     )
   }

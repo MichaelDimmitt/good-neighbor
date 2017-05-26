@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
-import materialize from 'materialize-css';
 
 
 class Header extends Component {

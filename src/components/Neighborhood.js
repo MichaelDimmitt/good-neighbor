@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Home from './Home'
 import ChatBox from './ChatBox'
 import LargeProfile from './LargeProfile';
 import Weather from './Weather';
@@ -77,7 +76,7 @@ class Neighborhood extends Component {
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
         <ul>
           {filteredUsers.map((user) => {
-            if(currentUserName == user.name) {
+            if(currentUserName === user.name) {
               return null
 
             } else {

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Neighborhood from './Neighborhood';
 var $ = window.jQuery = require('jquery');
-import materialize from 'materialize-css';
 window.Vel = require('materialize-css/js/velocity.min')
 import base from '../rebase';
 var firebase = require('firebase');
@@ -62,7 +60,6 @@ submitMessage(event) {
 
   render() {
     const uniqueKey = this.props.currentUser.uid+this.props.userKey
-    const reverseUniqueKey = this.props.userKey+this.props.currentUser.uid
 
     const currentMessage = this.state.messages.map((message, i) => {
       if(message.key === uniqueKey || message.revKey === uniqueKey) {
