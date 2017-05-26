@@ -136,7 +136,7 @@ showChatBox(){
   render() {
     console.log(this.state.currentUser)
     return (
-      <div>
+      <div className='col s12'>
         <Header
           user={this.state.currentUser}
         />
