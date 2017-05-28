@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Neighborhood from './components/Neighborhood';
+import ZillowNeighborhoods from './components/ZillowNeighborhoods';
 import Home from './components/Home'
 import {
   BrowserRouter as Router,
@@ -16,7 +17,7 @@ class App extends Component {
         <div>
           {/* <Route exact path="/" component={Home}/> */}
           <Route exact path="/" component={Home}/>
-          <Route exact path="/:id" component={Neighborhood}/>
+          <Route exact path="/:id" component={ZillowNeighborhoods}/>
         </div>
       </Router>
     );
