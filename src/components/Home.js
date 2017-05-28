@@ -50,21 +50,17 @@ class Home extends Component {
         asArray: true,
         state: 'users'
       });
-      this.neighborhoodSwitch = base.syncState(`neighborhoods/`, {
-        context: this,
-        asArray: true,
-        state: 'neighborhood'
-      });
-      const userData = {name: user.displayName, pic: user.photoURL, email: user.email}
+      // this.neighborhoodSwitch = base.syncState(`neighborhoods/${user.uid}/`, {
+      //   context: this,
+      //   asArray: true,
+      //   state: 'neighborhood'
+      // });
+      const userData = {name: user.displayName, pic: user.photoURL, email: user.email, uid: user.uid}
       this.setState({
         users: userData
       })
-
     }
   }
-
-
-
 
 
 
@@ -160,58 +156,38 @@ class Home extends Component {
   }
 
 
-//   addAddress(address){
-//     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
-//       this.setState({
-//         address: addressData,
-//       })
-// }
-
-
-
   addAddress(address){
     const lng = address.geometry.location.lng
     const lat = address.geometry.location.lat
+
     const neighborhood = data.features.find(location => {
       return gju.pointInPolygon({"type":"Point","coordinates":[ lng, lat ]},
                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
     });
 
-    console.log(neighborhood);
+    // console.log(neighborhood);
 
     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
       this.setState({
         address: addressData,
       })
-
     const neighborhoodData = {city: neighborhood.properties.City, name: neighborhood.properties.Name, id: neighborhood.properties.RegionID}
       this.setState({
         neighborhood: neighborhoodData,
       })
+      this.test(neighborhood);
 }
 
 
+test(neighborhood) {
 
-// findNeighborhood() {
-//   if(this.state.address) {
-//     const neighborhood = data.features.find(location => {
-//       return gju.pointInPolygon({"type":"Point","coordinates":[ this.state.address[2], this.state.address[1] ]},
-//                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
-//     });
-//     console.log(neighborhood);
-//     // this.addNeighborhood.bind(this, neighborhood);
-//   }
-//  }
+  console.log(neighborhood);
+  console.log(this.state.users);
+  base.push(`neighborhoods/${neighborhood.properties.RegionID}`, {
+     data: { name: this.state.users}
+  })
 
-
-//  addNeighborhood(neighborhood){
-//    console.log(neighborhood)
-//    const neighborhoodData = {name: neighborhood.properties.Name, city: neighborhood.properties.City, region: neighborhood.properties.RegionID}
-//      this.setState({
-//        neighborhood: neighborhoodData,
-//      })
-// }
-
+}
 
 
 
