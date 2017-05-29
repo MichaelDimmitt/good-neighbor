@@ -15,11 +15,100 @@ window.base = base;
 
 class ZillowNeighborhoods extends Component {
 
-  render() {
+
+  constructor () {
+    super();
+    this.state = {
+      users: {},
+      currentLocation: {},
+      currentUser: {},
+      filteredUsers: [],
+      text: [],
+      neighborhood: [],
+
+      chatDisplay: {
+        display: true,
+        selectedUser: {}
+      }
+
+    }
+  }
+
+
+
+  componentDidMount(){
+    base.fetch(`neighborhoods/${this.props.match.params.id}`, {
+      context: this,
+      asArray: true })
+      .then(response => this.setState({ neighborhood: response }))
+
+    base.onAuth(this.setUserState.bind(this));
+  }
+
+  setUserState (currentUser) {
+    this.setState({
+      currentUser: currentUser || {}
+    });
+  }
+
+  filterStuff(){
+    if (this.state.neighborhood[0] && this.state.currentUser) {
+    const neighborhood = this.state.neighborhood
+    const currentUser = this.state.currentUser
+    console.log(neighborhood);
+    console.log(currentUser);
     return(
-      <div>test</div>
+      <div>
+        <h5 className='center-align hood-title'>Your Neighbors:</h5>
+        <ul>
+          {neighborhood.map((user) => {
+            if(currentUser.displayName === user.name[2]) {
+              return null
+
+            } else {
+              return  (
+                <div className='users-in-hood'>
+                  <div className='center-align'>
+                  {user.name[2]}
+                  </div>
+                  <br />
+                  <li className='row'>
+                    <div className='col s6 center-align'>
+                    <img
+                    width='105'
+                    className='avatar repsonsive-img z-depth-4 neighbors-pic'
+                    src={user.name[3]} />
+                  </div>
+                    <div className='col s6 center-align'>
+                    <a href={`mailto:${user.name[1]}`}><button className="waves-effect waves-light btn">Email</button>
+                    <br />
+                  <br />
+                  </a> <button data-target="modal1" className="waves-effect waves-light btn">Chat</button>
+                </div>
+                  </li>
+                </div>
+              )
+            }
+          })}
+        </ul>
+      </div>
     )
   }
+  }
+
+
+
+
+
+
+  render() {
+    return(
+      <div>
+        {this.filterStuff()}
+      </div>
+    )
+  }
+}
 
 
 //   constructor () {
@@ -171,7 +260,7 @@ class ZillowNeighborhoods extends Component {
 //       </div>
 //     )
 //   }
-}
+
 
 export default ZillowNeighborhoods;
 

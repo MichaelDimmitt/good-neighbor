@@ -32,6 +32,7 @@ class Home extends Component {
 
   componentDidMount () {
     base.onAuth(this.setUserState.bind(this));
+
   }
 
 
@@ -164,9 +165,6 @@ class Home extends Component {
       return gju.pointInPolygon({"type":"Point","coordinates":[ lng, lat ]},
                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
     });
-
-    // console.log(neighborhood);
-
     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
       this.setState({
         address: addressData,
@@ -175,18 +173,15 @@ class Home extends Component {
       this.setState({
         neighborhood: neighborhoodData,
       })
-      this.test(neighborhood);
+
+      this.addNeighborhoodToFB(neighborhood);
 }
 
 
-test(neighborhood) {
-
-  console.log(neighborhood);
-  console.log(this.state.users);
+addNeighborhoodToFB(neighborhood) {
   base.push(`neighborhoods/${neighborhood.properties.RegionID}`, {
      data: { name: this.state.users}
   })
-
 }
 
 
@@ -199,10 +194,11 @@ test(neighborhood) {
       const neighborhood = this.state.neighborhood
       return (
           <div className='favorites left z-depth-4'>
+            {this.state.neighborhood &&
             <Favorites
               address={address}
               neighborhood={neighborhood}
-            />
+            />}
           </div>
       )
     }

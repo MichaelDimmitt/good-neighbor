@@ -12,13 +12,6 @@ class Map extends Component {
 }
 
 
-  addButton(address){
-    return <div><button className="waves-effect waves-light btn"
-      onClick={this.handleClick.bind(this, address)}>Save Location</button><br /><br /></div>
-  }
-
-
-
   render () {
     const address = this.props.addressResult
     const markers = this.props.markers
@@ -35,8 +28,16 @@ class Map extends Component {
         )}
         <div className="row center-align">
           <br />
-          <div className="col s12 m6">{this.addButton(address)}</div>
-          <div className='col s12 m6'><Link to={address.place_id}><button className="waves-effect waves-light btn">Go to Location</button></Link></div>
+          <div className="col s12 m6">
+            <button className="waves-effect waves-light btn"
+            onClick={this.handleClick.bind(this, address)}>Save Location</button>
+            <br /><br />
+          </div>
+          <div className='col s12 m6'>
+            <Link to={address.place_id}>
+              <button className="waves-effect waves-light btn">Go to Location</button>
+            </Link>
+          </div>
         </div>
       </GoogleMap>
     )
