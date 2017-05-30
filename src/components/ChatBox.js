@@ -86,7 +86,7 @@ submitMessage(event) {
           </ul>
           <div className="modal-footer">
           <form>
-        <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message"/>
+        <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message" autocomplete="off"/>
         <br />
         <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
       </form>

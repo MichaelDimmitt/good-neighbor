@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 var $ = window.jQuery = require('jquery');
+import logoHeader from '../../public/images/logo-smile-white.svg'
 window.Vel = require('materialize-css/js/velocity.min')
 
 
@@ -16,7 +17,12 @@ class Header extends Component {
     return(
         <nav>
           <div className="nav-wrapper">
-            <a href="/" className="brand-logo">Good Neighbor</a>
+            <a href="/" className="brand-logo center">
+              <img
+                className='logo'
+                src={logoHeader} />
+            </a>
+            {/* <a href="/" className="brand-logo">good neighbor</a> */}
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               <li><a href="/">Home</a></li>

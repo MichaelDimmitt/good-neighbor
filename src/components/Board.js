@@ -71,16 +71,18 @@ submitPost(event) {
 
     return (
       <div className=''>
-        <h2 className='center-align board-title'>Public Message Board For {this.props.neighborhood.name}</h2>
-        <h5 className='center-align'>{this.props.currentUser.name}</h5>
-          <ul>
-            {currentPost}
-          </ul>
+        <h2 className='center-align board-title'>Neighborhood Feed</h2>
+          <h4 className='center-align board-title'>{this.props.neighborhood.name}</h4>
           <form>
         <input onChange={this.updatePost.bind(this)} type="text" placeholder="Message" id="message"/>
         <br />
         <button onClick={this.submitPost.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
       </form>
+
+        <h5 className='center-align'>{this.props.currentUser.name}</h5>
+          <ul>
+            {currentPost}
+          </ul>
 
       </div>
     )
