@@ -23,7 +23,7 @@ class Home extends Component {
     this.state = {
       user: {},
       searchResult: {},
-      users: [],
+      users: {},
       address: {},
       neighborhood: {}
     }
@@ -48,14 +48,15 @@ class Home extends Component {
       });
       this.userSwitch = base.syncState(`users/${user.uid}`, {
         context: this,
-        asArray: true,
+        asArray: false,
         state: 'users'
       });
-      // this.neighborhoodSwitch = base.syncState(`neighborhoods/${user.uid}/`, {
-      //   context: this,
-      //   asArray: true,
-      //   state: 'neighborhood'
-      // });
+      this.neighborhoodSwitch = base.syncState(`neighborhoods/`, {
+        context: this,
+        asArray: false,
+        state: 'neighborhood'
+      }
+    );
       const userData = {name: user.displayName, pic: user.photoURL, email: user.email, uid: user.uid}
       this.setState({
         users: userData
@@ -122,7 +123,7 @@ class Home extends Component {
   }
 
 
-  displaySearchResults () {
+  displayMap () {
     if (this.state.searchResult.geometry && this.state.user.uid) {
       const result = this.state.searchResult;
       const marker = { position: result.geometry.location }
@@ -161,28 +162,42 @@ class Home extends Component {
     const lng = address.geometry.location.lng
     const lat = address.geometry.location.lat
 
+    //this uses the geojson utils tool to locate the neighborhood. Stores in neighborhood variable
     const neighborhood = data.features.find(location => {
       return gju.pointInPolygon({"type":"Point","coordinates":[ lng, lat ]},
                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
     });
+    console.log(neighborhood);
+
+
     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
       this.setState({
         address: addressData,
       })
-    const neighborhoodData = {city: neighborhood.properties.City, name: neighborhood.properties.Name, id: neighborhood.properties.RegionID}
-      this.setState({
-        neighborhood: neighborhoodData,
+
+    const neighborhoodData = { city: neighborhood.properties.City, name: neighborhood.properties.Name, id: neighborhood.properties.RegionID }
+    if (!this.state.neighborhood[neighborhoodData.id]){
+      base.update(`neighborhoods/${neighborhood.properties.RegionID}`, {
+        data: neighborhoodData
       })
+    }
+    base.update(`neighborhoods/${neighborhood.properties.RegionID}/users/${this.state.users.uid}`, {
+      data: this.state.users
+    })
 
-      this.addNeighborhoodToFB(neighborhood);
+
+
+
+
+
 }
 
 
-addNeighborhoodToFB(neighborhood) {
-  base.push(`neighborhoods/${neighborhood.properties.RegionID}`, {
-     data: { name: this.state.users}
-  })
-}
+// addNeighborhoodToFB(neighborhood) {
+//   base.update(`neighborhoods/${neighborhood.properties.RegionID}`, {
+//      data: {info: this.state.neighborhood}
+//   })
+// }
 
 
 
@@ -203,6 +218,11 @@ addNeighborhoodToFB(neighborhood) {
       )
     }
   }
+
+
+
+
+
 
   displayProfile(){
     if(this.state.user.uid) {
@@ -254,7 +274,7 @@ addNeighborhoodToFB(neighborhood) {
             </div>
           </div>
             {this.formIfLoggedIn()}
-            {this.displaySearchResults()}
+            {this.displayMap()}
           </div>
           {this.displayFooter()}
           {/* <ZillowNeighborhoods

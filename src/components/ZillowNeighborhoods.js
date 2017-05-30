@@ -3,6 +3,7 @@ import axios from 'axios';
 import ChatBox from './ChatBox'
 import LargeProfile from './LargeProfile';
 import Weather from './Weather';
+import Board from './Board';
 import Footer from './Footer';
 import Events from './Events';
 import Header from './Header'
@@ -43,6 +44,9 @@ class ZillowNeighborhoods extends Component {
       .then(response => this.setState({ neighborhood: response }))
 
     base.onAuth(this.setUserState.bind(this));
+
+    $('.modal').modal();
+
   }
 
   setUserState (currentUser) {
@@ -55,21 +59,22 @@ class ZillowNeighborhoods extends Component {
     if (this.state.neighborhood[0] && this.state.currentUser) {
     const neighborhood = this.state.neighborhood
     const currentUser = this.state.currentUser
-    console.log(neighborhood);
-    console.log(currentUser);
+    // console.log(neighborhood);
+    // console.log(currentUser);
     return(
       <div>
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
         <ul>
           {neighborhood.map((user) => {
-            if(currentUser.displayName === user.name[2]) {
+            let userName = user.name
+            if(currentUser.displayName === user.name.name) {
               return null
 
             } else {
               return  (
                 <div className='users-in-hood'>
                   <div className='center-align'>
-                  {user.name[2]}
+                  {user.name.name}
                   </div>
                   <br />
                   <li className='row'>
@@ -77,13 +82,13 @@ class ZillowNeighborhoods extends Component {
                     <img
                     width='105'
                     className='avatar repsonsive-img z-depth-4 neighbors-pic'
-                    src={user.name[3]} />
+                    src={user.name.pic} />
                   </div>
                     <div className='col s6 center-align'>
-                    <a href={`mailto:${user.name[1]}`}><button className="waves-effect waves-light btn">Email</button>
+                    <a href={`mailto:${user.name.email}`}><button className="waves-effect waves-light btn">Email</button>
                     <br />
                   <br />
-                  </a> <button data-target="modal1" className="waves-effect waves-light btn">Chat</button>
+                </a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, userName)}>Chat</button>
                 </div>
                   </li>
                 </div>
@@ -96,15 +101,74 @@ class ZillowNeighborhoods extends Component {
   }
   }
 
+  buttonClick (userName){
+    this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: userName}})
+  }
 
+
+  showChatBox(){
+    if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.uid) {
+      // console.log(this.state.selectedUser);
+      return (
+        <ChatBox
+          user={this.state.chatDisplay.selectedUser}
+          currentUser={this.state.currentUser}
+          userKey={this.state.chatDisplay.selectedUser.key}
+        />
+      )
+    } else {
+    return null
+    }
+  }
+
+
+  showBoard() {
+    return(
+      <div>
+        <h2 className='center-align'>Stuff</h2>
+        <Board
+          currentUser={this.state.currentUser}
+        />
+      </div>
+    )
+  }
 
 
 
 
   render() {
-    return(
-      <div>
-        {this.filterStuff()}
+    console.log(this.state.neighborhood)
+    return (
+      <div className='col s12'>
+        <Header
+          user={this.state.currentUser}
+        />
+        <br />
+        <div className='row'>
+          <div className='col s12 m2'>
+            <LargeProfile
+              user={this.state.currentUser}
+            />
+            {/* <Weather
+              location={this.state.currentLocation}
+            /> */}
+            {this.filterStuff()}
+          </div>
+
+          <div className='col s12 m7'>
+            {this.showBoard()}
+          </div>
+          <div className='col s12 m3'>
+
+            <Events
+              location={this.state.neighborhood}
+            />
+          </div>
+          <div id="modal1" className="modal">
+            {this.showChatBox()}
+          </div>
+        </div>
+        <Footer />
       </div>
     )
   }
