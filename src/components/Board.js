@@ -19,13 +19,6 @@ class Board extends Component {
 
 componentDidMount() {
 
-  // base.fetch(`neighborhoods/${this.props.id}`, {
-  //   context: this,
-  //   asArray: false })
-  //   .then(response => console.log(response))
-  //
-      // this.setState({ neighborhood: response }))
-
   firebase.database().ref(`neighborhoods/${this.props.id}/posts`).on('value', (snapshot) =>{
 
     const currentPosts = snapshot.val()
@@ -66,10 +59,10 @@ submitPost(event) {
       return(
         <div className='messages'>
         <li key={post.id}>
-          {post.username} <img
-          width='32'
-          className='avatar circle repsonsive-img'
-          src={post.pic}/>: {post.text}
+          <img
+          width='65'
+          className='repsonsive-img'
+          src={post.pic}/> {post.username}: {post.text}
         </li>
       </div>
       )
@@ -77,18 +70,17 @@ submitPost(event) {
   )
 
     return (
-      <div className='container'>
+      <div className=''>
+        <h2 className='center-align board-title'>Public Message Board For {this.props.neighborhood.name}</h2>
         <h5 className='center-align'>{this.props.currentUser.name}</h5>
           <ul>
             {currentPost}
           </ul>
-          <div className="modal-footer">
           <form>
         <input onChange={this.updatePost.bind(this)} type="text" placeholder="Message" id="message"/>
         <br />
         <button onClick={this.submitPost.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
       </form>
-    </div>
 
       </div>
     )

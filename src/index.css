@@ -99,6 +99,13 @@ input[type="search"] {
   padding: 5px;
 }
 
+.board-title {
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #eceff1;
+  padding: 5px;
+}
+
 .large-profile {
   border-radius: 5px;
   background-color: white;
@@ -256,4 +263,13 @@ margin: auto;
     height: 86vh;
     width: 92vh;
   }
+}
+
+button {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.users-in-hood {
+  margin-top: -15px;
 }

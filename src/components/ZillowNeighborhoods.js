@@ -62,18 +62,16 @@ class ZillowNeighborhoods extends Component {
     })
   }
 
-  filterStuff(){
+  displayNeighbors(){
     if (this.state.neighborhood.id && this.state.currentUser) {
-      // console.log(this.state.neighborhood, this.state.currentUser);
       let usersArr = this.convertUsersToArr(this.state.neighborhood.users);
-      // console.log(usersArr);
     const currentUser = this.state.currentUser
     return(
       <div>
+        <br />
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
         <ul>
           {usersArr.map((user) => {
-            // let userName = user.name
             if(currentUser.displayName === user.name) {
               return null
 
@@ -84,19 +82,22 @@ class ZillowNeighborhoods extends Component {
                   {user.name}
                   </div>
                   <br />
-                  <li className='row'>
-                    <div className='col s6 center-align'>
+                  <li className=''>
+                    <div className='col s12 center-align'>
                     <img
                     width='105'
                     className='avatar repsonsive-img z-depth-4 neighbors-pic'
                     src={user.pic} />
                   </div>
-                    <div className='col s6 center-align'>
-                    <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button>
+                  <div className='row'>
+                    <div className='col s6 m12 center-align'>
+                      <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a>
+                    </div>
                     <br />
-                  <br />
-                </a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
-                </div>
+                    <div className='col s6 m12 center-align'>
+                       <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
+                    </div>
+                  </div>
                   </li>
                 </div>
               )
@@ -116,7 +117,6 @@ class ZillowNeighborhoods extends Component {
 
   showChatBox(){
     if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.uid) {
-      // console.log(this.state.selectedUser);
       return (
         <ChatBox
           user={this.state.chatDisplay.selectedUser}
@@ -149,19 +149,20 @@ class ZillowNeighborhoods extends Component {
             {/* <Weather
               location={this.state.currentLocation}
             /> */}
-            {this.filterStuff()}
+            {this.displayNeighbors()}
           </div>
 
           <div className='col s12 m7'>
             <Board
+              neighborhood={this.state.neighborhood}
               id={this.props.match.params.id}
               currentUser={this.state.currentUser}
             />
           </div>
           <div className='col s12 m3'>
-            {/* <Events
+            <Events
               location={this.state.neighborhood}
-            /> */}
+            />
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}
