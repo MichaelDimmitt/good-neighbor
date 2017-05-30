@@ -17,7 +17,7 @@ componentWillReceiveProps(newProps) {
 }
 
 getWeather(location) {
-    axios.get(`https://api.wunderground.com/api/24532f7c67079974/conditions/q/${location.lat},${location.lng}.json`)
+    axios.get(`https://api.wunderground.com/api/24532f7c67079974/conditions/q/${location[1]},${location[2]}.json`)
     .then(response => this.setState({ currentWeather: response.data.current_observation }))
 }
 

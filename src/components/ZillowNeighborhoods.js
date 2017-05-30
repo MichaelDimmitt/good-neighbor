@@ -21,7 +21,6 @@ class ZillowNeighborhoods extends Component {
     super();
     this.state = {
       users: {},
-      currentLocation: {},
       currentUser: {},
       filteredUsers: [],
       text: [],
@@ -146,9 +145,6 @@ class ZillowNeighborhoods extends Component {
             <LargeProfile
               user={this.state.currentUser}
             />
-            {/* <Weather
-              location={this.state.currentLocation}
-            /> */}
             {this.displayNeighbors()}
           </div>
 
@@ -161,7 +157,10 @@ class ZillowNeighborhoods extends Component {
           </div>
           <div className='col s12 m3'>
             <Events
-              location={this.state.neighborhood}
+              location={this.props.address}
+            />
+            <Weather
+              location={this.props.address}
             />
           </div>
           <div id="modal1" className="modal">

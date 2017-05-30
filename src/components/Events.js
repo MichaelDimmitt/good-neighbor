@@ -21,13 +21,13 @@ class Events extends Component {
 
 
   getEvents(location) {
-      axios.get(`https://tiy-orl-proxy.herokuapp.com/eventful?app_key=V5W6PxsWgHLxCZTb&where=${location.lat},${location.lng}&within=25&date=Next%20Week&sort_order=popularity`)
+      axios.get(`https://tiy-orl-proxy.herokuapp.com/eventful?app_key=V5W6PxsWgHLxCZTb&where=${location[1]},${location[2]}&within=25&date=Next%20Week&sort_order=popularity`)
       .then(response => this.setState({ localEvents: response.data.events.event }))
   }
 
 
     render () {
-      console.log(this.props.neighborhood);
+      console.log(this.props.location);
         return (
           <div className='large-profile'>
             <h5><u>Upcoming Events Near You</u></h5>

@@ -158,10 +158,10 @@ class Home extends Component {
   }
 
 
+
   addAddress(address){
     const lng = address.geometry.location.lng
     const lat = address.geometry.location.lat
-
     //this uses the geojson utils tool to locate the neighborhood. Stores in neighborhood variable
     const neighborhood = data.features.find(location => {
       return gju.pointInPolygon({"type":"Point","coordinates":[ lng, lat ]},
