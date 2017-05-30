@@ -47,7 +47,7 @@ submitMessage(event) {
     pic: this.props.currentUser.photoURL,
     key: this.props.currentUser.uid+this.props.userKey,
     revKey: this.props.userKey+this.props.currentUser.uid,
-    time: firebase.database.ServerValue.TIMESTAMP
+    // time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
   event.preventDefault()

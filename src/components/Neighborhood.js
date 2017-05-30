@@ -115,12 +115,12 @@ buttonClick (user){
 }
 
 showChatBox(){
-  if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.key) {
+  if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.uid) {
     return (
       <ChatBox
         user={this.state.chatDisplay.selectedUser}
         currentUser={this.state.currentUser}
-        userKey={this.state.chatDisplay.selectedUser.key}
+        userKey={this.state.chatDisplay.selectedUser.uid}
       />
     )
   } else {

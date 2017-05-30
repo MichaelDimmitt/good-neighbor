@@ -27,6 +27,7 @@ class Events extends Component {
 
 
     render () {
+      console.log(this.props.neighborhood);
         return (
           <div className='large-profile'>
             <h5><u>Upcoming Events Near You</u></h5>

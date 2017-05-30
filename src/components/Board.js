@@ -17,19 +17,26 @@ class Board extends Component {
   }
 
 
-// componentDidMount() {
-//
-//   firebase.database().ref(`neighborhoods/${this.props.match.params.id}/posts`).on('value', (snapshot) =>{
-//
-//     const currentPosts = snapshot.val()
-//
-//     if (currentPosts != null){
-//       this.setState({
-//         posts: currentPosts
-//       })
-//     }
-//   })
-// }
+componentDidMount() {
+
+  // base.fetch(`neighborhoods/${this.props.id}`, {
+  //   context: this,
+  //   asArray: false })
+  //   .then(response => console.log(response))
+  //
+      // this.setState({ neighborhood: response }))
+
+  firebase.database().ref(`neighborhoods/${this.props.id}/posts`).on('value', (snapshot) =>{
+
+    const currentPosts = snapshot.val()
+
+    if (currentPosts != null){
+      this.setState({
+        posts: currentPosts
+      })
+    }
+  })
+}
 
 updatePost(event) {
   this.setState({
@@ -49,7 +56,7 @@ submitPost(event) {
   event.preventDefault()
 
 
-  // firebase.database().ref(`neighborhoods/${this.props.match.params.id}/posts/${nextPost.id}`).set(nextPost)
+  firebase.database().ref(`neighborhoods/${this.props.id}/posts/${nextPost.id}`).set(nextPost)
 
 }
 

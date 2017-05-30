@@ -40,7 +40,7 @@ class ZillowNeighborhoods extends Component {
   componentDidMount(){
     base.fetch(`neighborhoods/${this.props.match.params.id}`, {
       context: this,
-      asArray: true })
+      asArray: false })
       .then(response => this.setState({ neighborhood: response }))
 
     base.onAuth(this.setUserState.bind(this));
@@ -55,26 +55,33 @@ class ZillowNeighborhoods extends Component {
     });
   }
 
+  convertUsersToArr(users){
+    let arr = Object.keys(users)
+    return arr.map((iteration, i) => {
+      return users[iteration]
+    })
+  }
+
   filterStuff(){
-    if (this.state.neighborhood[0] && this.state.currentUser) {
-    const neighborhood = this.state.neighborhood
+    if (this.state.neighborhood.id && this.state.currentUser) {
+      // console.log(this.state.neighborhood, this.state.currentUser);
+      let usersArr = this.convertUsersToArr(this.state.neighborhood.users);
+      // console.log(usersArr);
     const currentUser = this.state.currentUser
-    // console.log(neighborhood);
-    // console.log(currentUser);
     return(
       <div>
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
         <ul>
-          {neighborhood.map((user) => {
-            let userName = user.name
-            if(currentUser.displayName === user.name.name) {
+          {usersArr.map((user) => {
+            // let userName = user.name
+            if(currentUser.displayName === user.name) {
               return null
 
             } else {
               return  (
                 <div className='users-in-hood'>
                   <div className='center-align'>
-                  {user.name.name}
+                  {user.name}
                   </div>
                   <br />
                   <li className='row'>
@@ -82,13 +89,13 @@ class ZillowNeighborhoods extends Component {
                     <img
                     width='105'
                     className='avatar repsonsive-img z-depth-4 neighbors-pic'
-                    src={user.name.pic} />
+                    src={user.pic} />
                   </div>
                     <div className='col s6 center-align'>
-                    <a href={`mailto:${user.name.email}`}><button className="waves-effect waves-light btn">Email</button>
+                    <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button>
                     <br />
                   <br />
-                </a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, userName)}>Chat</button>
+                </a> <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
                 </div>
                   </li>
                 </div>
@@ -101,8 +108,9 @@ class ZillowNeighborhoods extends Component {
   }
   }
 
-  buttonClick (userName){
-    this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: userName}})
+  buttonClick (user){
+    console.log(user);
+    this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
   }
 
 
@@ -113,7 +121,7 @@ class ZillowNeighborhoods extends Component {
         <ChatBox
           user={this.state.chatDisplay.selectedUser}
           currentUser={this.state.currentUser}
-          userKey={this.state.chatDisplay.selectedUser.key}
+          userKey={this.state.chatDisplay.selectedUser.uid}
         />
       )
     } else {
@@ -122,22 +130,11 @@ class ZillowNeighborhoods extends Component {
   }
 
 
-  showBoard() {
-    return(
-      <div>
-        <h2 className='center-align'>Stuff</h2>
-        <Board
-          currentUser={this.state.currentUser}
-        />
-      </div>
-    )
-  }
 
 
 
 
   render() {
-    console.log(this.state.neighborhood)
     return (
       <div className='col s12'>
         <Header
@@ -156,13 +153,15 @@ class ZillowNeighborhoods extends Component {
           </div>
 
           <div className='col s12 m7'>
-            {this.showBoard()}
+            <Board
+              id={this.props.match.params.id}
+              currentUser={this.state.currentUser}
+            />
           </div>
           <div className='col s12 m3'>
-
-            <Events
+            {/* <Events
               location={this.state.neighborhood}
-            />
+            /> */}
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}

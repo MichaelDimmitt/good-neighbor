@@ -23,7 +23,7 @@ class Home extends Component {
     this.state = {
       user: {},
       searchResult: {},
-      users: {},
+      users: [],
       address: {},
       neighborhood: {}
     }
@@ -51,12 +51,12 @@ class Home extends Component {
         asArray: false,
         state: 'users'
       });
-      this.neighborhoodSwitch = base.syncState(`neighborhoods/`, {
-        context: this,
-        asArray: false,
-        state: 'neighborhood'
-      }
-    );
+    //   this.neighborhoodSwitch = base.syncState(`neighborhoods/`, {
+    //     context: this,
+    //     asArray: true,
+    //     state: 'neighborhood'
+    //   }
+    // );
       const userData = {name: user.displayName, pic: user.photoURL, email: user.email, uid: user.uid}
       this.setState({
         users: userData
@@ -167,13 +167,12 @@ class Home extends Component {
       return gju.pointInPolygon({"type":"Point","coordinates":[ lng, lat ]},
                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
     });
-    console.log(neighborhood);
-
 
     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
       this.setState({
         address: addressData,
       })
+
 
     const neighborhoodData = { city: neighborhood.properties.City, name: neighborhood.properties.Name, id: neighborhood.properties.RegionID }
     if (!this.state.neighborhood[neighborhoodData.id]){
@@ -184,32 +183,21 @@ class Home extends Component {
     base.update(`neighborhoods/${neighborhood.properties.RegionID}/users/${this.state.users.uid}`, {
       data: this.state.users
     })
-
-
-
-
-
+    base.update(`users/${this.state.users.uid}/neighborhood`, {
+      data: neighborhoodData
+    })
 
 }
-
-
-// addNeighborhoodToFB(neighborhood) {
-//   base.update(`neighborhoods/${neighborhood.properties.RegionID}`, {
-//      data: {info: this.state.neighborhood}
-//   })
-// }
-
-
-
 
 
   displayNeighborhoods() {
     if(this.state.address && this.state.user.uid && this.state.neighborhood) {
       const address = this.state.address
-      const neighborhood = this.state.neighborhood
+      const neighborhood = this.state.users.neighborhood
+      // console.log(neighborhood);
       return (
           <div className='favorites left z-depth-4'>
-            {this.state.neighborhood &&
+            {this.state.users.neighborhood &&
             <Favorites
               address={address}
               neighborhood={neighborhood}
@@ -270,7 +258,6 @@ class Home extends Component {
             <div className='col s12'>
               {this.displayProfile()}
               {this.displayNeighborhoods()}
-              {/* {this.findNeighborhood()} */}
             </div>
           </div>
             {this.formIfLoggedIn()}
