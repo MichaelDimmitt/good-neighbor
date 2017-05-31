@@ -95,8 +95,18 @@ input[type="search"] {
 .messages {
   border-radius: 5px;
   background-color: white;
-  border: 1px solid #eceff1;
+  border: 3px solid #eceff1;
   padding: 5px;
+}
+
+.message-scroll {
+  height: 700px;
+  overflow: scroll;
+}
+
+.user-scroll {
+  height: 643px;
+  overflow: scroll;
 }
 
 .board-title {
@@ -111,6 +121,10 @@ input[type="search"] {
   background-color: white;
   border: 2px solid #eceff1;
   padding: 15px;
+}
+
+.weather-text {
+  font-size: 1.2rem;
 }
 
 .users-in-hood {
@@ -275,7 +289,8 @@ margin: 10px;
 }
 
 .board {
-  margin-top: -16px;
+  margin-top: -25px;
+  border: 10px solid #eceff1;
 }
 
 .input-field {
@@ -292,5 +307,5 @@ margin: 10px;
   font-size: 1.3rem;
   position: absolute;
   top: 50px;
-  left: 53px;
+  left: 83px;
 }

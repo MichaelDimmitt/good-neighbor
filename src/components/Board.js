@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
 import base from '../rebase';
+import moment from 'moment';
 var firebase = require('firebase');
 
 window.base = base;
@@ -62,6 +63,7 @@ submitPost(event) {
             width='65'
             className='repsonsive-img'
             src={post.pic}/> <strong>{post.username}</strong>
+            <span className='right'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</span>
             <br />
             <br />
              {post.text}
@@ -84,7 +86,7 @@ submitPost(event) {
           <br />
           <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
         </form>
-        <ul>
+        <ul className='message-scroll'>
           {currentPost.reverse()}
         </ul>
       </div>

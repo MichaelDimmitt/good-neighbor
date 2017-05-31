@@ -68,7 +68,7 @@ class ZillowNeighborhoods extends Component {
       <div>
         <br />
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
-        <ul>
+        <ul className='user-scroll'>
           {usersArr.map((user) => {
             if(currentUser.displayName === user.name) {
               return null
