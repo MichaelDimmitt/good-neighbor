@@ -90,11 +90,10 @@ class ZillowNeighborhoods extends Component {
                   </div>
                   <div className='row'>
                     <div className='col s6 m12 center-align'>
-                      <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn">Email</button></a>
+                      <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn email-button">Email</button></a>
                     </div>
-                    <br />
                     <div className='col s6 m12 center-align'>
-                       <button data-target="modal1" className="waves-effect waves-light btn" onClick={this.buttonClick.bind(this, user)}>Chat</button>
+                       <button data-target="modal1" className="waves-effect waves-light btn chat-button" onClick={this.buttonClick.bind(this, user)}>Chat</button>
                     </div>
                   </div>
                   </li>
@@ -159,9 +158,9 @@ class ZillowNeighborhoods extends Component {
             <Events
               location={this.props.address}
             />
-            <Weather
+            {/* <Weather
               location={this.props.address}
-            />
+            /> */}
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}

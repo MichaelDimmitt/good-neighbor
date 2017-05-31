@@ -62,7 +62,10 @@ submitPost(event) {
           <img
           width='65'
           className='repsonsive-img'
-          src={post.pic}/> {post.username}: {post.text}
+          src={post.pic}/> <strong>{post.username}</strong>
+          <br />
+          <br />
+           {post.text}
         </li>
       </div>
       )
@@ -70,18 +73,22 @@ submitPost(event) {
   )
 
     return (
-      <div className=''>
+      <div className='board'>
         <h2 className='center-align board-title'>Neighborhood Feed</h2>
-          <h4 className='center-align board-title'>{this.props.neighborhood.name}</h4>
-          <form>
-        <input onChange={this.updatePost.bind(this)} type="text" placeholder="Message" id="message"/>
+          <h4 className='center-align board-title'>{this.props.neighborhood.name}, {this.props.neighborhood.city}</h4>
+          <form className='input-field'>
+            <img
+              width='32'
+              className='repsonsive-img'
+              src={this.props.currentUser.photoURL}/>
+        <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
         <br />
-        <button onClick={this.submitPost.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
+        <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
       </form>
 
         <h5 className='center-align'>{this.props.currentUser.name}</h5>
           <ul>
-            {currentPost}
+            {currentPost.reverse()}
           </ul>
 
       </div>

@@ -26,7 +26,6 @@ class Header extends Component {
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               <li><a href="/">Home</a></li>
-              {/* <li><a href="sass.html">Favorite</a></li> */}
               <li><a onClick={this.props.logout}>Log Out</a></li>
               <li>
                 <img
@@ -37,7 +36,6 @@ class Header extends Component {
             </ul>
             <ul className="side-nav" id="mobile-demo">
               <li><a href="/">Home</a></li>
-              {/* <li><a href="sass.html">Favorite</a></li> */}
               <li><a onClick={this.props.logout}>Log Out</a></li>
             </ul>
           </div>

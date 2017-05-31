@@ -118,7 +118,7 @@ input[type="search"] {
   background-color: white;
   border: 2px solid #eceff1;
   padding: 15px;
-  /*margin-top: -14px;*/
+  margin-top: -14px;
 }
 
 .hood-title {
@@ -266,11 +266,25 @@ margin: auto;
   }
 }
 
-button {
-  margin-top: 5px;
-  margin-bottom: 10px;
+.email-button {
+margin: 10px;
 }
 
-.users-in-hood {
-  margin-top: -15px;
+.chat-button {
+  margin: 10px;
+}
+
+/*.post-button {
+  margin: 10px;
+}*/
+
+.board {
+  margin-top: -26px;
+}
+
+.input-field {
+  background-color: white;
+  border-radius: 5px;
+  margin: 20px;
+  padding: 10px;
 }
