@@ -132,10 +132,10 @@ class ZillowNeighborhoods extends Component {
       <div className='col s12'>
         <Header
           user={this.state.currentUser}
+          neighborhood={this.state.neighborhood}
         />
         <br />
-        <br />
-        <div className='neighborhood-indicator z-depth-3 col s12'>{this.state.neighborhood.name}, {this.state.neighborhood.city}</div>
+        {/* <div className='neighborhood-indicator z-depth-3 col s12'>{this.state.neighborhood.name}, {this.state.neighborhood.city}</div> */}
         <div className='row'>
           <div className='col s12 m2'>
             <LargeProfile

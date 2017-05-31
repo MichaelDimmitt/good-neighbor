@@ -230,6 +230,7 @@ class Home extends Component {
             <Header
               user={user}
               logout={this.logout.bind(this)}
+              neighborhood={this.state.neighborhood}
             />
       )
     }

@@ -13,10 +13,10 @@ class Header extends Component {
 
   render() {
     const user = this.props.user
-
     return(
         <nav>
           <div className="nav-wrapper">
+            <div className='left hide-on-med-and-down header-hood'>{this.props.neighborhood.name} {this.props.neighborhood.city}</div>
             <a href="/" className="brand-logo center">
               <img
                 className='logo'
