@@ -8,11 +8,14 @@ class Favorites extends Component {
 
   render () {
       const address = this.props.address;
+      const neighborhood = this.props.neighborhood
+      console.log(neighborhood);
+      // console.log(address);
       return (
         <div>
           <div className='fav-title'>Saved Address</div>
           <div className='fav-text'>
-          <Link to={`${address[0]}`}>{address[2]}</Link>
+          <Link to={`${neighborhood.id}`}>{address[4]}</Link>
         </div>
         </div>
       )

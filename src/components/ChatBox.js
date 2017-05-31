@@ -47,7 +47,7 @@ submitMessage(event) {
     pic: this.props.currentUser.photoURL,
     key: this.props.currentUser.uid+this.props.userKey,
     revKey: this.props.userKey+this.props.currentUser.uid,
-    time: firebase.database.ServerValue.TIMESTAMP
+    // time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
   event.preventDefault()
@@ -86,7 +86,7 @@ submitMessage(event) {
           </ul>
           <div className="modal-footer">
           <form>
-        <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message"/>
+        <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message" autocomplete="off"/>
         <br />
         <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
       </form>

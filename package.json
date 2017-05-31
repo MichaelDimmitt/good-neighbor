@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.16.1",
     "firebase": "^3.9.0",
+    "geojson-utils": "^1.1.0",
     "materialize-css": "^0.98.2",
     "moment": "^2.18.1",
     "nodemon": "^1.11.0",
