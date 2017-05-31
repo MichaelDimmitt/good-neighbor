@@ -77,6 +77,7 @@ submitPost(event) {
     return (
       <div className='board'>
         {/* <h4 className='center-align board-title'><strong>{this.props.neighborhood.name}, {this.props.neighborhood.city}</strong></h4> */}
+        <div className='input-container'>
         <form className='input-field'>
           <img
             width='32'
@@ -87,6 +88,7 @@ submitPost(event) {
           <br />
           <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
         </form>
+      </div>
         <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
         <ul className='message-scroll'>
           {currentPost.reverse()}
