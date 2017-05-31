@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ChatBox from './ChatBox'
 import LargeProfile from './LargeProfile';
 import Weather from './Weather';
@@ -85,6 +84,7 @@ class ZillowNeighborhoods extends Component {
                     <img
                     width='105'
                     className='avatar repsonsive-img z-depth-4 neighbors-pic'
+                    alt='neighbor avatar pic'
                     src={user.pic} />
                   </div>
                   <div className='row'>
@@ -107,7 +107,6 @@ class ZillowNeighborhoods extends Component {
   }
 
   buttonClick (user){
-    console.log(user);
     this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
   }
 
@@ -119,6 +118,7 @@ class ZillowNeighborhoods extends Component {
           user={this.state.chatDisplay.selectedUser}
           currentUser={this.state.currentUser}
           userKey={this.state.chatDisplay.selectedUser.uid}
+          id={this.props.match.params.id}
         />
       )
     } else {
@@ -155,9 +155,9 @@ class ZillowNeighborhoods extends Component {
             <Events
               location={this.props.address}
             />
-            <Weather
+            {/* <Weather
               location={this.props.address}
-            />
+            /> */}
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}

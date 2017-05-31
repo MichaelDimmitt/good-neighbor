@@ -37,7 +37,7 @@ getWeather(location) {
             <br />
             <div><u>Weather:</u> {this.state.currentWeather.weather}</div>
             <br />
-            <img src={this.state.currentWeather.icon_url}/>
+            <img src={this.state.currentWeather.icon_url} alt='weather pic'/>
           </div>
           }
         </div>

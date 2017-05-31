@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
-import ZillowNeighborhoods from './ZillowNeighborhoods';
 import Favorites from './Favorites';
 import Profile from './Profile';
 import Header from './Header';
@@ -51,12 +50,6 @@ class Home extends Component {
         asArray: false,
         state: 'users'
       });
-    //   this.neighborhoodSwitch = base.syncState(`neighborhoods/`, {
-    //     context: this,
-    //     asArray: true,
-    //     state: 'neighborhood'
-    //   }
-    // );
       const userData = {name: user.displayName, pic: user.photoURL, email: user.email, uid: user.uid}
       this.setState({
         users: userData
@@ -86,6 +79,7 @@ class Home extends Component {
         <div className='col s12 m6'>
           <img
             className='logo'
+            alt='logo'
             src={logo5} />
         <br />
           <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
@@ -172,6 +166,7 @@ class Home extends Component {
         window.alert('This address is currently not supported. More neighborhoods coming soon. Please choose another address in Florida.')
       )
     } else {
+
     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
       this.setState({
         address: addressData,

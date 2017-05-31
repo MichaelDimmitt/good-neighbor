@@ -11,8 +11,9 @@ class Footer extends Component {
             <div className="container">
             © 2017 Copyright Tyler Davis
             <img
-              width='140'
+              width='130'
               className='repsonsive-img right'
+              alt='zillow logo'
               src={logoFooter} />
             </div>
           </div>

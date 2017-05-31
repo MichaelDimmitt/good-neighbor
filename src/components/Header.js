@@ -20,9 +20,9 @@ class Header extends Component {
             <a href="/" className="brand-logo center">
               <img
                 className='logo'
+                alt='logo'
                 src={logoHeader} />
             </a>
-            {/* <a href="/" className="brand-logo">good neighbor</a> */}
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               <li><a href="/">Home</a></li>
@@ -30,6 +30,7 @@ class Header extends Component {
               <li>
                 <img
                   width='32'
+                  alt='avatar'
                   className='avatar circle repsonsive-img'
                   src={user.photoURL}/> {user.displayName}
               </li>

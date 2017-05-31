@@ -62,6 +62,7 @@ submitPost(event) {
             <img
             width='65'
             className='repsonsive-img'
+            alt='avatar'
             src={post.pic}/> <strong>{post.username}</strong>
             <span className='right'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</span>
             <br />
@@ -76,16 +77,17 @@ submitPost(event) {
     return (
       <div className='board'>
         {/* <h4 className='center-align board-title'><strong>{this.props.neighborhood.name}, {this.props.neighborhood.city}</strong></h4> */}
-        <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
         <form className='input-field'>
           <img
             width='32'
             className='repsonsive-img'
+            alt='current user avatar'
             src={this.props.currentUser.photoURL}/>
           <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
           <br />
           <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
         </form>
+        <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
         <ul className='message-scroll'>
           {currentPost.reverse()}
         </ul>

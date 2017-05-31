@@ -22,9 +22,6 @@ componentDidMount(){
         asArray: true,
         then(response){
           this.setState({ address: response })
-        .catch(error => {
-          console.log(error)
-        })
         }
       }
     )}

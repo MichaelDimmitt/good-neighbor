@@ -9,8 +9,6 @@ class Favorites extends Component {
   render () {
       const address = this.props.address;
       const neighborhood = this.props.neighborhood
-      console.log(neighborhood);
-      // console.log(address);
       return (
         <div>
           <div className='fav-title'>Saved Address</div>
