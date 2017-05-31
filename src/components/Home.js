@@ -189,7 +189,7 @@ class Home extends Component {
 
 
   displayNeighborhoods() {
-    if(this.state.address && this.state.user.uid && this.state.neighborhood) {
+    if(this.state.address[0] && this.state.user.uid && this.state.neighborhood) {
       const address = this.state.address
       const neighborhood = this.state.users.neighborhood
       // console.log(neighborhood);
@@ -202,7 +202,7 @@ class Home extends Component {
             />}
           </div>
       )
-    }
+    } else return null
   }
 
 

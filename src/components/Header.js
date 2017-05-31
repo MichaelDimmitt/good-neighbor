@@ -24,7 +24,7 @@ class Header extends Component {
                 src={logoHeader} />
             </a>
             <a href="#" data-activates="mobile-demo" className="button-collapse"><i className="material-icons">menu</i></a>
-            <ul className="right hide-on-med-and-down">
+            <ul className="right hide-on-med-and-down header-links">
               <li><a href="/">Home</a></li>
               <li><a onClick={this.props.logout}>Log Out</a></li>
               <li>

@@ -101,7 +101,7 @@ input[type="search"] {
 
 .message-scroll {
   height: 700px;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 /*.user-scroll {
@@ -197,8 +197,6 @@ margin: auto;
     width: 40vw;
   }
 }
-
-
 
 
 .login-button {
@@ -308,4 +306,14 @@ margin: 10px;
   position: absolute;
   top: 8%;
   left: 1%;
+}
+
+.chatbox-messages {
+  height: 240px;
+  overflow-y: auto;
+}
+
+.header-links {
+  position: relative;
+  right: 20px;
 }
