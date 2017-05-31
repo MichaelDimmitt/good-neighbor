@@ -106,7 +106,6 @@ class Home extends Component {
             className='center-align search-text'
             placeholder='Search address here...'
             ref={element => this.addressName = element} />
-          {/* <button className="waves-effect waves-light btn">Search for your Neighbors</button> */}
         </form>
       </div>
       )
@@ -172,7 +171,6 @@ class Home extends Component {
       this.setState({
         address: addressData,
       })
-
 
     const neighborhoodData = { city: neighborhood.properties.City, name: neighborhood.properties.Name, id: neighborhood.properties.RegionID }
     if (!this.state.neighborhood[neighborhoodData.id]){
@@ -264,9 +262,6 @@ class Home extends Component {
             {this.displayMap()}
           </div>
           {this.displayFooter()}
-          {/* <ZillowNeighborhoods
-            currentLocation={this.state.address}
-          /> */}
       </div>
     )
   }

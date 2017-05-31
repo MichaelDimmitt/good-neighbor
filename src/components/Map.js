@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
-import { Link } from 'react-router-dom'
 
 
 
@@ -28,15 +27,10 @@ class Map extends Component {
         )}
         <div className="row center-align">
           <br />
-          <div className="col s12 m6">
+          <div className="col s12 m12">
             <button className="waves-effect waves-light btn"
-            onClick={this.handleClick.bind(this, address)}>Save Location</button>
+            onClick={this.handleClick.bind(this, address)}>Set Location as Address</button>
             <br /><br />
-          </div>
-          <div className='col s12 m6'>
-            <Link to={address.place_id}>
-              <button className="waves-effect waves-light btn">Go to Location</button>
-            </Link>
           </div>
         </div>
       </GoogleMap>

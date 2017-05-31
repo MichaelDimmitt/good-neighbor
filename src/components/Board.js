@@ -48,7 +48,6 @@ submitPost(event) {
   $('#message').val('');
   event.preventDefault()
 
-
   firebase.database().ref(`neighborhoods/${this.props.id}/posts/${nextPost.id}`).set(nextPost)
 
 }
@@ -58,39 +57,36 @@ submitPost(event) {
     const currentPost = this.state.posts.map((post, i) => {
       return(
         <div className='messages'>
-        <li key={post.id}>
-          <img
-          width='65'
-          className='repsonsive-img'
-          src={post.pic}/> <strong>{post.username}</strong>
-          <br />
-          <br />
-           {post.text}
-        </li>
-      </div>
+          <li key={post.id}>
+            <img
+            width='65'
+            className='repsonsive-img'
+            src={post.pic}/> <strong>{post.username}</strong>
+            <br />
+            <br />
+             {post.text}
+          </li>
+        </div>
       )
     }
   )
 
     return (
       <div className='board'>
-        <h2 className='center-align board-title'>Neighborhood Feed</h2>
-          <h4 className='center-align board-title'>{this.props.neighborhood.name}, {this.props.neighborhood.city}</h4>
-          <form className='input-field'>
-            <img
-              width='32'
-              className='repsonsive-img'
-              src={this.props.currentUser.photoURL}/>
-        <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
-        <br />
-        <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
-      </form>
-
-        <h5 className='center-align'>{this.props.currentUser.name}</h5>
-          <ul>
-            {currentPost.reverse()}
-          </ul>
-
+        {/* <h4 className='center-align board-title'><strong>{this.props.neighborhood.name}, {this.props.neighborhood.city}</strong></h4> */}
+        <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
+        <form className='input-field'>
+          <img
+            width='32'
+            className='repsonsive-img'
+            src={this.props.currentUser.photoURL}/>
+          <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
+          <br />
+          <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
+        </form>
+        <ul>
+          {currentPost.reverse()}
+        </ul>
       </div>
     )
   }

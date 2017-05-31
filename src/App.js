@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Neighborhood from './components/Neighborhood';
 import ZillowNeighborhoods from './components/ZillowNeighborhoods';
 import Home from './components/Home';
 import base from './rebase';
@@ -46,12 +45,12 @@ componentDidMount(){
       <Router>
         <div>
           <Route exact path="/" component={Home}/>
+
           <Route exact path="/:id" render={(defaultProps)=> <ZillowNeighborhoods
               {...defaultProps}
               address={this.state.address}
             />}
           />
-          {/* <Route exact path="/:id" component={ZillowNeighborhoods}/> */}
         </div>
       </Router>
     );

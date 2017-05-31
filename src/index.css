@@ -274,12 +274,8 @@ margin: 10px;
   margin: 10px;
 }
 
-/*.post-button {
-  margin: 10px;
-}*/
-
 .board {
-  margin-top: -26px;
+  margin-top: -16px;
 }
 
 .input-field {
@@ -287,4 +283,14 @@ margin: 10px;
   border-radius: 5px;
   margin: 20px;
   padding: 10px;
+}
+
+.neighborhood-indicator {
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1.3rem;
+  position: absolute;
+  top: 50px;
+  left: 53px;
 }
