@@ -104,10 +104,10 @@ input[type="search"] {
   overflow: scroll;
 }
 
-.user-scroll {
+/*.user-scroll {
   height: 643px;
   overflow: scroll;
-}
+}*/
 
 .board-title {
   border-radius: 5px;

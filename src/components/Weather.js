@@ -28,7 +28,7 @@ getWeather(location) {
           <h5><u>Forecast</u></h5>
           <br />
           {this.state.currentWeather.display_location &&
-          <div>{this.state.currentWeather.display_location.full}</div>
+          <div><strong>{this.state.currentWeather.display_location.full}</strong></div>
           }
           <br />
           {this.state.currentWeather &&

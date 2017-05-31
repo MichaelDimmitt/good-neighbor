@@ -167,6 +167,11 @@ class Home extends Component {
                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
     });
 
+    if (neighborhood === undefined){
+      return (
+        window.alert('This address is currently not supported. More neighborhoods coming soon. Please choose another address in Florida.')
+      )
+    } else {
     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
       this.setState({
         address: addressData,
@@ -184,7 +189,7 @@ class Home extends Component {
     base.update(`users/${this.state.users.uid}/neighborhood`, {
       data: neighborhoodData
     })
-
+  }
 }
 
 
