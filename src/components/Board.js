@@ -93,14 +93,13 @@ likePost(post) {
 
 displayLikes(post) {
   if (post.likes) {
-  return Object.keys(post.likes).length
-}
+    return <div>{Object.keys(post.likes).length} Likes</div>
+  }
 }
 
 
   render() {
     const currentPost = this.state.posts.map((post, i) => {
-      // console.log(post);
       return (
         <div className='messages'>
           <li key={post.id}>
@@ -109,13 +108,13 @@ displayLikes(post) {
             className='left repsonsive-img chat-avatar'
             alt='avatar'
             src={post.pic}/>
-            <div className='left board-name'>{post.username}</div>  {this.deleteButton(post)} {this.likeButton(post)} {this.displayLikes(post)}
+            <div className='left board-name'>{post.username}</div> {this.deleteButton(post)} {this.likeButton(post)}
             <br />
             <br />
             <div className='left board-time'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</div>
             <br />
             <br />
-             {post.text}
+             {post.text} <div className='right likes'>{this.displayLikes(post)}</div>
           </li>
         </div>
       )

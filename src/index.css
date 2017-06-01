@@ -97,7 +97,7 @@ input[type="search"] {
   border-radius: 7px;
   background-color: white;
   border: 1px solid #E4E7E9;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 3px;
 }
 
@@ -360,5 +360,8 @@ margin: 10px;
     cursor: hand;
     cursor: pointer;
     opacity: .9;
+}
 
+.likes {
+  color: #0288d1;
 }

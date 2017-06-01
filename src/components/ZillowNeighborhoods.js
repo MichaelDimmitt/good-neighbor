@@ -154,9 +154,9 @@ class ZillowNeighborhoods extends Component {
             <Events
               location={this.props.address}
             />
-            {/* <Weather
+            <Weather
               location={this.props.address}
-            /> */}
+            />
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}
