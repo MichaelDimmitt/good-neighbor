@@ -3,6 +3,8 @@ var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
 import base from '../rebase';
 var firebase = require('firebase');
+import moment from 'moment';
+
 
 window.base = base;
 
@@ -21,7 +23,7 @@ componentDidMount() {
 
   $('.modal').modal();
 
-  firebase.database().ref('messages/').on('value', (snapshot) =>{
+  firebase.database().ref(`neighborhoods/${this.props.id}/messages`).on('value', (snapshot) =>{
 
     const currentMessages = snapshot.val()
 
@@ -47,13 +49,14 @@ submitMessage(event) {
     pic: this.props.currentUser.photoURL,
     key: this.props.currentUser.uid+this.props.userKey,
     revKey: this.props.userKey+this.props.currentUser.uid,
-    // time: firebase.database.ServerValue.TIMESTAMP
+    time: firebase.database.ServerValue.TIMESTAMP
   }
-  $('#message').val('');
+  this.message.value = ''
+  this.message.placeholder = ''
   event.preventDefault()
 
 
-  firebase.database().ref(`messages/${nextMessage.id}`).set(nextMessage)
+  firebase.database().ref(`neighborhoods/${this.props.id}/messages/${nextMessage.id}`).set(nextMessage)
 
 }
 
@@ -66,10 +69,12 @@ submitMessage(event) {
       return(
         <div className='messages'>
         <li key={message.id}>
-          {message.username} <img
+          <img
           width='32'
           className='avatar circle repsonsive-img'
-          src={message.pic}/>: {message.text}
+          alt='avatar'
+          src={message.pic}/> <strong>{message.username}:</strong> {message.text}<span className='right'>{moment(message.time).format('HH:mm a')}</span>
+
         </li>
       </div>
       )
@@ -81,18 +86,15 @@ submitMessage(event) {
     return (
       <div className='container'>
         <h5 className='center-align'>{this.props.user.name}</h5>
-          <ul>
-            {currentMessage}
-          </ul>
-          <div className="modal-footer">
-          <form>
-        <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message" autocomplete="off"/>
-        <br />
-        <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Submit</button>
-      </form>
-    </div>
-
-      </div>
+        <ul className='chatbox-messages'>
+          {currentMessage}
+        </ul>
+          <form className='input-field'>
+            <input onChange={this.updateMessage.bind(this)} type="text" placeholder="Message" id="message" ref={ele => this.message = ele}/>
+              <br />
+            <button onClick={this.submitMessage.bind(this)} className="waves-effect waves-light btn" id="message-button" type="submit">Send</button>
+          </form>
+        </div>
     )
   }
 }

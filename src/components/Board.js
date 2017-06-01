@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 var $ = window.jQuery = require('jquery');
 window.Vel = require('materialize-css/js/velocity.min')
 import base from '../rebase';
+import moment from 'moment';
 var firebase = require('firebase');
 
 window.base = base;
@@ -43,6 +44,7 @@ submitPost(event) {
     text: this.state.post,
     username: this.props.currentUser.displayName,
     pic: this.props.currentUser.photoURL,
+    key: this.props.currentUser.uid,
     time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
@@ -53,6 +55,20 @@ submitPost(event) {
 }
 
 
+
+deleteButton(post){
+  if(post.key === this.props.currentUser.uid)
+    return (
+      <i className="material-icons right delete-button" onClick={this.deletePost.bind(this, post)}>delete</i>
+  )
+}
+
+deletePost(post) {
+  base.remove(`neighborhoods/${this.props.id}/posts/${post.id}`)
+}
+
+
+
   render() {
     const currentPost = this.state.posts.map((post, i) => {
       return(
@@ -60,8 +76,13 @@ submitPost(event) {
           <li key={post.id}>
             <img
             width='65'
-            className='repsonsive-img'
-            src={post.pic}/> <strong>{post.username}</strong>
+            className='left repsonsive-img chat-avatar'
+            alt='avatar'
+            src={post.pic}/>
+            <div className='left board-name'>{post.username}</div> {this.deleteButton(post)}
+            <br />
+            <br />
+            <div className='left board-time'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</div>
             <br />
             <br />
              {post.text}
@@ -74,17 +95,20 @@ submitPost(event) {
     return (
       <div className='board'>
         {/* <h4 className='center-align board-title'><strong>{this.props.neighborhood.name}, {this.props.neighborhood.city}</strong></h4> */}
-        <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
+        <div className='input-container'>
         <form className='input-field'>
           <img
             width='32'
             className='repsonsive-img'
+            alt='current user avatar'
             src={this.props.currentUser.photoURL}/>
           <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
           <br />
           <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
         </form>
-        <ul>
+      </div>
+        <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
+        <ul className='message-scroll'>
           {currentPost.reverse()}
         </ul>
       </div>

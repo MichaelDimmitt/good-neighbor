@@ -11,6 +11,7 @@ class Profile extends Component {
             <img
               width='90'
               className='avatar repsonsive-img profile-pic'
+              alt='users profile pic'
               src={user.photoURL}/>
               <br />
               {user.displayName}

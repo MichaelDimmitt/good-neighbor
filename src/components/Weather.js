@@ -24,18 +24,20 @@ getWeather(location) {
 
   render () {
       return (
-        <div className='large-profile center-align'>
+        <div className='large-profile center-align weather-text'>
           <h5><u>Forecast</u></h5>
-
+          <br />
           {this.state.currentWeather.display_location &&
-          <div>{this.state.currentWeather.display_location.full}</div>
+          <div><strong>{this.state.currentWeather.display_location.full}</strong></div>
           }
           <br />
           {this.state.currentWeather &&
           <div>
             <div><u>Temperature:</u> {this.state.currentWeather.temp_f}&deg;F</div>
+            <br />
             <div><u>Weather:</u> {this.state.currentWeather.weather}</div>
-            <img src={this.state.currentWeather.icon_url}/>
+            <br />
+            <img src={this.state.currentWeather.icon_url} alt='weather pic'/>
           </div>
           }
         </div>

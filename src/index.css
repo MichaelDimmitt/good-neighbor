@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  /*font-family: 'Montserrat'*/
 }
 
 
@@ -46,7 +47,7 @@ body {
 
 
 .profile  {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: white;
   padding: 5px;
   margin-right: 5px;
@@ -57,7 +58,7 @@ body {
 }
 
 .favorites {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: white;
   padding: 10px;
   margin-top: 33px;
@@ -66,7 +67,7 @@ body {
 }
 
 .search {
-  border-radius: 5px;
+  border-radius: 7px;
   background: rgba(255, 255, 255, .3);;
   padding: 15px;
   color: white;
@@ -93,38 +94,49 @@ input[type="search"] {
 }
 
 .messages {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: white;
-  border: 1px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 5px;
+  margin-bottom: 3px;
 }
 
+/*.message-scroll {
+  height: 700px;
+  overflow-y: auto;
+}*/
+
 .board-title {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: white;
-  border: 1px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 5px;
 }
 
 .large-profile {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: white;
-  border: 2px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 15px;
+  margin-bottom: 3px;
+}
+
+.weather-text {
+  font-size: 1.2rem;
 }
 
 .users-in-hood {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: white;
-  border: 2px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 15px;
-  margin-top: -14px;
+  margin-bottom: 3px;
 }
 
 .hood-title {
-  border-radius: 5px;
+  border-radius: 7px;
   background-color: white;
-  border: 2px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 15px;
   margin: 0;
   font-weight: bold;
@@ -185,8 +197,6 @@ margin: auto;
 }
 
 
-
-
 .login-button {
   position: fixed;
   top: 75%;
@@ -231,7 +241,7 @@ margin: auto;
   padding: 20px;
   padding-bottom: 120px;
   background: rgba(255, 255, 255, 1.0);
-  border-radius: 5px;
+  border-radius: 7px;
   color: black;
 }
 
@@ -245,7 +255,7 @@ margin: auto;
 @media only screen and (min-width: 0px) {
 
   .map-container {
-    height: 68vh;
+    height: 64vh;
     width: 49vh;
   }
 }
@@ -275,22 +285,76 @@ margin: 10px;
 }
 
 .board {
-  margin-top: -16px;
+  margin-top: -5px;
+  border: 5px solid #eceff1;
+}
+
+.header-hood {
+  position: relative;
+  left: 20px;
+  font-size: 1.2rem;
+  font-family: 'Montserrat'
+
+  /*text-shadow: 2px 2px rgba(0, 0, 0, .3);*/
 }
 
 .input-field {
   background-color: white;
-  border-radius: 5px;
-  margin: 20px;
+  border-radius: 7px;
+  width: 80%;
   padding: 10px;
+  position: relative;
+  bottom: 7px;
+  border: 1px solid #E4E7E9;
+}
+
+.input-container {
+  background-color: #eaf8fd;
+  border-radius: 7px;
+  padding: 10px;
+  border: 1px solid #E4E7E9;
+
 }
 
 .neighborhood-indicator {
   background-color: white;
-  border-radius: 5px;
+  border-radius: 7px;
   padding: 5px;
   font-size: 1.3rem;
   position: absolute;
-  top: 50px;
-  left: 53px;
+  top: 8%;
+  left: 1%;
+}
+
+.chatbox-messages {
+  height: 240px;
+  overflow-y: auto;
+}
+
+.header-links {
+  position: relative;
+  right: 20px;
+}
+
+.chat-avatar {
+  margin: 5px;
+}
+
+.board-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: relative;
+  top: 8px;
+}
+
+.delete-button {
+  color: #0288d1;
+  curser: hand;
+}
+
+.delete-button:hover {
+    cursor: hand;
+    cursor: pointer;
+    opacity: .9;
+
 }

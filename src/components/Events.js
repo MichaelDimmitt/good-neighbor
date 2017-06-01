@@ -27,7 +27,6 @@ class Events extends Component {
 
 
     render () {
-      console.log(this.props.location);
         return (
           <div className='large-profile'>
             <h5><u>Upcoming Events Near You</u></h5>
@@ -70,5 +69,3 @@ class Events extends Component {
 
 
 export default Events;
-
-// api key V5W6PxsWgHLxCZTb

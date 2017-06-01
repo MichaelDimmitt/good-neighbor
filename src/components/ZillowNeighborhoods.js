@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import ChatBox from './ChatBox'
 import LargeProfile from './LargeProfile';
 import Weather from './Weather';
@@ -68,7 +67,7 @@ class ZillowNeighborhoods extends Component {
       <div>
         <br />
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
-        <ul>
+        <ul className='user-scroll'>
           {usersArr.map((user) => {
             if(currentUser.displayName === user.name) {
               return null
@@ -85,6 +84,7 @@ class ZillowNeighborhoods extends Component {
                     <img
                     width='105'
                     className='avatar repsonsive-img z-depth-4 neighbors-pic'
+                    alt='neighbor avatar pic'
                     src={user.pic} />
                   </div>
                   <div className='row'>
@@ -107,7 +107,6 @@ class ZillowNeighborhoods extends Component {
   }
 
   buttonClick (user){
-    console.log(user);
     this.setState({ chatDisplay: {display: this.state.chatDisplay.display, selectedUser: user}})
   }
 
@@ -119,6 +118,7 @@ class ZillowNeighborhoods extends Component {
           user={this.state.chatDisplay.selectedUser}
           currentUser={this.state.currentUser}
           userKey={this.state.chatDisplay.selectedUser.uid}
+          id={this.props.match.params.id}
         />
       )
     } else {
@@ -132,10 +132,9 @@ class ZillowNeighborhoods extends Component {
       <div className='col s12'>
         <Header
           user={this.state.currentUser}
+          neighborhood={this.state.neighborhood}
         />
         <br />
-        <br />
-        <div className='neighborhood-indicator z-depth-3 col s12'>{this.state.neighborhood.name}, {this.state.neighborhood.city}</div>
         <div className='row'>
           <div className='col s12 m2'>
             <LargeProfile
@@ -155,9 +154,9 @@ class ZillowNeighborhoods extends Component {
             <Events
               location={this.props.address}
             />
-            <Weather
+            {/* <Weather
               location={this.props.address}
-            />
+            /> */}
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}

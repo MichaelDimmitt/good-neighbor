@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import logoFooter from '../../public/images/Zillow_Logo_HoodsProvided_RightAligned.gif'
+
 
 class Footer extends Component {
 
@@ -8,7 +10,11 @@ class Footer extends Component {
           <div className="footer-copyright">
             <div className="container">
             © 2017 Copyright Tyler Davis
-            <a className="white-text right" href="">More Links</a>
+            <img
+              width='130'
+              className='repsonsive-img right'
+              alt='zillow logo'
+              src={logoFooter} />
             </div>
           </div>
         </footer>

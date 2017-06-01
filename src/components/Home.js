@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Map from './Map'
-import ZillowNeighborhoods from './ZillowNeighborhoods';
 import Favorites from './Favorites';
 import Profile from './Profile';
 import Header from './Header';
@@ -51,12 +50,6 @@ class Home extends Component {
         asArray: false,
         state: 'users'
       });
-    //   this.neighborhoodSwitch = base.syncState(`neighborhoods/`, {
-    //     context: this,
-    //     asArray: true,
-    //     state: 'neighborhood'
-    //   }
-    // );
       const userData = {name: user.displayName, pic: user.photoURL, email: user.email, uid: user.uid}
       this.setState({
         users: userData
@@ -86,6 +79,7 @@ class Home extends Component {
         <div className='col s12 m6'>
           <img
             className='logo'
+            alt='logo'
             src={logo5} />
         <br />
           <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
@@ -167,6 +161,12 @@ class Home extends Component {
                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
     });
 
+    if (neighborhood === undefined){
+      return (
+        window.alert('This address is currently not supported. More neighborhoods coming soon. Please choose another address in Florida.')
+      )
+    } else {
+
     const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
       this.setState({
         address: addressData,
@@ -184,12 +184,12 @@ class Home extends Component {
     base.update(`users/${this.state.users.uid}/neighborhood`, {
       data: neighborhoodData
     })
-
+  }
 }
 
 
   displayNeighborhoods() {
-    if(this.state.address && this.state.user.uid && this.state.neighborhood) {
+    if(this.state.address[0] && this.state.user.uid && this.state.neighborhood) {
       const address = this.state.address
       const neighborhood = this.state.users.neighborhood
       // console.log(neighborhood);
@@ -202,7 +202,7 @@ class Home extends Component {
             />}
           </div>
       )
-    }
+    } else return null
   }
 
 
@@ -230,6 +230,7 @@ class Home extends Component {
             <Header
               user={user}
               logout={this.logout.bind(this)}
+              neighborhood={this.state.neighborhood}
             />
       )
     }
