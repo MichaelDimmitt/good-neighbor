@@ -16,15 +16,15 @@ class Map extends Component {
     const markers = this.props.markers
 
     return (
-        <GoogleMap
+      <GoogleMap
         zoom={this.props.zoom}
-        center={this.props.center} >
-
+        center={this.props.center}
+      >
         {markers.map((marker, index) => (
-          <Marker {...marker}
+          <Marker
+            {...marker}
           />
-          )
-        )}
+        ))}
         <div className="row center-align">
           <br />
           <div className="col s12 m12">

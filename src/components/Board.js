@@ -9,6 +9,7 @@ window.base = base;
 
 class Board extends Component {
 
+
   constructor() {
     super()
     this.state = {
@@ -16,7 +17,6 @@ class Board extends Component {
       posts: []
     }
   }
-
 
 componentDidMount() {
 
@@ -56,11 +56,12 @@ submitPost(event) {
 
 
 
-deleteButton(post){
-  if(post.key === this.props.currentUser.uid)
+deleteButton(post) {
+  if (post.key === this.props.currentUser.uid) {
     return (
       <i className="material-icons right delete-button" onClick={this.deletePost.bind(this, post)}>delete</i>
-  )
+    )
+  }
 }
 
 deletePost(post) {
@@ -68,10 +69,9 @@ deletePost(post) {
 }
 
 
-
   render() {
     const currentPost = this.state.posts.map((post, i) => {
-      return(
+      return (
         <div className='messages'>
           <li key={post.id}>
             <img
@@ -94,19 +94,18 @@ deletePost(post) {
 
     return (
       <div className='board'>
-        {/* <h4 className='center-align board-title'><strong>{this.props.neighborhood.name}, {this.props.neighborhood.city}</strong></h4> */}
         <div className='input-container'>
-        <form className='input-field'>
-          <img
-            width='32'
-            className='repsonsive-img'
-            alt='current user avatar'
-            src={this.props.currentUser.photoURL}/>
-          <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
-          <br />
-          <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
-        </form>
-      </div>
+          <form className='input-field'>
+            <img
+              width='32'
+              className='repsonsive-img'
+              alt='current user avatar'
+              src={this.props.currentUser.photoURL}/>
+            <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
+            <br />
+            <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
+          </form>
+        </div>
         <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
         <ul className='message-scroll'>
           {currentPost.reverse()}

@@ -58,8 +58,6 @@ class Home extends Component {
   }
 
 
-
-
   login () {
     base.authWithOAuthPopup('google', function (){});
   }
@@ -75,16 +73,16 @@ class Home extends Component {
       return null
     } else {
       return (
-      <div className='logo-container center-align'>
-        <div className='col s12 m6'>
-          <img
-            className='logo'
-            alt='logo'
-            src={logo5} />
-        <br />
-          <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
-      </div>
-      </div>
+        <div className='logo-container center-align'>
+          <div className='col s12 m6'>
+            <img
+              className='logo'
+              alt='logo'
+              src={logo5} />
+            <br />
+            <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
+          </div>
+        </div>
       )
     }
   }
@@ -94,14 +92,14 @@ class Home extends Component {
     if (this.state.user.uid) {
       return (
         <div className="container search">
-        <form onSubmit={this.searchGoogleMaps.bind(this)}>
-          <input
-            type='search'
-            className='center-align search-text'
-            placeholder='Search address here...'
-            ref={element => this.addressName = element} />
-        </form>
-      </div>
+          <form onSubmit={this.searchGoogleMaps.bind(this)}>
+            <input
+              type='search'
+              className='center-align search-text'
+              placeholder='Search address here...'
+              ref={element => this.addressName = element} />
+          </form>
+        </div>
       )
     }
   }
@@ -111,8 +109,8 @@ class Home extends Component {
     event.preventDefault();
     const address = this.addressName.value;
     axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyCmStoy8C78sZ6lX2BvPYK3UuwYfx_CvhE`)
-    .then(response => this.setState({ searchResult: response.data.results[0] }));
-    this.addressName.value = '';
+      .then(response => this.setState({ searchResult: response.data.results[0] }));
+      this.addressName.value = '';
   }
 
 
@@ -136,8 +134,8 @@ class Home extends Component {
                  containerElement={<div id='containerElement' />}
                  mapElement={<div id='mapElement' />}
                 />
+          </div>
         </div>
-      </div>
       )
     } else {
       return null
@@ -161,30 +159,30 @@ class Home extends Component {
                     {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
     });
 
-    if (neighborhood === undefined){
+    if (neighborhood === undefined) {
       return (
         window.alert('This address is currently not supported. More neighborhoods coming soon. Please choose another address in Florida.')
       )
     } else {
 
-    const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
-      this.setState({
-        address: addressData,
-      })
+      const addressData = {name: address.formatted_address, location: address.geometry.location, lat: address.geometry.location.lat, lng: address.geometry.location.lng, id: address.place_id}
+        this.setState({
+          address: addressData,
+        })
 
-    const neighborhoodData = { city: neighborhood.properties.City, name: neighborhood.properties.Name, id: neighborhood.properties.RegionID }
-    if (!this.state.neighborhood[neighborhoodData.id]){
-      base.update(`neighborhoods/${neighborhood.properties.RegionID}`, {
-        data: neighborhoodData
-      })
+      const neighborhoodData = { city: neighborhood.properties.City, name: neighborhood.properties.Name, id: neighborhood.properties.RegionID }
+        if (!this.state.neighborhood[neighborhoodData.id]) { //if the neighborhood state does not include region id already, then update FB
+          base.update(`neighborhoods/${neighborhood.properties.RegionID}`, {
+            data: neighborhoodData
+          })
+        }
+        base.update(`neighborhoods/${neighborhood.properties.RegionID}/users/${this.state.users.uid}`, {
+          data: this.state.users
+        })
+        base.update(`users/${this.state.users.uid}/neighborhood`, { //I update the users/ in fb with the neighborhood so that I can pass it into the favorites
+          data: neighborhoodData
+        })
     }
-    base.update(`neighborhoods/${neighborhood.properties.RegionID}/users/${this.state.users.uid}`, {
-      data: this.state.users
-    })
-    base.update(`users/${this.state.users.uid}/neighborhood`, {
-      data: neighborhoodData
-    })
-  }
 }
 
 
@@ -192,7 +190,6 @@ class Home extends Component {
     if(this.state.address[0] && this.state.user.uid && this.state.neighborhood) {
       const address = this.state.address
       const neighborhood = this.state.users.neighborhood
-      // console.log(neighborhood);
       return (
           <div className='favorites left z-depth-4'>
             {this.state.users.neighborhood &&
@@ -209,38 +206,40 @@ class Home extends Component {
 
 
 
+// the below sections are conditionals that display the home page elements
+// depending on if users are logged in
 
-  displayProfile(){
+  displayProfile() {
     if(this.state.user.uid) {
       const user = this.state.user
       return (
-          <div className='profile left z-depth-4'>
-            <Profile
-              user={user}
-            />
-          </div>
-      )
-    }
-  }
-
-  displayHeader (){
-    if(this.state.user.uid) {
-      const user = this.state.user
-      return (
-            <Header
-              user={user}
-              logout={this.logout.bind(this)}
-              neighborhood={this.state.neighborhood}
-            />
-      )
-    }
-  }
-
-  displayFooter(){
-    if(this.state.user.uid) {
-      return (
-          <Footer
+        <div className='profile left z-depth-4'>
+          <Profile
+            user={user}
           />
+        </div>
+      )
+    }
+  }
+
+  displayHeader () {
+    if(this.state.user.uid) {
+      const user = this.state.user
+      return (
+        <Header
+          user={user}
+          logout={this.logout.bind(this)}
+          neighborhood={this.state.neighborhood}
+        />
+      )
+    }
+  }
+
+  displayFooter() {
+    if(this.state.user.uid) {
+      return (
+        <Footer
+        />
       )
     }
   }
@@ -251,8 +250,8 @@ class Home extends Component {
     return (
       <div>
         <div className='home'>
-            {this.loginOrLogoutButton()}
-            {this.displayHeader()}
+          {this.loginOrLogoutButton()}
+          {this.displayHeader()}
           <div className='row'>
             <div className='col s12'>
               {this.displayProfile()}

@@ -28,18 +28,22 @@ getWeather(location) {
           <h5><u>Forecast</u></h5>
           <br />
           {this.state.currentWeather.display_location &&
-          <div><strong>{this.state.currentWeather.display_location.full}</strong></div>
-          }
+          <div>
+            <strong>{this.state.currentWeather.display_location.full}</strong>
+          </div>}
           <br />
           {this.state.currentWeather &&
           <div>
-            <div><u>Temperature:</u> {this.state.currentWeather.temp_f}&deg;F</div>
+            <div>
+              <u>Temperature:</u> {this.state.currentWeather.temp_f}&deg;F
+            </div>
             <br />
-            <div><u>Weather:</u> {this.state.currentWeather.weather}</div>
+            <div>
+              <u>Weather:</u> {this.state.currentWeather.weather}
+            </div>
             <br />
             <img src={this.state.currentWeather.icon_url} alt='weather pic'/>
-          </div>
-          }
+          </div>}
         </div>
       )
     }

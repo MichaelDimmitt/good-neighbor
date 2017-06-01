@@ -8,13 +8,13 @@ class Profile extends Component {
       const user = this.props.user
       return (
         <div>
-            <img
-              width='90'
-              className='avatar repsonsive-img profile-pic'
-              alt='users profile pic'
-              src={user.photoURL}/>
-              <br />
-              {user.displayName}
+          <img
+            width='90'
+            className='avatar repsonsive-img profile-pic'
+            alt='users profile pic'
+            src={user.photoURL}/>
+            <br />
+            {user.displayName}
         </div>
       )
     }

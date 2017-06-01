@@ -67,7 +67,7 @@ class ZillowNeighborhoods extends Component {
       <div>
         <br />
         <h5 className='center-align hood-title'>Your Neighbors:</h5>
-        <ul className='user-scroll'>
+        <ul>
           {usersArr.map((user) => {
             if(currentUser.displayName === user.name) {
               return null
@@ -154,9 +154,9 @@ class ZillowNeighborhoods extends Component {
             <Events
               location={this.props.address}
             />
-            {/* <Weather
+            <Weather
               location={this.props.address}
-            /> */}
+            />
           </div>
           <div id="modal1" className="modal">
             {this.showChatBox()}
