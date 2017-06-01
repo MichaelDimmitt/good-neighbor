@@ -8,13 +8,13 @@ class LargeProfile extends Component {
       const user = this.props.user
       return (
         <div className='large-profile center-align'>
-            <img
-              width='120'
-              className='avatar repsonsive-img profile-pic z-depth-3 center-align'
-              alt='users profile pic'
-              src={user.photoURL}/>
-              <br />
-              {user.displayName}
+          <img
+            width='120'
+            className='avatar repsonsive-img profile-pic z-depth-3 center-align'
+            alt='users profile pic'
+            src={user.photoURL}/>
+            <br />
+            {user.displayName}
         </div>
       )
     }

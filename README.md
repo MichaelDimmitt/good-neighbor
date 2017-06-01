@@ -1,5 +1,5 @@
 # good-neighbor
 
 A react app that helps connect you with your neighbors. Good Neighbor will use
-the Google Maps API to match you with other users near you where you can
-interact and build relationships.
+the Google Maps API in conjunction with the Zillow Neighborhoods API to match you with other users in
+your neighborhood where you can interact and build relationships.

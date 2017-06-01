@@ -43,7 +43,6 @@ class Header extends Component {
         </nav>
     )
   }
-
 }
 
 export default Header

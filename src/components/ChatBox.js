@@ -55,9 +55,7 @@ submitMessage(event) {
   this.message.placeholder = ''
   event.preventDefault()
 
-
   firebase.database().ref(`neighborhoods/${this.props.id}/messages/${nextMessage.id}`).set(nextMessage)
-
 }
 
 
@@ -66,21 +64,20 @@ submitMessage(event) {
 
     const currentMessage = this.state.messages.map((message, i) => {
       if(message.key === uniqueKey || message.revKey === uniqueKey) {
-      return(
-        <div className='messages'>
-        <li key={message.id}>
-          <img
-          width='32'
-          className='avatar circle repsonsive-img'
-          alt='avatar'
-          src={message.pic}/> <strong>{message.username}:</strong> {message.text}<span className='right'>{moment(message.time).format('HH:mm a')}</span>
-
-        </li>
-      </div>
-      )
-    } else {
-      return null
-    }
+        return(
+          <div className='messages'>
+            <li key={message.id}>
+              <img
+              width='32'
+              className='avatar circle repsonsive-img'
+              alt='avatar'
+              src={message.pic}/> <strong>{message.username}:</strong> {message.text}<span className='right'>{moment(message.time).format('HH:mm a')}</span>
+            </li>
+          </div>
+        )
+      } else {
+        return null
+      }
     })
 
     return (

@@ -9,14 +9,16 @@ window.base = base;
 
 class Board extends Component {
 
+
   constructor() {
     super()
     this.state = {
       post: '',
-      posts: []
+      posts: [],
+      likes: [],
+      number: []
     }
   }
-
 
 componentDidMount() {
 
@@ -45,7 +47,8 @@ submitPost(event) {
     username: this.props.currentUser.displayName,
     pic: this.props.currentUser.photoURL,
     key: this.props.currentUser.uid,
-    time: firebase.database.ServerValue.TIMESTAMP
+    time: firebase.database.ServerValue.TIMESTAMP,
+    // numberOfLikes: this.state.number
   }
   $('#message').val('');
   event.preventDefault()
@@ -56,11 +59,12 @@ submitPost(event) {
 
 
 
-deleteButton(post){
-  if(post.key === this.props.currentUser.uid)
+deleteButton(post) {
+  if (post.key === this.props.currentUser.uid) {
     return (
       <i className="material-icons right delete-button" onClick={this.deletePost.bind(this, post)}>delete</i>
-  )
+    )
+  }
 }
 
 deletePost(post) {
@@ -69,9 +73,34 @@ deletePost(post) {
 
 
 
+likeButton(post) {
+  if (post.key != this.props.currentUser.uid) {
+    return (
+      <i className="material-icons right delete-button" onClick={this.likePost.bind(this, post)}>thumb_up</i>
+    )
+  }
+}
+
+
+likePost(post) {
+  base.post(`neighborhoods/${this.props.id}/posts/${post.id}/likes/${this.props.currentUser.uid}`, {
+    data: 'liked'
+  })
+}
+
+
+
+
+displayLikes(post) {
+  if (post.likes) {
+    return <div>{Object.keys(post.likes).length} Likes</div>
+  }
+}
+
+
   render() {
     const currentPost = this.state.posts.map((post, i) => {
-      return(
+      return (
         <div className='messages'>
           <li key={post.id}>
             <img
@@ -79,13 +108,13 @@ deletePost(post) {
             className='left repsonsive-img chat-avatar'
             alt='avatar'
             src={post.pic}/>
-            <div className='left board-name'>{post.username}</div> {this.deleteButton(post)}
+            <div className='left board-name'>{post.username}</div> {this.deleteButton(post)} {this.likeButton(post)}
             <br />
             <br />
             <div className='left board-time'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</div>
             <br />
             <br />
-             {post.text}
+             {post.text} <div className='right likes'>{this.displayLikes(post)}</div>
           </li>
         </div>
       )
@@ -94,20 +123,19 @@ deletePost(post) {
 
     return (
       <div className='board'>
-        {/* <h4 className='center-align board-title'><strong>{this.props.neighborhood.name}, {this.props.neighborhood.city}</strong></h4> */}
         <div className='input-container'>
-        <form className='input-field'>
-          <img
-            width='32'
-            className='repsonsive-img'
-            alt='current user avatar'
-            src={this.props.currentUser.photoURL}/>
-          <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
-          <br />
-          <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
-        </form>
-      </div>
-        <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
+          <form className='input-field'>
+            <img
+              width='32'
+              className='repsonsive-img'
+              alt='current user avatar'
+              src={this.props.currentUser.photoURL}/>
+            <input className='validate' onChange={this.updatePost.bind(this)} type="text" placeholder="Write your post here..." id="message"/>
+            <br />
+            <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
+          </form>
+        </div>
+        <h4 className='center-align board-title'>Neighborhood Feed</h4>
         <ul className='message-scroll'>
           {currentPost.reverse()}
         </ul>
