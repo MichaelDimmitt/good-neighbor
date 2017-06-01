@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  /*font-family: 'Montserrat'*/
 }
 
 
@@ -95,8 +96,9 @@ input[type="search"] {
 .messages {
   border-radius: 7px;
   background-color: white;
-  border: 3px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 5px;
+  margin-bottom: 3px;
 }
 
 /*.message-scroll {
@@ -107,15 +109,16 @@ input[type="search"] {
 .board-title {
   border-radius: 7px;
   background-color: white;
-  border: 1px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 5px;
 }
 
 .large-profile {
   border-radius: 7px;
   background-color: white;
-  border: 2px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 15px;
+  margin-bottom: 3px;
 }
 
 .weather-text {
@@ -125,15 +128,15 @@ input[type="search"] {
 .users-in-hood {
   border-radius: 7px;
   background-color: white;
-  border: 2px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 15px;
-  margin-top: -14px;
+  margin-bottom: 3px;
 }
 
 .hood-title {
   border-radius: 7px;
   background-color: white;
-  border: 2px solid #eceff1;
+  border: 1px solid #E4E7E9;
   padding: 15px;
   margin: 0;
   font-weight: bold;
@@ -282,7 +285,7 @@ margin: 10px;
 }
 
 .board {
-  margin-top: -3px;
+  margin-top: -5px;
   border: 5px solid #eceff1;
 }
 
@@ -290,24 +293,27 @@ margin: 10px;
   position: relative;
   left: 20px;
   font-size: 1.2rem;
+  font-family: 'Montserrat'
+
+  /*text-shadow: 2px 2px rgba(0, 0, 0, .3);*/
 }
 
 .input-field {
   background-color: white;
   border-radius: 7px;
-  /*height: 100px;*/
   width: 80%;
-  /*margin: 20px;*/
   padding: 10px;
   position: relative;
-  bottom: 5px;
+  bottom: 7px;
+  border: 1px solid #E4E7E9;
 }
 
 .input-container {
   background-color: #eaf8fd;
   border-radius: 7px;
-  /*margin: 20px;*/
   padding: 10px;
+  border: 1px solid #E4E7E9;
+
 }
 
 .neighborhood-indicator {
@@ -328,4 +334,27 @@ margin: 10px;
 .header-links {
   position: relative;
   right: 20px;
+}
+
+.chat-avatar {
+  margin: 5px;
+}
+
+.board-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: relative;
+  top: 8px;
+}
+
+.delete-button {
+  color: #0288d1;
+  curser: hand;
+}
+
+.delete-button:hover {
+    cursor: hand;
+    cursor: pointer;
+    opacity: .9;
+
 }

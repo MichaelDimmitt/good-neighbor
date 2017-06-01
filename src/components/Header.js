@@ -16,7 +16,7 @@ class Header extends Component {
     return(
         <nav>
           <div className="nav-wrapper">
-            <div className='left hide-on-med-and-down header-hood'>{this.props.neighborhood.name} {this.props.neighborhood.city}</div>
+            <a href='/'><div className='left hide-on-med-and-down header-hood'>{this.props.neighborhood.name} {this.props.neighborhood.city}</div></a>
             <a href="/" className="brand-logo center">
               <img
                 className='logo'

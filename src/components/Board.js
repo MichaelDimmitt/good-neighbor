@@ -44,6 +44,7 @@ submitPost(event) {
     text: this.state.post,
     username: this.props.currentUser.displayName,
     pic: this.props.currentUser.photoURL,
+    key: this.props.currentUser.uid,
     time: firebase.database.ServerValue.TIMESTAMP
   }
   $('#message').val('');
@@ -54,6 +55,20 @@ submitPost(event) {
 }
 
 
+
+deleteButton(post){
+  if(post.key === this.props.currentUser.uid)
+    return (
+      <i className="material-icons right delete-button" onClick={this.deletePost.bind(this, post)}>delete</i>
+  )
+}
+
+deletePost(post) {
+  base.remove(`neighborhoods/${this.props.id}/posts/${post.id}`)
+}
+
+
+
   render() {
     const currentPost = this.state.posts.map((post, i) => {
       return(
@@ -61,10 +76,13 @@ submitPost(event) {
           <li key={post.id}>
             <img
             width='65'
-            className='repsonsive-img'
+            className='left repsonsive-img chat-avatar'
             alt='avatar'
-            src={post.pic}/> <strong>{post.username}</strong>
-            <span className='right'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</span>
+            src={post.pic}/>
+            <div className='left board-name'>{post.username}</div> {this.deleteButton(post)}
+            <br />
+            <br />
+            <div className='left board-time'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</div>
             <br />
             <br />
              {post.text}
