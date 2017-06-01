@@ -7,7 +7,7 @@ class Profile extends Component {
   render () {
       const user = this.props.user
       return (
-        <div>
+        <div className='center-align home-profile'>
           <img
             width='90'
             className='avatar repsonsive-img profile-pic'
