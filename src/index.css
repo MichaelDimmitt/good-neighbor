@@ -110,7 +110,11 @@ input[type="search"] {
   border-radius: 7px;
   background-color: white;
   border: 1px solid #E4E7E9;
-  padding: 5px;
+  padding: 10px;
+  /*font-weight: 600;*/
+  letter-spacing: 7px;
+  font-family: 'Montserrat'
+
 }
 
 .large-profile {

@@ -14,7 +14,9 @@ class Board extends Component {
     super()
     this.state = {
       post: '',
-      posts: []
+      posts: [],
+      likes: [],
+      number: []
     }
   }
 
@@ -45,7 +47,8 @@ submitPost(event) {
     username: this.props.currentUser.displayName,
     pic: this.props.currentUser.photoURL,
     key: this.props.currentUser.uid,
-    time: firebase.database.ServerValue.TIMESTAMP
+    time: firebase.database.ServerValue.TIMESTAMP,
+    // numberOfLikes: this.state.number
   }
   $('#message').val('');
   event.preventDefault()
@@ -69,8 +72,35 @@ deletePost(post) {
 }
 
 
+
+likeButton(post) {
+  if (post.key != this.props.currentUser.uid) {
+    return (
+      <i className="material-icons right delete-button" onClick={this.likePost.bind(this, post)}>thumb_up</i>
+    )
+  }
+}
+
+
+likePost(post) {
+  base.post(`neighborhoods/${this.props.id}/posts/${post.id}/likes/${this.props.currentUser.uid}`, {
+    data: 'liked'
+  })
+}
+
+
+
+
+displayLikes(post) {
+  if (post.likes) {
+  return Object.keys(post.likes).length
+}
+}
+
+
   render() {
     const currentPost = this.state.posts.map((post, i) => {
+      // console.log(post);
       return (
         <div className='messages'>
           <li key={post.id}>
@@ -79,7 +109,7 @@ deletePost(post) {
             className='left repsonsive-img chat-avatar'
             alt='avatar'
             src={post.pic}/>
-            <div className='left board-name'>{post.username}</div> {this.deleteButton(post)}
+            <div className='left board-name'>{post.username}</div>  {this.deleteButton(post)} {this.likeButton(post)} {this.displayLikes(post)}
             <br />
             <br />
             <div className='left board-time'>{moment(post.time).format('YYYY-MM-DD HH:mm a')}</div>
@@ -106,7 +136,7 @@ deletePost(post) {
             <button onClick={this.submitPost.bind(this)} className="post-button right-align waves-effect waves-light btn" id="message-button" type="submit">Post</button>
           </form>
         </div>
-        <h4 className='center-align board-title'><strong>Neighborhood Feed</strong></h4>
+        <h4 className='center-align board-title'>Neighborhood Feed</h4>
         <ul className='message-scroll'>
           {currentPost.reverse()}
         </ul>
