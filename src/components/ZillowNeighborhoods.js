@@ -52,58 +52,59 @@ class ZillowNeighborhoods extends Component {
     });
   }
 
-  convertUsersToArr(users){
+  //converts users objects into array of users so I can map over them below line 72
+  convertUsersToArr(users) {
     let arr = Object.keys(users)
     return arr.map((iteration, i) => {
       return users[iteration]
     })
   }
 
-  displayNeighbors(){
+  displayNeighbors() {
     if (this.state.neighborhood.id && this.state.currentUser) {
       let usersArr = this.convertUsersToArr(this.state.neighborhood.users);
-    const currentUser = this.state.currentUser
-    return(
-      <div>
-        <br />
-        <h5 className='center-align hood-title'>Your Neighbors</h5>
-        <ul>
-          {usersArr.map((user) => {
-            if(currentUser.displayName === user.name) {
-              return null
-
-            } else {
-              return  (
-                <div className='users-in-hood'>
-                  <div className='center-align'>
-                  {user.name}
-                  </div>
-                  <br />
-                  <li className=''>
-                    <div className='col s12 center-align'>
-                    <img
-                    width='105'
-                    className='avatar repsonsive-img z-depth-4 neighbors-pic'
-                    alt='neighbor avatar pic'
-                    src={user.pic} />
-                  </div>
-                  <div className='row'>
-                    <div className='col s6 m12 center-align'>
-                      <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn email-button">Email</button></a>
+      const currentUser = this.state.currentUser
+      return (
+        <div>
+          <br />
+          <h5 className='center-align hood-title'>Your Neighbors</h5>
+          <ul>
+            {usersArr.map((user) => {
+              if(currentUser.displayName === user.name) {
+                return null
+              } else {
+                return  (
+                  <div className='users-in-hood'>
+                    <div className='center-align'>
+                      {user.name}
                     </div>
-                    <div className='col s6 m12 center-align'>
-                       <button data-target="modal1" className="waves-effect waves-light btn chat-button" onClick={this.buttonClick.bind(this, user)}>Chat</button>
+                    <br />
+                    <li className=''>
+                      <div className='col s12 center-align'>
+                        <img
+                          width='105'
+                          className='avatar repsonsive-img z-depth-4 neighbors-pic'
+                          alt='neighbor avatar pic'
+                          src={user.pic} />
+                        </div>
+                        <div className='row'>
+                          <div className='col s6 m12 center-align'>
+                            <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn email-button">Email</button></a>
+                          </div>
+                          <div className='col s6 m12 center-align'>
+                            <button data-target="modal1" className="waves-effect waves-light btn chat-button" onClick={this.buttonClick.bind(this, user)}>Chat</button>
+                          </div>
+                        </div>
+                      </li>
                     </div>
-                  </div>
-                  </li>
-                </div>
-              )
-            }
-          })}
-        </ul>
-      </div>
-    )
-  }
+                  )
+                }
+              }
+            )}
+          </ul>
+        </div>
+      )
+    }
   }
 
   buttonClick (user){
@@ -111,7 +112,7 @@ class ZillowNeighborhoods extends Component {
   }
 
 
-  showChatBox(){
+  displayChatBox(){
     if (this.state.chatDisplay.display && this.state.chatDisplay.selectedUser.uid) {
       return (
         <ChatBox
@@ -122,7 +123,7 @@ class ZillowNeighborhoods extends Component {
         />
       )
     } else {
-    return null
+      return null
     }
   }
 
@@ -159,7 +160,7 @@ class ZillowNeighborhoods extends Component {
             />
           </div>
           <div id="modal1" className="modal">
-            {this.showChatBox()}
+            {this.displayChatBox()}
           </div>
         </div>
         <Footer />

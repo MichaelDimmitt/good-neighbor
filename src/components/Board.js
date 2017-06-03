@@ -48,7 +48,6 @@ submitPost(event) {
     pic: this.props.currentUser.photoURL,
     key: this.props.currentUser.uid,
     time: firebase.database.ServerValue.TIMESTAMP,
-    // numberOfLikes: this.state.number
   }
   $('#message').val('');
   event.preventDefault()

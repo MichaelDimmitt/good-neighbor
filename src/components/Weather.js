@@ -17,7 +17,7 @@ componentWillReceiveProps(newProps) {
 }
 
 getWeather(location) {
-    axios.get(`https://api.wunderground.com/api/24532f7c67079974/conditions/q/${location[1]},${location[2]}.json`)
+    axios.get(`https://api.wunderground.com/api/b80e3233bd0f0bd7/conditions/q/${location[1]},${location[2]}.json`)
     .then(response => this.setState({ currentWeather: response.data.current_observation }))
 }
 
@@ -53,3 +53,6 @@ getWeather(location) {
 
 
 export default Weather;
+
+//seperate API keys if reached limit b80e3233bd0f0bd7
+//24532f7c67079974
