@@ -11,7 +11,7 @@ class Favorites extends Component {
     const neighborhood = this.props.neighborhood
     return (
       <div>
-        <div className='fav-title'>Saved Address</div>
+        <div className='fav-title'><strong>My Neighborhood</strong></div>
         <div className='fav-text'>
           <Link to={`${neighborhood.id}`}>{address[4]}</Link>
         </div>
