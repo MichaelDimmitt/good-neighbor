@@ -19,7 +19,7 @@ class Header extends Component {
             <a href='/'><div className='left hide-on-med-and-down header-hood'>{this.props.neighborhood.name} {this.props.neighborhood.city}</div></a>
             <a href="/" className="brand-logo center">
               <img
-                className='logo'
+                className='logo-header'
                 alt='logo'
                 src={logoHeader} />
             </a>
