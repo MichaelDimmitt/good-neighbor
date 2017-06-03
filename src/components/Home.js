@@ -9,7 +9,6 @@ import base from '../rebase';
 import gju from 'geojson-utils';
 var data = require('/Users/tylerdavis/TIY/neighborhood.json');
 window.Vel = require('materialize-css/js/velocity.min');
-import logo5 from '../../public/images/Logo2-01.png';
 import logo6 from '../../public/images/logo-launch3.svg'
 
 
