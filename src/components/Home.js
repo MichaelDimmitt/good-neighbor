@@ -8,8 +8,8 @@ import Footer from './Footer';
 import base from '../rebase';
 import gju from 'geojson-utils';
 var data = require('/Users/tylerdavis/TIY/neighborhood.json');
-window.Vel = require('materialize-css/js/velocity.min')
-import logo5 from '../../public/images/Logo2-01.png'
+window.Vel = require('materialize-css/js/velocity.min');
+import logo6 from '../../public/images/logo-launch3.svg'
 
 
 
@@ -78,7 +78,7 @@ class Home extends Component {
             <img
               className='logo'
               alt='logo'
-              src={logo5} />
+              src={logo6} />
             <br />
             <button className="waves-effect waves-light btn" onClick={this.login.bind(this)}>Login</button>
           </div>
@@ -87,6 +87,8 @@ class Home extends Component {
     }
   }
 
+
+//map searching starts here
 
   formIfLoggedIn () {
     if (this.state.user.uid) {
@@ -97,7 +99,7 @@ class Home extends Component {
               type='search'
               className='center-align search-text'
               placeholder='Search address here...'
-              ref={element => this.addressName = element} />
+              ref={element => this.addressName = element} />  {/* storing what you put in the form in this.adressName */}
           </form>
         </div>
       )
@@ -154,9 +156,9 @@ class Home extends Component {
     const lng = address.geometry.location.lng
     const lat = address.geometry.location.lat
     //this uses the geojson utils tool to locate the neighborhood. Stores in neighborhood variable
-    const neighborhood = data.features.find(location => {
-      return gju.pointInPolygon({"type":"Point","coordinates":[ lng, lat ]},
-                    {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]})
+    const neighborhood = data.features.find(location => { //data.features is stored on computer.
+      return gju.pointInPolygon({"type":"Point","coordinates":[ lng, lat ]}, //I took shp files from zillow and converted to json
+                    {"type":"Polygon", "coordinates":[location.geometry.coordinates[0]]}) //then used the gju.pointInPolygon to find the neighborhood that the lat and lng is in
     });
 
     if (neighborhood === undefined) {

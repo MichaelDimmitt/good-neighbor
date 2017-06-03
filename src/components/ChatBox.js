@@ -24,9 +24,7 @@ componentDidMount() {
   $('.modal').modal();
 
   firebase.database().ref(`neighborhoods/${this.props.id}/messages`).on('value', (snapshot) =>{
-
     const currentMessages = snapshot.val()
-
     if (currentMessages != null){
       this.setState({
         messages: currentMessages
@@ -47,8 +45,8 @@ submitMessage(event) {
     text: this.state.message,
     username: this.props.currentUser.displayName,
     pic: this.props.currentUser.photoURL,
-    key: this.props.currentUser.uid+this.props.userKey,
-    revKey: this.props.userKey+this.props.currentUser.uid,
+    key: this.props.currentUser.uid+this.props.userKey, //key is current user's uid + the other user uid
+    revKey: this.props.userKey+this.props.currentUser.uid, //revkey is other user uid + current user uid
     time: firebase.database.ServerValue.TIMESTAMP
   }
   this.message.value = ''
@@ -61,7 +59,9 @@ submitMessage(event) {
 
   render() {
     const uniqueKey = this.props.currentUser.uid+this.props.userKey
-
+    //in order for users to talk exclusively with one another, the conditionals
+    //is checking if the current user is talking to other user = uniqueKey or
+    //the other user is talking to the current user
     const currentMessage = this.state.messages.map((message, i) => {
       if(message.key === uniqueKey || message.revKey === uniqueKey) {
         return(
