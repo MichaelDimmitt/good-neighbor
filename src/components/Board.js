@@ -26,7 +26,7 @@ componentDidMount() {
 
     const currentPosts = snapshot.val()
 
-    if (currentPosts != null){
+    if (currentPosts !== null){
       this.setState({
         posts: currentPosts
       })
@@ -73,7 +73,7 @@ deletePost(post) {
 
 
 likeButton(post) {
-  if (post.key != this.props.currentUser.uid) {
+  if (post.key !== this.props.currentUser.uid) {
     return (
       <i className="material-icons right delete-button" onClick={this.likePost.bind(this, post)}>thumb_up</i>
     )

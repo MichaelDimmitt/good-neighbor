@@ -20,7 +20,7 @@ body {
 }
 
 body {
-  background-color: #eceff1;
+  background-color: #e9ebee;
 }
 
 
@@ -91,7 +91,7 @@ input[type="search"] {
 .messages {
   border-radius: 7px;
   background-color: white;
-  border: 1px solid #E4E7E9;
+  border: 1px solid #d0d1d5;
   padding: 10px;
   margin-bottom: 3px;
 }
@@ -104,7 +104,7 @@ input[type="search"] {
 .board-title {
   border-radius: 7px;
   background-color: white;
-  border: 1px solid #E4E7E9;
+  border: 1px solid #d0d1d5;
   padding: 10px;
   /*font-weight: 600;*/
   /*letter-spacing: 7px;*/
@@ -115,7 +115,7 @@ input[type="search"] {
 .large-profile {
   border-radius: 7px;
   background-color: white;
-  border: 1px solid #E4E7E9;
+  border: 1px solid #d0d1d5;
   padding: 15px;
   margin-bottom: 3px;
 }
@@ -127,7 +127,7 @@ input[type="search"] {
 .users-in-hood {
   border-radius: 7px;
   background-color: white;
-  border: 1px solid #E4E7E9;
+  border: 1px solid #d0d1d5;
   padding: 15px;
   margin-bottom: 3px;
 }
@@ -135,7 +135,7 @@ input[type="search"] {
 .hood-title {
   border-radius: 7px;
   background-color: white;
-  border: 1px solid #E4E7E9;
+  border: 1px solid #d0d1d5;
   padding: 15px;
   margin: 0;
   /*font-weight: bold;*/
@@ -170,7 +170,6 @@ margin: auto;
   border-radius: 5px;
 }
 
-
 .logo {
   width: 100%;
 }
@@ -187,6 +186,9 @@ margin: auto;
   .logo {
     width: 80vw;
   }
+  .logo-header {
+    width: 85vw;
+  }
 }
 
 @media only screen and (min-width: 601px) {
@@ -194,8 +196,15 @@ margin: auto;
   .logo {
     width: 50vw;
   }
+  .logo-header {
+    width: 37vw;
+  }
 }
 
+
+/*.logo-header {
+
+}*/
 
 .login-button {
   position: fixed;
@@ -286,7 +295,7 @@ margin: 10px;
 
 .board {
   margin-top: -5px;
-  border: 5px solid #eceff1;
+  border: 5px solid #e9ebee;
 }
 
 .header-hood {
@@ -305,14 +314,14 @@ margin: 10px;
   padding: 10px;
   position: relative;
   bottom: 7px;
-  border: 1px solid #E4E7E9;
+  border: 1px solid #d0d1d5;
 }
 
 .input-container {
   background-color: #eaf8fd;
   border-radius: 7px;
   padding: 10px;
-  border: 1px solid #E4E7E9;
+  border: 1px solid #d0d1d5;
 
 }
 
