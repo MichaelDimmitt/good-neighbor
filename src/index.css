@@ -23,8 +23,10 @@ body {
   background-color: #e9ebee;
 }
 
-
-
+.neighbor-list {
+  position: relative;;
+  top: -9px;
+}
 
 .profile-pic {
   border-radius: 5px;
