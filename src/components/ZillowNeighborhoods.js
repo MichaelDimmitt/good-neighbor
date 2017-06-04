@@ -65,7 +65,7 @@ class ZillowNeighborhoods extends Component {
       let usersArr = this.convertUsersToArr(this.state.neighborhood.users);
       const currentUser = this.state.currentUser
       return (
-        <div>
+        <div className='neighbor-list'>
           <br />
           <h5 className='center-align hood-title'>Your Neighbors</h5>
           <ul>
@@ -88,10 +88,9 @@ class ZillowNeighborhoods extends Component {
                           src={user.pic} />
                         </div>
                         <div className='row'>
-                          <div className='col s6 m12 center-align'>
-                            <a href={`mailto:${user.email}`}><button className="waves-effect waves-light btn email-button">Email</button></a>
+                          <div className='col s12 m12 center-align'>
                           </div>
-                          <div className='col s6 m12 center-align'>
+                          <div className='col s12 m12 center-align'>
                             <button data-target="modal1" className="waves-effect waves-light btn chat-button" onClick={this.buttonClick.bind(this, user)}>Chat</button>
                           </div>
                         </div>
