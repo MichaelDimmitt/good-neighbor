@@ -237,14 +237,14 @@ class Home extends Component {
     }
   }
 
-  displayFooter() {
-    if(this.state.user.uid) {
-      return (
-        <Footer
-        />
-      )
-    }
-  }
+  // displayFooter() {
+  //   if(this.state.user.uid) {
+  //     return (
+  //       <Footer
+  //       />
+  //     )
+  //   }
+  // }
 
 
 
@@ -263,7 +263,7 @@ class Home extends Component {
             {this.formIfLoggedIn()}
             {this.displayMap()}
           </div>
-          {this.displayFooter()}
+          {/* {this.displayFooter()} */}
       </div>
     )
   }

@@ -162,7 +162,7 @@ class ZillowNeighborhoods extends Component {
             {this.displayChatBox()}
           </div>
         </div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     )
   }
