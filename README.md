@@ -5,8 +5,8 @@
 A react app that helps connect you with your neighbors. 
 1. post messages to the neighborhood.
 2. post direct messages
-3. find upcoming events near you, provided by zillow api.
-4. learn the current weather at your home address.
+3. find upcoming events near you, provided by eventful api.
+4. learn the current weather at your home address, provided by weatherunderground api.
 
 Good Neighbor will use
 the Google Maps API in conjunction with the Zillow Neighborhoods API to match you with other users in
@@ -26,5 +26,4 @@ npm install;
 npm start;
 </pre>
 
-** Future information, firebase instructions/links/experience. **
-<br>** Future information, why did we choose these technologies / api's **
+
